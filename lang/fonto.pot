@@ -1,0 +1,494 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: Fonto\n"
+"POT-Creation-Date: 2015-12-01 11:00-0500\n"
+"PO-Revision-Date: 2015-12-01 10:56-0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.6\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: fonto.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: includes/class-fonto-init.php:99
+msgid "Error: plugin \""
+msgstr ""
+
+#: includes/class-fonto-init.php:100
+msgid "Minimal version of PHP required: "
+msgstr ""
+
+#: includes/class-fonto-init.php:101
+msgid "Your server's PHP version: "
+msgstr ""
+
+#: includes/class-fonto-init.php:179
+msgid "Plugin \""
+msgstr ""
+
+#: includes/class-fonto-post-types.php:56
+msgid "Fonts"
+msgstr ""
+
+#: includes/class-fonto-post-types.php:56
+msgid "Font"
+msgstr ""
+
+#: includes/class-fonto-post-types.php:59
+msgid "Font Categories"
+msgstr ""
+
+#: includes/class-fonto-post-types.php:59
+msgid "Font Category"
+msgstr ""
+
+#: includes/class-fonto-post-types.php:65
+#: includes/class-fonto-post-types.php:139
+msgid "Baby Fonts"
+msgstr ""
+
+#: includes/class-fonto-post-types.php:65
+msgid "Baby Font"
+msgstr ""
+
+#: includes/class-fonto-post-types.php:81
+#: includes/class-fonto-settings.php:150
+msgid "Standard"
+msgstr ""
+
+#: includes/class-fonto-post-types.php:82
+#: includes/class-fonto-settings.php:220
+msgid "Extra"
+msgstr ""
+
+#: includes/class-fonto-post-types.php:97
+#: includes/class-fonto-settings.php:155
+msgid "Some Text"
+msgstr ""
+
+#: includes/class-fonto-post-types.php:98
+#: includes/class-fonto-settings.php:156
+msgid "This is a standard text field."
+msgstr ""
+
+#: includes/class-fonto-post-types.php:101
+#: includes/class-fonto-post-types.php:109
+#: includes/class-fonto-post-types.php:117
+#: includes/class-fonto-settings.php:159
+#: includes/class-fonto-settings.php:167
+#: includes/class-fonto-settings.php:175
+msgid "Placeholder text"
+msgstr ""
+
+#: includes/class-fonto-post-types.php:105
+#: includes/class-fonto-settings.php:163
+msgid "A Password"
+msgstr ""
+
+#: includes/class-fonto-post-types.php:106
+#: includes/class-fonto-settings.php:164
+msgid "This is a standard password field."
+msgstr ""
+
+#: includes/class-fonto-post-types.php:113
+#: includes/class-fonto-settings.php:171
+msgid "Some Secret Text"
+msgstr ""
+
+#: includes/class-fonto-post-types.php:114
+#: includes/class-fonto-settings.php:172
+msgid ""
+"This is a secret text field - any data saved here will not be displayed "
+"after the page has reloaded, but it will be saved."
+msgstr ""
+
+#: includes/class-fonto-post-types.php:124
+#: includes/class-fonto-settings.php:187
+msgid "An Option"
+msgstr ""
+
+#: includes/class-fonto-post-types.php:125
+#: includes/class-fonto-settings.php:188
+msgid ""
+"A standard checkbox - if you save this option as checked then it will store "
+"the option as 'on', otherwise it will be an empty string."
+msgstr ""
+
+#: includes/class-fonto-post-types.php:131
+#: includes/class-fonto-settings.php:194
+msgid "A Select Box"
+msgstr ""
+
+#: includes/class-fonto-post-types.php:132
+#: includes/class-fonto-settings.php:195
+msgid "A standard select box."
+msgstr ""
+
+#: includes/class-fonto-post-types.php:140
+msgid "Choose from another custom post type."
+msgstr ""
+
+#: includes/class-fonto-post-types.php:148
+#: includes/class-fonto-settings.php:202
+msgid "Some Options"
+msgstr ""
+
+#: includes/class-fonto-post-types.php:149
+#: includes/class-fonto-settings.php:203
+msgid "A standard set of radio buttons."
+msgstr ""
+
+#: includes/class-fonto-post-types.php:156
+#: includes/class-fonto-settings.php:210
+msgid "Some Items"
+msgstr ""
+
+#: includes/class-fonto-post-types.php:157
+#: includes/class-fonto-settings.php:211
+msgid "You can select multiple items and they will be stored as an array."
+msgstr ""
+
+#: includes/class-fonto-post-types.php:166
+#: includes/class-fonto-post-types.php:235
+#: includes/class-fonto-settings.php:179
+msgid "A Text Block"
+msgstr ""
+
+#: includes/class-fonto-post-types.php:167
+#: includes/class-fonto-post-types.php:236
+#: includes/class-fonto-settings.php:180
+msgid "This is a standard text area."
+msgstr ""
+
+#: includes/class-fonto-post-types.php:170
+#: includes/class-fonto-post-types.php:239
+#: includes/class-fonto-settings.php:183
+msgid "Placeholder text for this textarea"
+msgstr ""
+
+#: includes/class-fonto-post-types.php:175
+#: includes/class-fonto-settings.php:225
+msgid "A Number"
+msgstr ""
+
+#: includes/class-fonto-post-types.php:176
+#: includes/class-fonto-settings.php:226
+msgid ""
+"This is a standard number field - if this field contains anything other than "
+"numbers then the form will not be submitted."
+msgstr ""
+
+#: includes/class-fonto-post-types.php:179
+#: includes/class-fonto-settings.php:229
+msgid "42"
+msgstr ""
+
+#: includes/class-fonto-post-types.php:183
+#: includes/class-fonto-settings.php:233
+msgid "Pick a colour"
+msgstr ""
+
+#: includes/class-fonto-post-types.php:184
+#: includes/class-fonto-settings.php:234
+msgid ""
+"This uses WordPress' built-in colour picker - the option is stored as the "
+"colour's hex code."
+msgstr ""
+
+#: includes/class-fonto-post-types.php:190
+#: includes/class-fonto-settings.php:240
+msgid "An Image"
+msgstr ""
+
+#: includes/class-fonto-post-types.php:191
+#: includes/class-fonto-settings.php:241
+msgid ""
+"This will upload an image to your media library and store the attachment ID "
+"in the option field. Once you have uploaded an imge the thumbnail will "
+"display above these buttons."
+msgstr ""
+
+#: includes/class-fonto-post-types.php:198
+#: includes/class-fonto-settings.php:248
+msgid "A Multi-Select Box"
+msgstr ""
+
+#: includes/class-fonto-post-types.php:199
+#: includes/class-fonto-settings.php:249
+msgid "A standard multi-select box - the saved data is stored as an array."
+msgstr ""
+
+#: includes/class-fonto-post-types.php:207
+msgid "A Date Picker Field"
+msgstr ""
+
+#: includes/class-fonto-post-types.php:208
+msgid "A standard date picker field."
+msgstr ""
+
+#: includes/class-fonto-post-types.php:214
+msgid "A Date Time Picker Field"
+msgstr ""
+
+#: includes/class-fonto-post-types.php:215
+msgid "A standard date time picker field."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+#: includes/class-fonto-post-types.php:269
+msgid "Fonto"
+msgstr ""
+
+#: includes/class-fonto-post-types.php:333
+#: includes/class-fonto-post-types.php:343
+#: includes/class-fonto-settings.php:451
+#: includes/class-fonto-settings.php:461
+#: includes/class-fonto.php:397
+#: includes/class-fonto.php:407
+#: includes/lib/class-fonto-option.php:150
+#: includes/lib/class-fonto-option.php:160
+msgid "Cheatin&#8217; huh?"
+msgstr ""
+
+#: includes/class-fonto-settings.php:109
+msgid "Fonto Settings"
+msgstr ""
+
+#: includes/class-fonto-settings.php:109
+#: includes/class-fonto-settings.php:336
+msgid "Fonto"
+msgstr ""
+
+#: includes/class-fonto-settings.php:138
+msgid "Settings"
+msgstr ""
+
+#: includes/class-fonto-settings.php:151
+msgid "These are fairly standard form input fields."
+msgstr ""
+
+#: includes/class-fonto-settings.php:221
+msgid ""
+"These are some extra input fields that maybe aren't as common as the others."
+msgstr ""
+
+#: includes/class-fonto-settings.php:387
+msgid "Save Settings"
+msgstr ""
+
+#: includes/lib/class-fonto-admin-api.php:213
+msgid "Upload an image"
+msgstr ""
+
+#: includes/lib/class-fonto-admin-api.php:213
+msgid "Use image"
+msgstr ""
+
+#: includes/lib/class-fonto-admin-api.php:213
+msgid "Upload new image"
+msgstr ""
+
+#: includes/lib/class-fonto-admin-api.php:214
+msgid "Remove image"
+msgstr ""
+
+#: includes/lib/class-fonto-post-type.php:112
+#: includes/lib/class-fonto-taxonomy.php:114
+#, php-format
+msgid "Add New %s"
+msgstr ""
+
+#: includes/lib/class-fonto-post-type.php:113
+#: includes/lib/class-fonto-taxonomy.php:111
+#, php-format
+msgid "Edit %s"
+msgstr ""
+
+#: includes/lib/class-fonto-post-type.php:114
+#, php-format
+msgid "New %s"
+msgstr ""
+
+#: includes/lib/class-fonto-post-type.php:115
+#: includes/lib/class-fonto-taxonomy.php:110
+#, php-format
+msgid "All %s"
+msgstr ""
+
+#: includes/lib/class-fonto-post-type.php:116
+#: includes/lib/class-fonto-taxonomy.php:112
+#, php-format
+msgid "View %s"
+msgstr ""
+
+#: includes/lib/class-fonto-post-type.php:117
+#: includes/lib/class-fonto-taxonomy.php:118
+#, php-format
+msgid "Search %s"
+msgstr ""
+
+#: includes/lib/class-fonto-post-type.php:118
+#, php-format
+msgid "No %s Found"
+msgstr ""
+
+#: includes/lib/class-fonto-post-type.php:119
+#, php-format
+msgid "No %s Found In Trash"
+msgstr ""
+
+#: includes/lib/class-fonto-post-type.php:120
+#: includes/lib/class-fonto-taxonomy.php:116
+#, php-format
+msgid "Parent %s"
+msgstr ""
+
+#: includes/lib/class-fonto-post-type.php:160
+#, php-format
+msgid "%1$s updated. %2$sView %3$s%4$s."
+msgstr ""
+
+#: includes/lib/class-fonto-post-type.php:161
+msgid "Custom field updated."
+msgstr ""
+
+#: includes/lib/class-fonto-post-type.php:162
+msgid "Custom field deleted."
+msgstr ""
+
+#: includes/lib/class-fonto-post-type.php:163
+#, php-format
+msgid "%1$s updated."
+msgstr ""
+
+#: includes/lib/class-fonto-post-type.php:164
+#, php-format
+msgid "%1$s restored to revision from %2$s."
+msgstr ""
+
+#: includes/lib/class-fonto-post-type.php:165
+#, php-format
+msgid "%1$s published. %2$sView %3$s%4s."
+msgstr ""
+
+#: includes/lib/class-fonto-post-type.php:166
+#, php-format
+msgid "%1$s saved."
+msgstr ""
+
+#: includes/lib/class-fonto-post-type.php:167
+#, php-format
+msgid "%1$s submitted. %2$sPreview post%3$s%4$s."
+msgstr ""
+
+#: includes/lib/class-fonto-post-type.php:168
+#, php-format
+msgid "%1$s scheduled for: %2$s. %3$sPreview %4$s%5$s."
+msgstr ""
+
+#: includes/lib/class-fonto-post-type.php:168
+msgid "M j, Y @ G:i"
+msgstr ""
+
+#: includes/lib/class-fonto-post-type.php:169
+#, php-format
+msgid "%1$s draft updated. %2$sPreview %3$s%4$s."
+msgstr ""
+
+#: includes/lib/class-fonto-post-type.php:184
+#, php-format
+msgid "%1$s %2$s updated."
+msgid_plural "%1$s %3$s updated."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/lib/class-fonto-post-type.php:185
+#, php-format
+msgid "%1$s %2$s not updated, somebody is editing it."
+msgid_plural "%1$s %3$s not updated, somebody is editing them."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/lib/class-fonto-post-type.php:186
+#, php-format
+msgid "%1$s %2$s permanently deleted."
+msgid_plural "%1$s %3$s permanently deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/lib/class-fonto-post-type.php:187
+#, php-format
+msgid "%1$s %2$s moved to the Trash."
+msgid_plural "%1$s %3$s moved to the Trash."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/lib/class-fonto-post-type.php:188
+#, php-format
+msgid "%1$s %2$s restored from the Trash."
+msgid_plural "%1$s %3$s restored from the Trash."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/lib/class-fonto-taxonomy.php:113
+#, php-format
+msgid "Update %s"
+msgstr ""
+
+#: includes/lib/class-fonto-taxonomy.php:115
+#, php-format
+msgid "New %s Name"
+msgstr ""
+
+#: includes/lib/class-fonto-taxonomy.php:117
+#, php-format
+msgid "Parent %s:"
+msgstr ""
+
+#: includes/lib/class-fonto-taxonomy.php:119
+#, php-format
+msgid "Popular %s"
+msgstr ""
+
+#: includes/lib/class-fonto-taxonomy.php:120
+#, php-format
+msgid "Separate %s with commas"
+msgstr ""
+
+#: includes/lib/class-fonto-taxonomy.php:121
+#, php-format
+msgid "Add or remove %s"
+msgstr ""
+
+#: includes/lib/class-fonto-taxonomy.php:122
+#, php-format
+msgid "Choose from the most used %s"
+msgstr ""
+
+#: includes/lib/class-fonto-taxonomy.php:123
+#, php-format
+msgid "No %s found"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
+msgid "https://pixelgrade.com"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "This is your starter template for your next WordPress plugin."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "PixelGrade"
+msgstr ""
