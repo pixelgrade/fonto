@@ -6,8 +6,8 @@
  *
  * @category Class
  * @package Fonto
- * @author   PixelGrade <peter@geotonics.com>
- * @license  GNU Lesser General Public Licence see LICENCE file or http://www.gnu.org/licenses/lgpl.html
+ * @author   PixelGrade <contact@pixelgrade.com>
+ * @license  GPL v2.0 (or later) see LICENCE file or http://www.gnu.org/licenses/gpl-2.0.html
  * @link     https://pixelgrade.com
  */
 
@@ -16,22 +16,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Class to check php and plugin version, and do updates if neccesary
+ * Class to check php and plugin version, and do updates if necessary - This is a base for the Fonto class
  *
  * @category include
  * @package  Fonto
- * @author   PixelGrade <peter@geotonics.com>
- * @license  GNU Lesser General Public Licence see LICENCE file or http://www.gnu.org/licenses/lgpl.html
+ * @author   PixelGrade <contact@pixelgrade.com>
+ * @license  GPL v2.0 (or later) see LICENCE file or http://www.gnu.org/licenses/gpl-2.0.html
  * @version  Release: .1
- * @link     http://geotonics.com
+ * @link     https://pixelgrade.com
  * @since    Class available since Release .1
  */
-class Fonto_Init
-{
+class Fonto_Init {
 
 	/**
 	 * The single instance of Fonto Init.
-	 * @var     object
+	 * @var     Fonto_Init
 	 * @access  private
 	 * @since     1.0.0
 	 */
@@ -43,7 +42,7 @@ class Fonto_Init
 	 * @access  private
 	 * @since   1.0.0
 	 */
-	private $minimalRequiredPhpVersion  = 5;
+	private $minimalRequiredPhpVersion = 5.2;
 
 	/**
 	 * Plugin Name.
@@ -78,7 +77,7 @@ class Fonto_Init
 	 */
 	public function __construct() {
 
-		$this->plugin_name = str_replace( '_', ' ', __CLASS__ );
+		$this->plugin_name = 'Fonto';
 	} // End __construct ().
 
 	/**
@@ -86,21 +85,21 @@ class Fonto_Init
 	 */
 	public function notice_php_version_wrong() {
 		$allowed = array(
-		    'div' => array(
-		    	'class' => array(),
-		    	'id' => array(),
-		    ),
-		    'p' => array(),
-		    'br' => array(),
-		    'strong' => array(),
+			'div'    => array(
+				'class' => array(),
+				'id'    => array(),
+			),
+			'p'      => array(),
+			'br'     => array(),
+			'strong' => array(),
 		);
 
-		$html = '<div class="updated fade">'.
-		  __( 'Error: plugin "'.$this->plugin_name.'" requires a newer version of PHP to be running.',  'example' ).
-				'<br/>' . __( 'Minimal version of PHP required: ', 'example' ) . '<strong>' . $this->minimalRequiredPhpVersion . '</strong>
+		$html = '<div class="updated fade">' .
+		        __( 'Error: plugin "' . $this->plugin_name . '" requires a newer version of PHP to be running.', 'example' ) .
+		        '<br/>' . __( 'Minimal version of PHP required: ', 'example' ) . '<strong>' . $this->minimalRequiredPhpVersion . '</strong>
 				<br/>' . __( 'Your server\'s PHP version: ', 'example' ) . '<strong>' . phpversion() . '</strong>
 				</div>';
-		echo  wp_kses( $html, $allowed );
+		echo wp_kses( $html, $allowed );
 	}
 
 	/**
@@ -110,6 +109,7 @@ class Fonto_Init
 
 		if ( version_compare( phpversion(), $this->minimalRequiredPhpVersion ) < 0 ) {
 			add_action( 'admin_notices', array( $this, 'notice_php_version_wrong' ) );
+
 			return false;
 		}
 
@@ -121,9 +121,9 @@ class Fonto_Init
 	 */
 	public function upgrade() {
 
-		$upgradeOk = true;
+		$upgradeOk    = true;
 		$savedVersion = $this->option->get_version_saved();
-		$newVersion = $this->_version;
+		$newVersion   = $this->_version;
 		$new_versions = array();
 
 		if ( $this->is_version_less_than( $savedVersion, $newVersion ) ) {
@@ -162,14 +162,16 @@ class Fonto_Init
 
 	/**
 	 * Compares version numbers and determines if the result is less than zero.
+	 *
 	 * @param  string $version1 A version string such as '1', '1.1', '1.1.1', '2.0', etc.
 	 * @param  string $version2 A version string such as '1', '1.1', '1.1.1', '2.0', etc.
+	 *
 	 * @return bool true if version_compare of $versions1 and $version2 shows $version1 as earlier
 	 */
 	public function is_version_less_than( $version1, $version2 ) {
-		return (version_compare( $version1, $version2 ) < 0);
+		return ( version_compare( $version1, $version2 ) < 0 );
 	}
-	
+
 	/**
 	 * Provide a useful error message if the Plugin has been updated.
 	 */
@@ -177,8 +179,8 @@ class Fonto_Init
 
 		foreach ( $this->new_versions as $new_version ) {
 			echo '<div class="updated fade">' .
-		  		esc_html( __( 'Plugin "'.$this->plugin_name.'" has been updated to version ', 'fonto' ).$new_version ).
-			 	'</div>';
+			     esc_html( __( 'Plugin "' . $this->plugin_name . '" has been updated to version ', 'fonto' ) . $new_version ) .
+			     '</div>';
 		}
 
 	}

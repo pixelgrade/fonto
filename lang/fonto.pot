@@ -52,15 +52,6 @@ msgstr ""
 msgid "Font Category"
 msgstr ""
 
-#: includes/class-fonto-post-types.php:65
-#: includes/class-fonto-post-types.php:139
-msgid "Baby Fonts"
-msgstr ""
-
-#: includes/class-fonto-post-types.php:65
-msgid "Baby Font"
-msgstr ""
-
 #: includes/class-fonto-post-types.php:81
 #: includes/class-fonto-settings.php:150
 msgid "Standard"

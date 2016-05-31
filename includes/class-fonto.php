@@ -6,12 +6,13 @@
  *
  * @category Class
  * @package  Fonto
- * @author   PixelGrade <peter@geotonics.com>
- * @license  GNU Lesser General Public Licence see LICENCE file or http://www.gnu.org/licenses/lgpl.html
- * @link     http://geotonics.com
+ * @author   PixelGrade <contact@pixelgrade.com>
+ * @license  GPL v2.0 (or later) see LICENCE file or http://www.gnu.org/licenses/gpl-2.0.html
+ * @link     https://pixelgrade.com
  */
 
-if ( ! defined( 'ABSPATH' ) ) { exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 require_once 'class-fonto-init.php';
 require_once 'lib/class-fonto-option.php';
@@ -21,14 +22,13 @@ require_once 'lib/class-fonto-option.php';
  *
  * @category Html_Tag
  * @package  Fonto
- * @author   PixelGrade <peter@geotonics.com>
- * @license  GNU Lesser General Public Licence see LICENCE file or http://www.gnu.org/licenses/lgpl.html
+ * @author   PixelGrade <contact@pixelgrade.com>
+ * @license  GPL v2.0 (or later) see LICENCE file or http://www.gnu.org/licenses/gpl-2.0.html
  * @version  Release: .1
  * @link     https://pixelgrade.com
  * @since    Class available since Release 1.0.0
  */
-class Fonto extends Fonto_Init
-{
+class Fonto extends Fonto_Init {
 
 	/**
 	 * The single instance of Fonto.
@@ -40,7 +40,7 @@ class Fonto extends Fonto_Init
 
 	/**
 	 * Settings class object
-	 * @var     object
+	 * @var     Fonto_Settings
 	 * @access  public
 	 * @since   1.0.0
 	 */
@@ -48,11 +48,19 @@ class Fonto extends Fonto_Init
 
 	/**
 	 * Post_types class object
-	 * @var     object
+	 * @var     Fonto_Post_Types
 	 * @access  public
 	 * @since   1.0.0
 	 */
-	public $post_types     = null;
+	public $post_types = null;
+
+	/**
+	 * Option class object
+	 * @var     Fonto_Option
+	 * @access  public
+	 * @since   1.0.0
+	 */
+	public $option = null;
 
 	/**
 	 * Admin Api class object
@@ -60,24 +68,7 @@ class Fonto extends Fonto_Init
 	 * @access  public
 	 * @since   1.0.0
 	 */
-
-	public $option     = null;
-	/**
-	 * Option class object
-	 * @var     object
-	 * @access  public
-	 * @since   1.0.0
-	 */
-
-	public $templates     = null;
-	/**
-	 * Templates class object
-	 * @var     object
-	 * @access  public
-	 * @since   1.0.0
-	 */
-
-	public $admin    = null;
+	public $admin = null;
 
 	/**
 	 * The token.
@@ -120,7 +111,7 @@ class Fonto extends Fonto_Init
 	public $assets_url;
 
 	/**
-	 * Suffix for Javascripts.
+	 * Suffix for JavaScripts.
 	 * @var     string
 	 * @access  public
 	 * @since   1.0.0
@@ -129,16 +120,17 @@ class Fonto extends Fonto_Init
 
 	/**
 	 * Constructor for Fonto
+	 *
 	 * @param string $file Name of main plugin file (used for determining paths).
 	 * @param string $version Version number of this plugin.
 	 */
 	public function __construct( $file = '', $version = '1.0.0' ) {
 
 		$this->_version = $version;
-		$this->file = $file;
-		$this->_token = 'fonto';
+		$this->file     = $file;
+		$this->_token   = 'fonto';
 
-		// Add options api.
+		// Add options API.
 		if ( is_null( $this->option ) ) {
 			$this->option = Fonto_Option::instance( $this );
 		}
@@ -161,13 +153,11 @@ class Fonto extends Fonto_Init
 		// Load plugin class files.
 		include_once 'class-fonto-settings.php';
 		include_once 'class-fonto-post-types.php';
-		include_once 'class-fonto-user.php';
 
 		// Load plugin libraries.
 		include_once 'lib/class-fonto-admin-api.php';
 		include_once 'lib/class-fonto-post-type.php';
 		include_once 'lib/class-fonto-taxonomy.php';
-		include_once 'lib/class-fonto-template.php';
 
 		// Load plugin environment variables.
 		$this->dir = dirname( $this->file );
@@ -206,28 +196,23 @@ class Fonto extends Fonto_Init
 			$this->post_types = Fonto_Post_Types::instance( $this );
 		}
 
-		// Add templates.
-		if ( is_null( $this->templates ) ) {
-			$this->templates = Fonto_Template::instance( $this );
-		}
-
-		// Include the Ajax library on the front end.
-		add_action( 'wp_head', array( &$this, 'add_ajax_library' ) );
-
 	}
 
 	/**
 	 * Wrapper function to register a new post type
-	 * @param  string $post_type   Post type name.
-	 * @param  string $plural      Post type item plural name.
-	 * @param  string $single      Post type item single name.
+	 *
+	 * @param  string $post_type Post type name.
+	 * @param  string $plural Post type item plural name.
+	 * @param  string $single Post type item single name.
 	 * @param  string $description Description of post type.
-	 * @param  string $options     Overide default post type arguments.
+	 * @param  array $options Overide default post type arguments.
+	 *
 	 * @return object              Post type class object
 	 */
 	public function register_post_type( $post_type = '', $plural = '', $single = '', $description = '', $options = array() ) {
 
-		if ( ! $post_type || ! $plural || ! $single ) { return;
+		if ( ! $post_type || ! $plural || ! $single ) {
+			return;
 		}
 
 		$post_type = new Fonto_Post_Type( $post_type, $plural, $single, $description, $options );
@@ -237,16 +222,19 @@ class Fonto extends Fonto_Init
 
 	/**
 	 * Wrapper function to register a new taxonomy
-	 * @param  string $taxonomy      Taxonomy name.
-	 * @param  string $plural        Taxonomy single name.
-	 * @param  string $single        Taxonomy plural name.
-	 * @param  array  $post_types    Post types to which this taxonomy applies.
-	 * @param  array  $taxonomy_args Overide default taxonomy arguments.
+	 *
+	 * @param  string $taxonomy Taxonomy name.
+	 * @param  string $plural Taxonomy single name.
+	 * @param  string $single Taxonomy plural name.
+	 * @param  array $post_types Post types to which this taxonomy applies.
+	 * @param  array $taxonomy_args Overide default taxonomy arguments.
+	 *
 	 * @return object             Taxonomy class object.
 	 */
 	public function register_taxonomy( $taxonomy = '', $plural = '', $single = '', $post_types = array(), $taxonomy_args = array() ) {
 
-		if ( ! $taxonomy || ! $plural || ! $single ) { return;
+		if ( ! $taxonomy || ! $plural || ! $single ) {
+			return;
 		}
 
 		$taxonomy = new Fonto_Taxonomy( $taxonomy, $plural, $single, $post_types, $taxonomy_args );
@@ -293,7 +281,7 @@ class Fonto extends Fonto_Init
 		wp_register_style( 'jquery-ui', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css' );
 		wp_enqueue_style( 'jquery-ui' );
 		wp_enqueue_style(
-			$this->_token.' datetime-picker-style',
+			$this->_token . ' datetime-picker-style',
 			esc_url( $this->assets_url ) . 'css/jquery-ui-timepicker-addon.css'
 		);
 	} // End admin_enqueue_styles ()
@@ -307,30 +295,23 @@ class Fonto extends Fonto_Init
 	 */
 	public function admin_enqueue_scripts() {
 
-		wp_register_script( $this->_token . '-admin', esc_url( $this->assets_url ) . 'js/admin' . $this->script_suffix . '.js', array( 'jquery', 'jquery-ui-tabs' ), $this->_version );
+		wp_register_script( $this->_token . '-admin', esc_url( $this->assets_url ) . 'js/admin' . $this->script_suffix . '.js', array(
+			'jquery',
+			'jquery-ui-tabs'
+		), $this->_version );
 		wp_enqueue_script( $this->_token . '-admin' );
 
 		wp_enqueue_script(
-			$this->_token.'jquery-datetimepicker',
+			$this->_token . 'jquery-datetimepicker',
 			esc_url( $this->assets_url ) . 'js/jquery-ui-timepicker-addon.js',
-			array( 'jquery','jquery-ui-datepicker' )
+			array( 'jquery', 'jquery-ui-datepicker' )
 		);
-		
+
 		// We're including the WP media scripts here because they're needed for the image upload field.
 		// If you're not including an image upload then you can leave this function call out.
 		wp_enqueue_media();
 
 	} // End admin_enqueue_scripts ()
-
-	/**
-	 * Adds the WordPress Ajax Library to the frontend.
-	 */
-	public function add_ajax_library() {
-
-		echo '<script type="text/javascript">
-	    	var ajaxurl = "' .esc_url( admin_url( 'admin-ajax.php' ) ) . '"
-		</script>';
-	} // end add_ajax_library
 
 	/**
 	 * Load plugin localisation
@@ -377,7 +358,8 @@ class Fonto extends Fonto_Init
 	 *
 	 * @since  1.0.0
 	 * @static
-	 * @param string $file    File.
+	 *
+	 * @param string $file File.
 	 * @param string $version Version.
 	 *
 	 * @see    Fonto()
@@ -388,6 +370,7 @@ class Fonto extends Fonto_Init
 		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self( $file, $version );
 		}
+
 		return self::$_instance;
 	} // End instance ()
 
@@ -398,7 +381,7 @@ class Fonto extends Fonto_Init
 	 */
 	public function __clone() {
 
-		_doing_it_wrong( __FUNCTION__,esc_html( __( 'Cheatin&#8217; huh?' ) ), esc_html( $this->_version ) );
+		_doing_it_wrong( __FUNCTION__, esc_html( __( 'Cheatin&#8217; huh?' ) ), esc_html( $this->_version ) );
 	} // End __clone ()
 
 	/**
@@ -408,6 +391,6 @@ class Fonto extends Fonto_Init
 	 */
 	public function __wakeup() {
 
-		_doing_it_wrong( __FUNCTION__, esc_html( __( 'Cheatin&#8217; huh?' ) ),  esc_html( $this->_version ) );
+		_doing_it_wrong( __FUNCTION__, esc_html( __( 'Cheatin&#8217; huh?' ) ), esc_html( $this->_version ) );
 	} // End __wakeup ()
 }

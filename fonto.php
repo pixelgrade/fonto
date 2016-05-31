@@ -1,13 +1,13 @@
 <?php
 /**
  * Plugin Name: Fonto
- * Version: 1.7
+ * Version: 0.1
  * Plugin URI: https://pixelgrade.com
  * Description: This is your starter template for your next WordPress plugin.
  * Author: PixelGrade
  * Author URI: https://pixelgrade.com
  * Requires at least: 4.0
- * Tested up to: 4.0
+ * Tested up to: 4.5.2
  *
  * Text Domain: fonto
  * Domain Path: /lang/
@@ -17,7 +17,9 @@
  * @since 1.0.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) { exit; }
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Returns the main instance of Fonto to prevent the need to use globals.
@@ -28,7 +30,8 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 function fonto() {
 
 	require_once( 'includes/class-fonto.php' );
-	$instance = Fonto::instance( __FILE__, '1.7.0' );
+	$instance = Fonto::instance( __FILE__, '0.1.0' );
+
 	return $instance;
 }
 

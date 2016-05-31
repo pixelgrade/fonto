@@ -6,8 +6,8 @@
  *
  * @category Class
  * @package Fonto
- * @author   PixelGrade <peter@geotonics.com>
- * @license  GNU Lesser General Public Licence see LICENCE file or http://www.gnu.org/licenses/lgpl.html
+ * @author   PixelGrade <contact@pixelgrade.com>
+ * @license  GPL v2.0 (or later) see LICENCE file or http://www.gnu.org/licenses/gpl-2.0.html
  * @link     https://pixelgrade.com
  */
 
@@ -20,25 +20,24 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @category include
  * @package  Fonto
- * @author   PixelGrade <peter@geotonics.com>
- * @license  GNU Lesser General Public Licence see LICENCE file or http://www.gnu.org/licenses/lgpl.html
+ * @author   PixelGrade <contact@pixelgrade.com>
+ * @license  GPL v2.0 (or later) see LICENCE file or http://www.gnu.org/licenses/gpl-2.0.html
  * @version  Release: .1
- * @link     http://geotonics.com
+ * @link     https://pixelgrade.com
  * @since    Class available since Release .1
  */
-class Fonto_Option
-{
+class Fonto_Option {
 	/**
-	 * The single instance of Fonto_Post_Types which will register all Custom Post Types,
-	 *     add metaboxes with custom fields, and also register all taxonomies.
-	 * @var 	object
+	 * The single instance of Fonto_Option
+	 * @var    Fonto_Option
 	 * @access  private
-	 * @since 	1.0.0
+	 * @since    1.0.0
 	 */
 	private static $_instance = null;
 
 	/**
 	 * Constructor function
+	 *
 	 * @param  Object $parent Main Fonto instance.
 	 */
 	public function __construct( $parent ) {
@@ -48,7 +47,9 @@ class Fonto_Option
 	/**
 	 * Get the prefixed version input $name suitable for storing in WP options
 	 * Idempotent: if $optionName is already prefixed, it is not prefixed again, it is returned without change
+	 *
 	 * @param  string $name option name to prefix.
+	 *
 	 * @return string
 	 */
 	public function prefix( $name ) {
@@ -56,6 +57,7 @@ class Fonto_Option
 		if ( strpos( $name, $optionNamePrefix ) === 0 ) { // 0 but not false
 			return $name; // already prefixed
 		}
+
 		return $optionNamePrefix . $name;
 	}
 
@@ -69,44 +71,53 @@ class Fonto_Option
 		return $this->parent->_token;
 	}
 
-	 /**
-	  * A wrapper function delegating to WP get_option() but it prefixes the input $optionName
-	  * to enforce "scoping" the options in the WP options table thereby avoiding name conflicts
-	  * @param string $optionName Option to get.
-	  * @param string $default default value to return if the option is not set.
-	  * @return string the value from delegated call to get_option(), or optional default value
-	  * if option is not set.
-	  */
+	/**
+	 * A wrapper function delegating to WP get_option() but it prefixes the input $optionName
+	 * to enforce "scoping" the options in the WP options table thereby avoiding name conflicts
+	 *
+	 * @param string $optionName Option to get.
+	 * @param string $default default value to return if the option is not set.
+	 *
+	 * @return string the value from delegated call to get_option(), or optional default value
+	 * if option is not set.
+	 */
 	public function get_option( $optionName, $default = null ) {
 		$prefixedOptionName = $this->prefix( $optionName );
-		$retVal = get_option( $prefixedOptionName );
+		$retVal             = get_option( $prefixedOptionName );
 		if ( ! $retVal && $default ) {
 			$retVal = $default;
 		}
+
 		return $retVal;
 	}
 
-	 /**
-	  * A wrapper function delegating to WP add_option() but it prefixes the input $optionName
-	  * to enforce "scoping" the options in the WP options table thereby avoiding name conflicts.
-	  * @param  string $optionName Defined in settings.php and set as keys of $this->optionMetaData.
-	  * @param  mixed  $value  the new value.
-	  * @return null from delegated call to delete_option()
-	  */
+	/**
+	 * A wrapper function delegating to WP add_option() but it prefixes the input $optionName
+	 * to enforce "scoping" the options in the WP options table thereby avoiding name conflicts.
+	 *
+	 * @param  string $optionName Defined in settings.php and set as keys of $this->optionMetaData.
+	 * @param  mixed $value the new value.
+	 *
+	 * @return null from delegated call to delete_option()
+	 */
 	public function add_option( $optionName, $value ) {
 		$prefixedOptionName = $this->prefix( $optionName );
+
 		return add_option( $prefixedOptionName, $value );
 	}
 
 	/**
 	 * A wrapper function delegating to WP add_option() but it prefixes the input $optionName
 	 * to enforce "scoping" the options in the WP options table thereby avoiding name conflicts
+	 *
 	 * @param string $optionName Name of option.
-	 * @param mixed  $value       The new value.
+	 * @param mixed $value The new value.
+	 *
 	 * @return null from delegated call to delete_option()
 	 */
 	public function update_option( $optionName, $value ) {
 		$prefixedOptionName = $this->prefix( $optionName );
+
 		return update_option( $prefixedOptionName, $value );
 	}
 
@@ -129,14 +140,17 @@ class Fonto_Option
 	 * @since  1.0.0
 	 * @static
 	 * @see    Fonto()
+	 *
 	 * @param  Object $parent Main Fonto instance.
-	 * @return Main Fonto_Option instance
+	 *
+	 * @return Fonto_Option instance
 	 */
 	public static function instance( $parent ) {
 
 		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self( $parent );
 		}
+
 		return self::$_instance;
 	} // End instance()
 
@@ -159,7 +173,6 @@ class Fonto_Option
 
 		_doing_it_wrong( __FUNCTION__, esc_html( __( 'Cheatin&#8217; huh?' ) ), esc_html( $this->parent->_version ) );
 	} // End __wakeup()
-
 
 
 }

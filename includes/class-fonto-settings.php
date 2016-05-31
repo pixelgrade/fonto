@@ -6,8 +6,8 @@
  *
  * @category Class
  * @package Fonto
- * @author   PixelGrade <peter@geotonics.com>
- * @license  GNU Lesser General Public Licence see LICENCE file or http://www.gnu.org/licenses/lgpl.html
+ * @author   PixelGrade <contact@pixelgrade.com>
+ * @license  GPL v2.0 (or later) see LICENCE file or http://www.gnu.org/licenses/gpl-2.0.html
  * @link     https://pixelgrade.com
  */
 
@@ -20,18 +20,17 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @category include
  * @package  Fonto
- * @author   PixelGrade <peter@geotonics.com>
- * @license  GNU Lesser General Public Licence see LICENCE file or http://www.gnu.org/licenses/lgpl.html
+ * @author   PixelGrade <contact@pixelgrade.com>
+ * @license  GPL v2.0 (or later) see LICENCE file or http://www.gnu.org/licenses/gpl-2.0.html
  * @version  Release: .1
- * @link     http://geotonics.com
+ * @link     https://pixelgrade.com
  * @since    Class available since Release .1
  */
-class Fonto_Settings
-{
+class Fonto_Settings {
 
 	/**
 	 * The single instance of Fonto_Settings.
-	 * @var     object
+	 * @var     Fonto_Settings
 	 * @access  private
 	 * @since     1.0.0
 	 */
@@ -39,7 +38,7 @@ class Fonto_Settings
 
 	/**
 	 * The main plugin object.
-	 * @var     object
+	 * @var     Fonto
 	 * @access  public
 	 * @since     1.0.0
 	 */
@@ -63,14 +62,16 @@ class Fonto_Settings
 
 	/**
 	 * Constructor for Fonto_Settings class
+	 *
 	 * @param Object $parent Fonto Object.
+	 *
 	 * @return void
 	 */
 	public function __construct( $parent ) {
 
 		$this->parent = $parent;
 
-		$this->base = 'wpt_';
+		$this->base = 'fonto_';
 
 		// Initialise settings.
 		add_action( 'init', array( $this, 'init_settings' ), 11 );
@@ -82,7 +83,10 @@ class Fonto_Settings
 		add_action( 'admin_menu', array( $this, 'add_menu_item' ) );
 
 		// Add settings link to plugins page.
-		add_filter( 'plugin_action_links_' . plugin_basename( $this->parent->file ), array( $this, 'add_settings_link' ) );
+		add_filter( 'plugin_action_links_' . plugin_basename( $this->parent->file ), array(
+			$this,
+			'add_settings_link'
+		) );
 
 		add_action( 'admin_menu', array( $this, 'settings_assets' ) );
 
@@ -102,11 +106,15 @@ class Fonto_Settings
 
 	/**
 	 * Add settings page to admin menu
+	 * 
 	 * @return void
 	 */
 	public function add_menu_item() {
 
-		$page = add_options_page( __( 'Fonto Settings', 'fonto' ), __( 'Fonto', 'fonto' ), 'manage_options', $this->parent->_token . '_settings',  array( $this, 'settings_page' ) );
+		$page = add_options_page( __( 'Fonto Settings', 'fonto' ), __( 'Fonto', 'fonto' ), 'manage_options', $this->parent->_token . '_settings', array(
+			$this,
+			'settings_page'
+		) );
 	}
 
 	/**
@@ -114,25 +122,22 @@ class Fonto_Settings
 	 * @return void
 	 */
 	public function settings_assets() {
-
-		// We're including the farbtastic script & styles here because they're needed for the colour picker.
-		// If you're not including a colour picker field then you can leave these calls out as well as the farbtastic dependency for the wpt-admin-js script below.
-		wp_enqueue_style( 'farbtastic' );
-		wp_enqueue_script( 'farbtastic' );
-
-		wp_register_script( $this->parent->_token . '-settings-js', $this->parent->assets_url . 'js/settings' . $this->parent->script_suffix . '.js', array( 'farbtastic', 'jquery' ), '1.0.0' );
+		wp_register_script( $this->parent->_token . '-settings-js', $this->parent->assets_url . 'js/settings' . $this->parent->script_suffix . '.js', array( 'jquery' ), '1.0.0' );
 		wp_enqueue_script( $this->parent->_token . '-settings-js' );
 	}
 
 	/**
 	 * Add settings link to plugin list table
+	 *
 	 * @param  array $links Existing links.
+	 *
 	 * @return array         Modified links
 	 */
 	public function add_settings_link( $links ) {
 
 		$settings_link = '<a href="options-general.php?page=' . $this->parent->_token . '_settings">' . __( 'Settings', 'fonto' ) . '</a>';
 		array_push( $links, $settings_link );
+
 		return $links;
 	}
 
@@ -143,111 +148,109 @@ class Fonto_Settings
 	private function settings_fields() {
 
 		$settings['standard'] = array(
-		'title'                    => __( 'Standard', 'fonto' ),
-		'description'            => __( 'These are fairly standard form input fields.', 'fonto' ),
-		'fields'                => array(
-		array(
-		'id'             => 'text_field',
-		'label'            => __( 'Some Text', 'fonto' ),
-		'description'    => __( 'This is a standard text field.', 'fonto' ),
-		'type'            => 'text',
-		'default'        => '',
-		'placeholder'    => __( 'Placeholder text', 'fonto' ),
-		),
-		array(
-		'id'             => 'password_field',
-		'label'            => __( 'A Password', 'fonto' ),
-		'description'    => __( 'This is a standard password field.', 'fonto' ),
-		'type'            => 'password',
-		'default'        => '',
-		'placeholder'    => __( 'Placeholder text', 'fonto' ),
-		),
-		array(
-		'id'             => 'secret_text_field',
-		'label'            => __( 'Some Secret Text', 'fonto' ),
-		'description'    => __( 'This is a secret text field - any data saved here will not be displayed after the page has reloaded, but it will be saved.', 'fonto' ),
-		'type'            => 'text_secret',
-		'default'        => '',
-		'placeholder'    => __( 'Placeholder text', 'fonto' ),
-		),
-		array(
-		'id'             => 'text_block',
-		'label'            => __( 'A Text Block', 'fonto' ),
-		'description'    => __( 'This is a standard text area.', 'fonto' ),
-		'type'            => 'textarea',
-		'default'        => '',
-		'placeholder'    => __( 'Placeholder text for this textarea', 'fonto' ),
-		),
-		array(
-		'id'             => 'single_checkbox',
-		'label'            => __( 'An Option', 'fonto' ),
-		'description'    => __( 'A standard checkbox - if you save this option as checked then it will store the option as \'on\', otherwise it will be an empty string.', 'fonto' ),
-		'type'            => 'checkbox',
-		'default'        => '',
-		),
-		array(
-		'id'             => 'select_box',
-		'label'            => __( 'A Select Box', 'fonto' ),
-		'description'    => __( 'A standard select box.', 'fonto' ),
-		'type'            => 'select',
-		'options'        => array( 'drupal' => 'Drupal', 'joomla' => 'Joomla', 'wordpress' => 'WordPress' ),
-		'default'        => 'wordpress',
-		),
-		array(
-		'id'             => 'radio_buttons',
-		'label'            => __( 'Some Options', 'fonto' ),
-		'description'    => __( 'A standard set of radio buttons.', 'fonto' ),
-		'type'            => 'radio',
-		'options'        => array( 'superman' => 'Superman', 'batman' => 'Batman', 'ironman' => 'Iron Man' ),
-		'default'        => 'batman',
-		),
-		array(
-		'id'             => 'multiple_checkboxes',
-		'label'            => __( 'Some Items', 'fonto' ),
-		'description'    => __( 'You can select multiple items and they will be stored as an array.', 'fonto' ),
-		'type'            => 'checkbox_multi',
-		'options'        => array( 'square' => 'Square', 'circle' => 'Circle', 'rectangle' => 'Rectangle', 'triangle' => 'Triangle' ),
-		'default'        => array( 'circle', 'triangle' ),
-		),
-		),
+			'title'       => __( 'Standard', 'fonto' ),
+			'description' => __( 'These are fairly standard form input fields.', 'fonto' ),
+			'fields'      => array(
+				array(
+					'id'          => 'text_field',
+					'label'       => __( 'Some Text', 'fonto' ),
+					'description' => __( 'This is a standard text field.', 'fonto' ),
+					'type'        => 'text',
+					'default'     => '',
+					'placeholder' => __( 'Placeholder text', 'fonto' ),
+				),
+				array(
+					'id'          => 'password_field',
+					'label'       => __( 'A Password', 'fonto' ),
+					'description' => __( 'This is a standard password field.', 'fonto' ),
+					'type'        => 'password',
+					'default'     => '',
+					'placeholder' => __( 'Placeholder text', 'fonto' ),
+				),
+				array(
+					'id'          => 'secret_text_field',
+					'label'       => __( 'Some Secret Text', 'fonto' ),
+					'description' => __( 'This is a secret text field - any data saved here will not be displayed after the page has reloaded, but it will be saved.', 'fonto' ),
+					'type'        => 'text_secret',
+					'default'     => '',
+					'placeholder' => __( 'Placeholder text', 'fonto' ),
+				),
+				array(
+					'id'          => 'text_block',
+					'label'       => __( 'A Text Block', 'fonto' ),
+					'description' => __( 'This is a standard text area.', 'fonto' ),
+					'type'        => 'textarea',
+					'default'     => '',
+					'placeholder' => __( 'Placeholder text for this textarea', 'fonto' ),
+				),
+				array(
+					'id'          => 'single_checkbox',
+					'label'       => __( 'An Option', 'fonto' ),
+					'description' => __( 'A standard checkbox - if you save this option as checked then it will store the option as \'on\', otherwise it will be an empty string.', 'fonto' ),
+					'type'        => 'checkbox',
+					'default'     => '',
+				),
+				array(
+					'id'          => 'select_box',
+					'label'       => __( 'A Select Box', 'fonto' ),
+					'description' => __( 'A standard select box.', 'fonto' ),
+					'type'        => 'select',
+					'options'     => array( 'drupal' => 'Drupal', 'joomla' => 'Joomla', 'wordpress' => 'WordPress' ),
+					'default'     => 'wordpress',
+				),
+				array(
+					'id'          => 'radio_buttons',
+					'label'       => __( 'Some Options', 'fonto' ),
+					'description' => __( 'A standard set of radio buttons.', 'fonto' ),
+					'type'        => 'radio',
+					'options'     => array( 'superman' => 'Superman', 'batman' => 'Batman', 'ironman' => 'Iron Man' ),
+					'default'     => 'batman',
+				),
+				array(
+					'id'          => 'multiple_checkboxes',
+					'label'       => __( 'Some Items', 'fonto' ),
+					'description' => __( 'You can select multiple items and they will be stored as an array.', 'fonto' ),
+					'type'        => 'checkbox_multi',
+					'options'     => array(
+						'square'    => 'Square',
+						'circle'    => 'Circle',
+						'rectangle' => 'Rectangle',
+						'triangle'  => 'Triangle'
+					),
+					'default'     => array( 'circle', 'triangle' ),
+				),
+			),
 		);
 
 		$settings['extra'] = array(
-		'title'                    => __( 'Extra', 'fonto' ),
-		'description'            => __( 'These are some extra input fields that maybe aren\'t as common as the others.', 'fonto' ),
-		'fields'                => array(
-		array(
-					'id'             => 'number_field',
-					'label'            => __( 'A Number', 'fonto' ),
-					'description'    => __( 'This is a standard number field - if this field contains anything other than numbers then the form will not be submitted.', 'fonto' ),
-					'type'            => 'number',
-					'default'        => '',
-					'placeholder'    => __( '42', 'fonto' ),
-		),
-		array(
-		'id'             => 'colour_picker',
-		'label'            => __( 'Pick a colour', 'fonto' ),
-		'description'    => __( 'This uses WordPress\' built-in colour picker - the option is stored as the colour\'s hex code.', 'fonto' ),
-		'type'            => 'color',
-		'default'        => '#21759B',
-		),
-		array(
-		'id'             => 'an_image',
-		'label'            => __( 'An Image', 'fonto' ),
-		'description'    => __( 'This will upload an image to your media library and store the attachment ID in the option field. Once you have uploaded an imge the thumbnail will display above these buttons.', 'fonto' ),
-		'type'            => 'image',
-		'default'        => '',
-		'placeholder'    => '',
-		),
-		array(
-		'id'             => 'multi_select_box',
-		'label'            => __( 'A Multi-Select Box', 'fonto' ),
-		'description'    => __( 'A standard multi-select box - the saved data is stored as an array.', 'fonto' ),
-		'type'            => 'select_multi',
-		'options'        => array( 'linux' => 'Linux', 'mac' => 'Mac', 'windows' => 'Windows' ),
-		'default'        => array( 'linux' ),
-		),
-		),
+			'title'       => __( 'Extra', 'fonto' ),
+			'description' => __( 'These are some extra input fields that maybe aren\'t as common as the others.', 'fonto' ),
+			'fields'      => array(
+				array(
+					'id'          => 'number_field',
+					'label'       => __( 'A Number', 'fonto' ),
+					'description' => __( 'This is a standard number field - if this field contains anything other than numbers then the form will not be submitted.', 'fonto' ),
+					'type'        => 'number',
+					'default'     => '',
+					'placeholder' => __( '42', 'fonto' ),
+				),
+				array(
+					'id'          => 'an_image',
+					'label'       => __( 'An Image', 'fonto' ),
+					'description' => __( 'This will upload an image to your media library and store the attachment ID in the option field. Once you have uploaded an imge the thumbnail will display above these buttons.', 'fonto' ),
+					'type'        => 'image',
+					'default'     => '',
+					'placeholder' => '',
+				),
+				array(
+					'id'          => 'multi_select_box',
+					'label'       => __( 'A Multi-Select Box', 'fonto' ),
+					'description' => __( 'A standard multi-select box - the saved data is stored as an array.', 'fonto' ),
+					'type'        => 'select_multi',
+					'options'     => array( 'linux' => 'Linux', 'mac' => 'Mac', 'windows' => 'Windows' ),
+					'default'     => array( 'linux' ),
+				),
+			),
 		);
 
 		$settings = apply_filters( $this->parent->_token . '_settings_fields', $settings );
@@ -265,7 +268,7 @@ class Fonto_Settings
 
 			// Check posted/selected tab.
 			$current_section = '';
-			$tab = filter_input( INPUT_GET, 'tab', FILTER_SANITIZE_STRING );
+			$tab             = filter_input( INPUT_GET, 'tab', FILTER_SANITIZE_STRING );
 
 			if ( isset( $tab ) && $tab ) {
 				$current_section = $tab;
@@ -277,11 +280,15 @@ class Fonto_Settings
 
 			foreach ( $this->settings as $section => $data ) {
 
-				if ( $current_section && $current_section !== $section ) { continue;
+				if ( $current_section && $current_section !== $section ) {
+					continue;
 				}
 
 				// Add section to page.
-				add_settings_section( $section, $data['title'], array( $this, 'settings_section' ), $this->parent->_token . '_settings' );
+				add_settings_section( $section, $data['title'], array(
+					$this,
+					'settings_section'
+				), $this->parent->_token . '_settings' );
 
 				foreach ( $data['fields'] as $field ) {
 
@@ -296,7 +303,13 @@ class Fonto_Settings
 					register_setting( $this->parent->_token . '_settings', $option_name, $validation );
 
 					// Add field to page.
-					add_settings_field( $field['id'], $field['label'], array( $this->parent->admin, 'display_field' ), $this->parent->_token . '_settings', $section, array( 'field' => $field, 'prefix' => $this->base ) );
+					add_settings_field( $field['id'], $field['label'], array(
+						$this->parent->admin,
+						'display_field'
+					), $this->parent->_token . '_settings', $section, array(
+						'field'  => $field,
+						'prefix' => $this->base
+					) );
 				}
 
 				if ( ! $current_section ) {
@@ -309,16 +322,17 @@ class Fonto_Settings
 	/**
 	 * Display settings section
 	 *
-	 * @param array $section  Section data.
+	 * @param array $section Section data.
+	 *
 	 * @return void
 	 */
 	public function settings_section( $section ) {
 
-		$html = '<p> ' . $this->settings[ $section['id'] ]['description'] . '</p>' . "\n";
+		$html    = '<p> ' . $this->settings[ $section['id'] ]['description'] . '</p>' . "\n";
 		$allowed = array(
-		    'p' => array(),
+			'p' => array(),
 		);
-		echo  wp_kses( $html, $allowed );
+		echo wp_kses( $html, $allowed );
 	}
 
 	/**
@@ -357,7 +371,7 @@ class Fonto_Settings
 				}
 
 				// Set tab link.
-				$tab_link = add_query_arg( array( 'tab' => $section ) );
+				$tab_link         = add_query_arg( array( 'tab' => $section ) );
 				$settings_updated = filter_input( INPUT_GET, 'settings-updated', FILTER_SANITIZE_STRING );
 
 				if ( isset( $settings_updated ) ) {
@@ -366,7 +380,7 @@ class Fonto_Settings
 
 				// Output tab.
 				echo '<a href="' . esc_attr( $tab_link ) . '" class="' . esc_attr( $class ) . '">' . esc_html( $data['title'] ) . '</a>' . "\n";
-				++$c;
+				++ $c;
 			}
 
 			echo '</h2>';
@@ -389,32 +403,35 @@ class Fonto_Settings
 	/**
 	 * Adds column Fonto data.
 	 *
-	 * @param string $cols  Name of new column.
+	 * @param string $cols Name of new column.
+	 *
 	 * @return html Text with links.
 	 */
 	public function new_users_column( $cols ) {
 
 		$cols['fonto'] = 'Fonto';
+
 		return $cols;
 	}
 
 	/**
 	 * Provided data for column with links to Fonto data.
 	 *
-	 * @param string $existing_string    Name of existing columns.
+	 * @param string $existing_string Name of existing columns.
 	 * @param string $col_name string    Name of new column.
 	 * @param string $user_object_userID User id.
+	 *
 	 * @return html Text with links.
 	 */
 	public function new_users_column_data( $existing_string, $col_name, $user_object_userID ) {
 
 		if ( 'fonto' !== $col_name ) {
 			return $existing_string;
-			$preview = get_author_posts_url( $user_object_userID );
 		}
 
 		$name = get_the_author_meta( 'user_login', $user_object_userID );
-		return '<a href="'.admin_url().'plugins.php?page=fonto_menu_page&author='.$user_object_userID.'">Fonto</a>';
+
+		return '<a href="' . admin_url() . 'plugins.php?page=fonto_menu_page&author=' . $user_object_userID . '">Fonto</a>';
 	}
 
 
@@ -426,14 +443,17 @@ class Fonto_Settings
 	 * @since  1.0.0
 	 * @static
 	 * @see    Fonto()
+	 *
 	 * @param  Object $parent Main Fonto instance.
-	 * @return Main Fonto_Settings instance
+	 *
+	 * @return Fonto_Settings instance
 	 */
 	public static function instance( $parent ) {
 
 		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self( $parent );
 		}
+
 		return self::$_instance;
 	} // End instance().
 
