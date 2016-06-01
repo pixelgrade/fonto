@@ -137,22 +137,38 @@ class Fonto_Post_Types {
 
 		$font_details->add_field( array(
 			'name' => __( 'Fonts Loading / Embed Code', 'cmb2' ),
-			'our_desc' => __( 'Insert below the embed code (JS/CSS) provided by the font service. <a href="#" target="_blank">Learn More</a>', 'cmb2' ),
+			'id'   => $prefix . 'fonts_loading_embed_code',
+			'type' => 'title',
+			'row_classes' => array( 'full-width', 'background__dark' ),
+		) );
+
+		$font_details->add_field( array(
+			'name' => __( 'Embed Code', 'cmb2' ),
+			'show_names' => false,
 			'id'   => $prefix . 'embed_code',
 			'type' => 'textarea_code',
 			'attributes'  => array(
 				'placeholder' => 'Your embed code',
 				'rows'        => 5,
+				// Shown for Web Fonts services
+				'data-conditional-id' => $prefix . 'font_source',
+				'data-conditional-value' => 'font_service',
 			),
+			'before_field' => __( 'Insert below the embed code (JS/CSS) provided by the font service. <a href="#" target="_blank">Learn More</a>', 'cmb2' ),
 			'after_field' => esc_html__( 'The above code will be inserted in the <head> area of your website.', 'fonto' ),
 			'row_classes' => array( 'full-width', 'title__large', 'background__dark' ),
-			'render_row_cb' => array( $this, 'render_field_callback_our_desc_after_label' ),
 		) );
 
 		$font_details->add_field( array(
 			'name' => __( 'Weights & Styles Matching', 'cmb2' ),
-			'our_desc' => '<span class="subtitle">' . __( 'How Fonts Variations (weights & styles) are declared?', 'cmb2' ) . '</span>'
-						. __( 'Based on the format that you received the font names from the font service.', 'fonto' ),
+			'id'   => $prefix . 'weights_styles_matching',
+			'type' => 'title',
+			'row_classes' => array( 'full-width', ),
+		) );
+
+		$font_details->add_field( array(
+			'name' => __( 'How Fonts Variations (weights & styles) are declared?', 'cmb2' ),
+			'our_desc' => __( 'Based on the format that you received the font names from the font service.', 'fonto' ),
 			'id'   => $prefix . 'font_name_style',
 			'type' => 'radio',
 			'options' => array(
@@ -162,7 +178,7 @@ class Fonto_Post_Types {
 								. '<span class="option-details">' . __( 'If you have <em>multiple</em> font names; this means the weights and styles are bundled within each font and we shouldn\'t add them again in CSS.<br/>— Example: <em>"ProximaNW01-Regular"</em> and <em>"ProximaNW01-RegularItalic"</em> from MyFonts.com', 'fonto' ) . '</span>',
 			),
 			'default' => 'grouped',
-			'row_classes' => array( 'full-width', 'title__large', 'background__dark', ),
+			'row_classes' => array( 'full-width', ),
 			'render_row_cb' => array( $this, 'render_field_callback_our_desc_after_label' ),
 		) );
 
@@ -173,6 +189,9 @@ class Fonto_Post_Types {
 			'type'    => 'text_medium',
 			'attributes'  => array(
 				'placeholder' => 'Proxima Nova',
+				// Shown when using a single font family name
+				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-value' => 'grouped',
 			),
 			'render_row_cb' => array( $this, 'render_field_callback_our_desc_after_label' ),
 		) );
@@ -204,6 +223,11 @@ class Fonto_Post_Types {
 				'800_italic' => __( 'ExtraBold Italic', 'cmb2' ),
 				'900_normal' => __( 'Black 100', 'cmb2' ),
 				'900_italic' => __( 'Black Italic', 'cmb2' ),
+			),
+			'attributes'  => array(
+				// Shown when using a single font family name
+				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-value' => 'grouped',
 			),
 			// 'inline'  => true, // Toggles display to inline
 			'row_classes' => array( 'font-variations', 'no-divider' ),

@@ -159,9 +159,15 @@ class Fonto extends Fonto_Init {
 		include_once 'lib/class-fonto-post-type.php';
 		include_once 'lib/class-fonto-taxonomy.php';
 
-		// Load vendors
+		/* Load vendors */
+		// The main CMB2
 		if ( file_exists( dirname( __FILE__ ) . '/vendor/cmb2/init.php' ) ) {
 			require_once dirname( __FILE__ ) . '/vendor/cmb2/init.php';
+		}
+
+		//The CMB2 conditional display of fields
+		if ( file_exists( dirname( __FILE__ ) . '/vendor/cmb2-conditionals/cmb2-conditionals.php' ) ) {
+			require_once dirname( __FILE__ ) . '/vendor/cmb2-conditionals/cmb2-conditionals.php';
 		}
 
 		// Load plugin environment variables.
