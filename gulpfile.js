@@ -6,7 +6,8 @@ var gulp 		= require('gulp'),
 	rtlcss 		= require('rtlcss'),
 	postcss 	= require('gulp-postcss'),
 	rename 		= require('gulp-rename'),
-	chmod 		= require('gulp-chmod');
+	chmod 		= require('gulp-chmod'),
+	cleanCSS = require('gulp-clean-css');
 
 require('es6-promise').polyfill();
 
@@ -30,9 +31,9 @@ gulp.task('styles-expanded', function () {
 
 gulp.task('styles-compressed', function () {
 	return gulp.src(['assets/css/cmb2/sass/cmb2.scss'])
-			.pipe(sass({ 'sourcemap=auto': true, outputStyle: 'compressed' }))
+			.pipe(sass({ 'sourcemap=auto': true }))
 			.pipe(prefix("last 1 version", "> 1%", "ie 8", "ie 7"))
-			.pipe(csscomb())
+			.pipe(cleanCSS())
 			.pipe(chmod(644))
 			.pipe(rename("cmb2.min.css"))
 			.pipe(gulp.dest('./assets/css/cmb2/'))
