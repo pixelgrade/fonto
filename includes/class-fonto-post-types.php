@@ -78,6 +78,8 @@ class Fonto_Post_Types {
 
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
 
+		add_action( 'cmb2_admin_init', array( $this, 'add_meta_boxes' ) );
+
 	}
 
 	/**
@@ -86,17 +88,7 @@ class Fonto_Post_Types {
 	 */
 	function add_meta_boxes() {
 
-		global $post;
-
-		if ( method_exists( $this, $post->post_type . '_custom_fields' ) ) {
-			//make the custom fields for each post type filterable
-			add_filter( $post->post_type . '_custom_fields', array(
-				$this,
-				$post->post_type . '_custom_fields'
-			), 10, 2 );
-			$this->parent->admin->add_meta_box( 'standard', __( 'Standard', 'fonto' ), array( 'font' ) );
-			$this->parent->admin->add_meta_box( 'extra', __( 'Extra', 'fonto' ), array( 'font' ) );
-		}
+		$this->font_custom_fields();
 	}
 
 	/**
@@ -105,133 +97,168 @@ class Fonto_Post_Types {
 	 * @return array
 	 */
 	function font_custom_fields() {
+		// For more info about the various options available for fields
+		// see this https://github.com/WebDevStudios/CMB2/wiki/Field-Parameters
 
-		$fields                                    = array();
-		$fields['standard']['tabs']['Text Fields'] = array(
-			array(
-				'id'          => 'text_field',
-				'label'       => __( 'Some Text', 'fonto' ),
-				'description' => __( 'This is a standard text field.', 'fonto' ),
-				'type'        => 'text',
-				'default'     => '',
-				'placeholder' => __( 'Placeholder text', 'fonto' ),
-			),
-			array(
-				'id'          => 'password_field',
-				'label'       => __( 'A Password', 'fonto' ),
-				'description' => __( 'This is a standard password field.', 'fonto' ),
-				'type'        => 'password',
-				'default'     => '',
-				'placeholder' => __( 'Placeholder text', 'fonto' ),
-			),
-			array(
-				'id'          => 'secret_text_field',
-				'label'       => __( 'Some Secret Text', 'fonto' ),
-				'description' => __( 'This is a secret text field - any data saved here will not be displayed after the page has reloaded, but it will be saved.', 'fonto' ),
-				'type'        => 'text_secret',
-				'default'     => '',
-				'placeholder' => __( 'Placeholder text', 'fonto' ),
-			),
-		);
+		$prefix = $this->parent->_token . '_';
 
-		$fields['standard']['tabs']['Option Fields'] = array(
-			array(
-				'id'          => 'single_checkbox',
-				'label'       => __( 'An Option', 'fonto' ),
-				'description' => __( 'A standard checkbox - if you save this option as checked then it will store the option as \'on\', otherwise it will be an empty string.', 'fonto' ),
-				'type'        => 'checkbox',
-				'default'     => '',
-			),
-			array(
-				'id'          => 'select_box',
-				'label'       => __( 'A Select Box', 'fonto' ),
-				'description' => __( 'A standard select box.', 'fonto' ),
-				'type'        => 'select',
-				'options'     => array( 'drupal' => 'Drupal', 'joomla' => 'Joomla', 'wordpress' => 'WordPress' ),
-				'default'     => 'wordpress',
-			),
-			array(
-				'id'          => 'radio_buttons',
-				'label'       => __( 'Some Options', 'fonto' ),
-				'description' => __( 'A standard set of radio buttons.', 'fonto' ),
-				'type'        => 'radio',
-				'options'     => array( 'superman' => 'Superman', 'batman' => 'Batman', 'ironman' => 'Iron Man' ),
-				'default'     => 'batman',
-			),
-			array(
-				'id'          => 'multiple_checkboxes',
-				'label'       => __( 'Some Items', 'fonto' ),
-				'description' => __( 'You can select multiple items and they will be stored as an array.', 'fonto' ),
-				'type'        => 'checkbox_multi',
-				'options'     => array(
-					'square'    => 'Square',
-					'circle'    => 'Circle',
-					'rectangle' => 'Rectangle',
-					'triangle'  => 'Triangle'
-				),
-				'default'     => array( 'circle', 'triangle' ),
-			),
-		);
-		$fields['standard']['fields'][]              =
-			array(
-				'id'          => 'text_block',
-				'label'       => __( 'A Text Block', 'fonto' ),
-				'description' => __( 'This is a standard text area.', 'fonto' ),
-				'type'        => 'textarea',
-				'default'     => '',
-				'placeholder' => __( 'Placeholder text for this textarea', 'fonto' ),
-			);
-		$fields['extra']                             = array(
-			array(
-				'id'          => 'number_field',
-				'label'       => __( 'A Number', 'fonto' ),
-				'description' => __( 'This is a standard number field - if this field contains anything other than numbers then the form will not be submitted.', 'fonto' ),
-				'type'        => 'number',
-				'default'     => '',
-				'placeholder' => __( '42', 'fonto' ),
-			),
-			array(
-				'id'          => 'colour_picker',
-				'label'       => __( 'Pick a colour', 'fonto' ),
-				'description' => __( 'This uses WordPress\' built-in colour picker - the option is stored as the colour\'s hex code.', 'fonto' ),
-				'type'        => 'color',
-				'default'     => '#21759B',
-			),
-			array(
-				'id'          => 'an_image',
-				'label'       => __( 'An Image', 'fonto' ),
-				'description' => __( 'This will upload an image to your media library and store the attachment ID in the option field. Once you have uploaded an imge the thumbnail will display above these buttons.', 'fonto' ),
-				'type'        => 'image',
-				'default'     => '',
-				'placeholder' => '',
-			),
-			array(
-				'id'          => 'multi_select_box',
-				'label'       => __( 'A Multi-Select Box', 'fonto' ),
-				'description' => __( 'A standard multi-select box - the saved data is stored as an array.', 'fonto' ),
-				'type'        => 'select_multi',
-				'options'     => array( 'linux' => 'Linux', 'mac' => 'Mac', 'windows' => 'Windows' ),
-				'default'     => array( 'linux' ),
-			),
+		$font_details = new_cmb2_box( array(
+			'id'           => $prefix . 'font_details',
+			'title'        => __( 'Font Details', 'cmb2' ),
+			'object_types' => array( 'font', ), // Post type
+			'context'    => 'normal',
+			'priority'   => 'high',
+			'show_names' => true, // Show field names on the left
+			'cmb_styles' => true, // false to disable the CMB stylesheet
+			'closed'     => false, // true to keep the metabox closed by default
+			//'classes'    => 'extra-class', // Extra cmb2-wrap classes
+			// 'classes_cb' => 'yourprefix_add_some_classes', // Add classes through a callback.
+		) );
 
-			array(
-				'id'          => 'date_picker_field',
-				'label'       => __( 'A Date Picker Field', 'fonto' ),
-				'description' => __( 'A standard date picker field.', 'fonto' ),
-				'type'        => 'date_picker',
-				'placeholder' => '2015-10-01',
-			),
-			array(
-				'id'          => 'datetime_picker_field',
-				'label'       => __( 'A Date Time Picker Field', 'fonto' ),
-				'description' => __( 'A standard date time picker field.', 'fonto' ),
-				'type'        => 'datetime_picker',
-				'placeholder' => '2015-10-29 12:14 am',
-			),
+		//To put the description after the field label, we use the 'our_desc' key instead of the regular 'desc' one and add the 'render_row_cb' callback
 
-		);
+		$font_details->add_field( array(
+			'name'    => __( 'Font Source', 'cmb2' ),
+			'our_desc'    => __( 'Select whether you are using a Custom Web Font Service (Typekit, Myfonts, Fonts.com) or you\'re self-hosting the fonts.', 'cmb2' ),
+			'id'      => $prefix . 'font_source',
+			'type'    => 'radio',
+			'options' => array(
+				'font_service' => __( 'Web Font Service', 'cmb2' ),
+				'self_hosted' => __( 'Self-Hosted', 'cmb2' ),
+			),
+			'default' => 'font_service',
+			'row_classes' => array( 'no-divider', ),
+			'render_row_cb' => array( $this, 'render_field_callback_our_desc_after_label' ),
+		) );
 
-		return $fields;
+		$font_details->add_field( array(
+			'name' => __( 'Fonts Loading / Embed Code', 'cmb2' ),
+			'our_desc' => __( 'Insert below the embed code (JS/CSS) provided by the font service. <a href="#" target="_blank">Learn More</a>', 'cmb2' ),
+			'id'   => $prefix . 'embed_code',
+			'type' => 'textarea_code',
+			'attributes'  => array(
+				'placeholder' => 'Your embed code',
+				'rows'        => 5,
+			),
+			'after_field' => esc_html__( 'The above code will be inserted in the <head> area of your website.', 'fonto' ),
+			'row_classes' => array( 'full-width', 'title__large', 'background__dark' ),
+			'render_row_cb' => array( $this, 'render_field_callback_our_desc_after_label' ),
+		) );
+
+		$font_details->add_field( array(
+			'name' => __( 'Weights & Styles Matching', 'cmb2' ),
+			'our_desc' => '<span class="subtitle">' . __( 'How Fonts Variations (weights & styles) are declared?', 'cmb2' ) . '</span>'
+						. __( 'Based on the format that you received the font names from the font service.', 'fonto' ),
+			'id'   => $prefix . 'font_name_style',
+			'type' => 'radio',
+			'options' => array(
+				'grouped' => __( 'Fonts are grouped together in a single "Font Family" name', 'cmb2' )
+				             . '<span class="option-details">' . __( 'When you have only <em>one</em> font name; we will add weights and styles via CSS.<br/>— Example: <em>"proxima-nova"</em> from Typekit or Fonts.com', 'fonto' ) . '</span>',
+				'individual' => __( 'Font Names are Referenced Individually', 'cmb2' )
+								. '<span class="option-details">' . __( 'If you have <em>multiple</em> font names; this means the weights and styles are bundled within each font and we shouldn\'t add them again in CSS.<br/>— Example: <em>"ProximaNW01-Regular"</em> and <em>"ProximaNW01-RegularItalic"</em> from MyFonts.com', 'fonto' ) . '</span>',
+			),
+			'default' => 'grouped',
+			'row_classes' => array( 'full-width', 'title__large', 'background__dark', ),
+			'render_row_cb' => array( $this, 'render_field_callback_our_desc_after_label' ),
+		) );
+
+		$font_details->add_field( array(
+			'name'    => __( 'Font Family Name', 'cmb2' ),
+			'our_desc'    => __( 'Insert the CSS font name as provided by the font service.', 'cmb2' ),
+			'id'      => $prefix . 'font_family_name',
+			'type'    => 'text_medium',
+			'attributes'  => array(
+				'placeholder' => 'Proxima Nova',
+			),
+			'render_row_cb' => array( $this, 'render_field_callback_our_desc_after_label' ),
+		) );
+
+		$font_details->add_field( array(
+			'name'    => __( 'Available Font Variations', 'cmb2' ),
+			'our_desc'    => __( 'Check the available variations for this font.', 'cmb2' )
+						. '<span class="note">' . __( '*Note that the variations will be available through the Font Selectors and will not make any effect if a specific variation is checked but is not loaded by the font service.', 'fonto' ) . '</span>',
+			'id'      => $prefix . 'font_variations',
+			'type'    => 'multicheck',
+			'select_all_button' => false,
+			// 'multiple' => true, // Store values in individual rows
+			'options' => array(
+				'100_normal' => __( 'Thin 100', 'cmb2' ),
+				'100_italic' => __( 'Thin Italic', 'cmb2' ),
+				'200_normal' => __( 'Extra Light 200', 'cmb2' ),
+				'200_italic' => __( 'Extra Light Italic', 'cmb2' ),
+				'300_normal' => __( 'Light 300', 'cmb2' ),
+				'300_italic' => __( 'Light Italic', 'cmb2' ),
+				'400_normal' => __( 'Regular 400', 'cmb2' ),
+				'400_italic' => __( 'Regular Italic', 'cmb2' ),
+				'500_normal' => __( 'Medium 500', 'cmb2' ),
+				'500_italic' => __( 'Medium Italic', 'cmb2' ),
+				'600_normal' => __( 'SemiBold 600', 'cmb2' ),
+				'600_italic' => __( 'SemiBold Italic', 'cmb2' ),
+				'700_normal' => __( 'Bold 700', 'cmb2' ),
+				'700_italic' => __( 'Bold Italic', 'cmb2' ),
+				'800_normal' => __( 'ExtraBold 800', 'cmb2' ),
+				'800_italic' => __( 'ExtraBold Italic', 'cmb2' ),
+				'900_normal' => __( 'Black 100', 'cmb2' ),
+				'900_italic' => __( 'Black Italic', 'cmb2' ),
+			),
+			// 'inline'  => true, // Toggles display to inline
+			'row_classes' => array( 'font-variations', 'no-divider' ),
+			'render_row_cb' => array( $this, 'render_field_callback_our_desc_after_label' ),
+		) );
+
+	} // End font_custom_fields()
+
+	/**
+	 * Custom field render callback that will put the description (desc) after the label (name) not after the input (the default behaviour)
+	 *
+	 * @param  array      $field_args Array of field parameters
+	 * @param  CMB2_Field $field      Field object
+	 *
+	 * @return  CMB2_Field object
+	 */
+	public function render_field_callback_our_desc_after_label( $field_args, $field ) {
+
+		// If field is requesting to not be shown on the front-end
+		if ( ! is_admin() && ! $field->args( 'on_front' ) ) {
+			return;
+		}
+
+		// If field is requesting to be conditionally shown
+		if ( ! $field->should_show() ) {
+			return;
+		}
+
+		$field->peform_param_callback( 'before_row' );
+
+		printf( "<div class=\"cmb-row %s\" data-fieldtype=\"%s\">\n", $field->row_classes(), $field->type() );
+
+		if ( ! $field->args( 'show_names' ) ) {
+			echo "\n\t<div class=\"cmb-td\">\n";
+
+			$field->peform_param_callback( 'label_cb' );
+
+		} else {
+
+			if ( $field->get_param_callback_result( 'label_cb' ) ) {
+				echo '<div class="cmb-th">', $field->peform_param_callback( 'label_cb' ), '<p class="cmb2-metabox-our-description">', $field->peform_param_callback( 'our_desc' ), '</p></div>';
+			}
+
+			echo "\n\t<div class=\"cmb-td\">\n";
+		}
+
+		$field->peform_param_callback( 'before' );
+
+		$field_type = new CMB2_Types( $field );
+		$field_type->render();
+
+		$field->peform_param_callback( 'after' );
+
+		echo "\n\t</div>\n</div>";
+
+		$field->peform_param_callback( 'after_row' );
+
+		// For chaining
+		return $field;
 	}
 
 	/**

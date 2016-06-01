@@ -159,6 +159,11 @@ class Fonto extends Fonto_Init {
 		include_once 'lib/class-fonto-post-type.php';
 		include_once 'lib/class-fonto-taxonomy.php';
 
+		// Load vendors
+		if ( file_exists( dirname( __FILE__ ) . '/vendor/cmb2/init.php' ) ) {
+			require_once dirname( __FILE__ ) . '/vendor/cmb2/init.php';
+		}
+
 		// Load plugin environment variables.
 		$this->dir = dirname( $this->file );
 		$this->assets_dir = trailingslashit( $this->dir ) . 'assets';
