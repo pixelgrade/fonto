@@ -1,0 +1,12 @@
+.plugin_data h3, .plugin_data h4 {
+    margin: 0;
+}
+
+.plugin_data ul {
+    margin: 0 0 2em 1em;
+}
+
+.plugin_data ul li {
+    margin: 0;
+    padding: 0;
+}

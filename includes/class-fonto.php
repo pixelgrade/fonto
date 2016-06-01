@@ -174,10 +174,6 @@ class Fonto extends Fonto_Init {
 
 		register_activation_hook( $this->file, array( $this, 'install' ) );
 
-		// Load frontend JS & CSS.
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ), 10 );
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 10 );
-
 		// Load admin JS & CSS.
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ), 10, 1 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_styles' ), 10, 1 );
@@ -248,45 +244,31 @@ class Fonto extends Fonto_Init {
 	}
 
 	/**
-	 * Load frontend CSS.
-	 * @access  public
-	 * @since   1.0.0
-	 * @return void
-	 */
-	public function enqueue_styles() {
-
-		wp_register_style( $this->_token . '-frontend', esc_url( $this->assets_url ) . 'css/frontend.css', array(), $this->_version );
-		wp_enqueue_style( $this->_token . '-frontend' );
-
-	} // End enqueue_styles ()
-
-	/**
-	 * Load frontend Javascript.
-	 * @access  public
-	 * @since   1.0.0
-	 * @return  void
-	 */
-	public function enqueue_scripts() {
-
-		wp_register_script( $this->_token . '-frontend', esc_url( $this->assets_url ) . 'js/frontend' . $this->script_suffix . '.js', array( 'jquery' ), $this->_version );
-		wp_enqueue_script( $this->_token . '-frontend' );
-	} // End enqueue_scripts ()
-
-	/**
 	 * Load admin CSS.
 	 * @access  public
 	 * @since   1.0.0
 	 * @return  void
 	 */
 	public function admin_enqueue_styles() {
+		//Allow others to stop us in enqueueing the CSS
+		if ( ! apply_filters( $this->_token . '_admin_enqueue_css', true ) ) {
+			return false;
+		}
 
-		wp_register_style( $this->_token . '-admin', esc_url( $this->assets_url ) . 'css/admin.css', array(), $this->_version );
-		wp_enqueue_style( $this->_token . '-admin' );
+		// Only use minified files if SCRIPT_DEBUG is off
+		$min   = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+		$rtl   = is_rtl() ? '-rtl' : '';
+
+		// Filter required styles and register stylesheet
+		$styles = apply_filters( $this->_token . '_admin_style_dependencies', array() );
+		wp_register_style( $this->_token . '-admin-styles', esc_url( $this->assets_url ) . "css/admin{$rtl}{$min}.css", $styles, $this->_version );
+
+		wp_enqueue_style( $this->_token . '-admin-styles' );
 
 		wp_register_style( 'jquery-ui', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css' );
 		wp_enqueue_style( 'jquery-ui' );
 		wp_enqueue_style(
-			$this->_token . ' datetime-picker-style',
+			$this->_token . '-datetime-picker-style',
 			esc_url( $this->assets_url ) . 'css/jquery-ui-timepicker-addon.css'
 		);
 	} // End admin_enqueue_styles ()
@@ -307,7 +289,7 @@ class Fonto extends Fonto_Init {
 		wp_enqueue_script( $this->_token . '-admin' );
 
 		wp_enqueue_script(
-			$this->_token . 'jquery-datetimepicker',
+			$this->_token . '-jquery-datetimepicker',
 			esc_url( $this->assets_url ) . 'js/jquery-ui-timepicker-addon.js',
 			array( 'jquery', 'jquery-ui-datepicker' )
 		);

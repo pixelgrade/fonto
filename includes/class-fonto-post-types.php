@@ -76,9 +76,13 @@ class Fonto_Post_Types {
 		// Add taxonomy filter to Font edit page.
 		$font_category_taxonomy->add_filter();
 
-		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
-
+		//Add the metaboxes for the post types
 		add_action( 'cmb2_admin_init', array( $this, 'add_meta_boxes' ) );
+
+		//Enqueue the static assets for the metaboxes in the admin area
+		// Load admin JS & CSS.
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ), 10, 1 );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_styles' ), 10, 1 );
 
 	}
 
@@ -109,7 +113,7 @@ class Fonto_Post_Types {
 			'context'    => 'normal',
 			'priority'   => 'high',
 			'show_names' => true, // Show field names on the left
-			'cmb_styles' => true, // false to disable the CMB stylesheet
+			'cmb_styles' => false, // false to disable the CMB stylesheet - we are loding our own clean CSS
 			'closed'     => false, // true to keep the metabox closed by default
 			//'classes'    => 'extra-class', // Extra cmb2-wrap classes
 			// 'classes_cb' => 'yourprefix_add_some_classes', // Add classes through a callback.
@@ -260,6 +264,52 @@ class Fonto_Post_Types {
 		// For chaining
 		return $field;
 	}
+
+	/**
+	 * Load admin CSS - specific for post types
+	 * @access  public
+	 * @since   1.0.0
+	 * @return  void
+	 */
+	public function admin_enqueue_styles() {
+		//Allow others to stop us in enqueueing the CSS
+		if ( ! apply_filters( $this->parent->_token . '_cmb2_enqueue_css', true ) ) {
+			return false;
+		}
+
+		// Only use minified files if SCRIPT_DEBUG is off
+		$min   = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+		$rtl   = is_rtl() ? '-rtl' : '';
+
+		// Filter required styles and register stylesheet
+		$styles = apply_filters( $this->parent->_token . '_cmb2_style_dependencies', array() );
+		wp_register_style( $this->parent->_token . '-cmb2-styles', esc_url( $this->parent->assets_url ) . "css/cmb2/cmb2{$rtl}{$min}.css", $styles, $this->parent->_version );
+
+		wp_enqueue_style( $this->parent->_token . '-cmb2-styles' );
+	} // End admin_enqueue_styles ()
+
+	/**
+	 * Load admin Javascript - specific for post types
+	 *
+	 * @access  public
+	 * @since   1.0.0
+	 * @return  void
+	 */
+	public function admin_enqueue_scripts() {
+		//Allow others to stop us in enqueueing the JS
+		if ( ! apply_filters( $this->parent->_token . '_cmb2_enqueue_js', true ) ) {
+			return false;
+		}
+
+		// Register our cmb custom JS
+		wp_register_script( $this->parent->_token . '-cmb2', esc_url( $this->parent->assets_url ) . 'js/cmb2' . $this->parent->script_suffix . '.js', array(
+			'jquery',
+		), $this->parent->_version );
+
+		wp_enqueue_script( $this->parent->_token . '-cmb2' );
+
+	} // End admin_enqueue_scripts ()
+
 
 	/**
 	 * Main Fonto_Post_Types Instance
