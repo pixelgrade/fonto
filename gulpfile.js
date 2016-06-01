@@ -48,6 +48,6 @@ gulp.task('styles', ['styles-expanded', 'styles-compressed'], function () {
 	console.log('The styles and scripts have been compiled for production! Go and clear the caches!');
 });
 
-gulp.task('styles-watch', function () {
-	return gulp.watch('assets/scss/**/*.scss', ['styles']);
+gulp.task('watch', function () {
+	return gulp.watch('assets/css/cmb2/sass/**/*.scss', ['styles']);
 });

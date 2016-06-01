@@ -140,6 +140,7 @@ class Fonto_Post_Types {
 			'id'   => $prefix . 'fonts_loading_embed_code',
 			'type' => 'title',
 			'row_classes' => array( 'full-width', 'background__dark' ),
+			'before_row' => '<div class="font-loading-section">',
 		) );
 
 		$font_details->add_field( array(
@@ -157,6 +158,7 @@ class Fonto_Post_Types {
 			'before_field' => __( 'Insert below the embed code (JS/CSS) provided by the font service. <a href="#" target="_blank">Learn More</a>', 'cmb2' ),
 			'after_field' => esc_html__( 'The above code will be inserted in the <head> area of your website.', 'fonto' ),
 			'row_classes' => array( 'full-width', 'title__large', 'background__dark' ),
+			'after_row' => '</div><!-- .font-loading-section -->'
 		) );
 
 		$font_details->add_field( array(
