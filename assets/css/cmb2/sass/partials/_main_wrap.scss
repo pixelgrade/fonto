@@ -209,7 +209,7 @@ Main Wrap
 .cmb-th {
   color: $dark-gray;
   float: left;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.3;
   padding: 20px 10px 20px 0;
   vertical-align: top;
@@ -228,6 +228,17 @@ Main Wrap
 }
 
 .cmb-type-title {
+  margin: 0 -30px;
+  padding: 20px 30px 8px 30px;
+
+  border-top: 2px solid $borders;
+
+  h5 {
+    font-size: 23px;
+    font-weight: 500;
+    line-height: 1.8;
+    color: $dark-gray;
+  }
 
   .cmb-td {
     padding: 0;
@@ -327,15 +338,18 @@ span.cmb2-metabox-description {
 }
 
 .cmb2-metabox-our-description {
+  font-size: 14px;
+  line-height: 1.7;
   color: $light-gray;
+
+  label + & {
+    margin-top: 0;
+  }
 }
 
 .cmb2-metabox-title {
   margin: 0 0 5px 0;
   padding: 5px 0 0 0;
-
-  font-size: 23px;
-  color: $dark-gray;
 }
 
 .cmb-inline ul {

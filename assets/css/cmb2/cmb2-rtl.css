@@ -231,7 +231,7 @@ Main Wrap
 
 .cmb-th
 {
-    font-weight: 600;
+    font-weight: 400;
     line-height: 1.3;
 
     float: right;
@@ -286,6 +286,23 @@ Main Wrap
     padding: 15px 10px;
 
     vertical-align: middle;
+}
+
+.cmb-type-title
+{
+    margin: 0 -30px;
+    padding: 20px 30px 8px 30px;
+
+    border-top: 2px solid #eee;
+}
+
+.cmb-type-title h5
+{
+    font-size: 23px;
+    font-weight: 500;
+    line-height: 1.8;
+
+    color: #232323;
 }
 
 .cmb-type-title .cmb-td
@@ -439,17 +456,21 @@ span.cmb2-metabox-description
 
 .cmb2-metabox-our-description
 {
+    font-size: 14px;
+    line-height: 1.7;
+
     color: #aaa;
+}
+
+label + .cmb2-metabox-our-description
+{
+    margin-top: 0;
 }
 
 .cmb2-metabox-title
 {
-    font-size: 23px;
-
     margin: 0 0 5px 0;
     padding: 5px 0 0 0;
-
-    color: #232323;
 }
 
 .cmb-inline ul
@@ -609,7 +630,7 @@ Post Metaboxes
 .postbox-container .cmb2-wrap > .cmb-field-list > .cmb-row,
 .cmb-type-group .cmb2-wrap > .cmb-field-list > .cmb-row
 {
-    padding: 1.8em 0;
+    padding: 2.85em 0;
 }
 
 .postbox-container .cmb2-wrap > .cmb-field-list > .cmb-row:first-of-type,
@@ -627,7 +648,6 @@ Post Metaboxes
 .postbox-container .cmb-row,
 .cmb-type-group .cmb-row
 {
-    margin: 0 0 .8em;
     padding: 0 0 1.8em;
 }
 
@@ -682,6 +702,14 @@ Post Metaboxes
     width: 50%;
 }
 
+.postbox-container .cmb-row:not(:last-of-type),
+.postbox-container .cmb-repeatable-group:not(:last-of-type),
+.cmb-type-group .cmb-row:not(:last-of-type),
+.cmb-type-group .cmb-repeatable-group:not(:last-of-type)
+{
+    border-bottom: 1px solid #eee;
+}
+
 @media (max-width: 450px)
 {
     .postbox-container .cmb-row:not(:last-of-type),
@@ -691,6 +719,14 @@ Post Metaboxes
     {
         border-bottom: 0;
     }
+}
+
+.postbox-container .cmb-row.cmb-type-title,
+.postbox-container .cmb-row.cmb2-id-fonto-font-source,
+.cmb-type-group .cmb-row.cmb-type-title,
+.cmb-type-group .cmb-row.cmb2-id-fonto-font-source
+{
+    border-bottom: 0;
 }
 
 .postbox-container .cmb-repeat-group-field,
@@ -754,39 +790,6 @@ Post Metaboxes
     padding-left: 0;
 }
 
-.cmb-row
-{
-    color: #aaa;
-}
-
-.option-details
-{
-    display: block;
-
-    color: #aaa;
-}
-
-.font-loading-section
-{
-    padding: 36px 0;
-}
-
-.font-loading-section .cmb-row
-{
-    margin: 0 -30px;
-    padding: 0 30px;
-
-    background-color: #fcfcfc;
-}
-
-.postbox-container .cmb2-id-fonto-font-name-style .cmb-th,
-.postbox-container .cmb2-id-fonto-font-name-style .cmb-td
-{
-    float: none;
-
-    width: 100%;
-}
-
 /*--------------------------------------------------------------
 Misc.
 --------------------------------------------------------------*/
@@ -818,6 +821,210 @@ Misc.
 .postbox .cmb-spinner
 {
     float: right;
+}
+
+.cmb-row
+{
+    color: #aaa;
+}
+
+.option-details
+{
+    line-height: 1.5;
+
+    display: block;
+
+    margin-top: 10px;
+
+    color: #aaa;
+}
+
+.font-loading-section
+{
+    padding-bottom: 36px;
+}
+
+.font-loading-section .cmb-row
+{
+    margin: 0 -30px;
+    padding: 0 30px;
+
+    background-color: #fcfcfc;
+}
+
+.note
+{
+    display: block;
+
+    margin-top: 30px;
+}
+
+.cmb2-wrap p:last-of-type
+{
+    margin-bottom: 0;
+}
+
+.cmb2-wrap input[type='text'],
+.cmb2-wrap textarea
+{
+    padding: 16px 12px;
+
+    color: #444;
+    border-radius: 4px;
+    box-shadow: none;
+}
+
+input[type=radio],
+input[type=checkbox]
+{
+    width: 24px;
+    height: 24px;
+
+    border: 1px solid #ddd;
+    box-shadow: none;
+}
+
+input[type=radio]:focus,
+input[type=checkbox]:focus
+{
+    box-shadow: none;
+}
+
+.cmb2-wrap input[type=radio],
+.cmb2-wrap
+input[type=checkbox]
+{
+    margin-left: 10px;
+}
+
+input[type=radio]:checked
+{
+    border: 1px solid #76c6ec;
+}
+
+input[type=radio]:checked:before
+{
+    width: 16px;
+    height: 16px;
+    margin: 3px;
+
+    background-color: #76c6ec;
+}
+
+input[type=checkbox]
+{
+    border-radius: 2px;
+}
+
+input[type=checkbox]:checked
+{
+    border: 1px solid #76c6ec;
+    background: #76c6ec;
+}
+
+input[type=checkbox]:checked:before
+{
+    margin: 0;
+
+    color: white;
+}
+
+ul.cmb2-radio-list
+{
+    margin-bottom: -30px;
+}
+
+ul.cmb2-radio-list li
+{
+    display: -ms-flexbox;
+    display: flex;
+}
+
+ul.cmb2-radio-list li input
+{
+    margin-left: 3px;
+}
+
+ul.cmb2-radio-list li label
+{
+    margin-top: 5px;
+}
+
+.postbox-container .cmb2-id-fonto-font-source
+{
+    margin-bottom: 0;
+}
+
+.cmb2-id-fonto-fonts-loading-embed-code .cmb2-metabox-title:before,
+.cmb2-id-fonto-weights-styles-matching .cmb2-metabox-title:before
+{
+    display: inline-block;
+
+    margin-left: 14px;
+
+    content: '';
+    vertical-align: middle;
+
+    background: center center no-repeat;
+    background-size: 100% 100%;
+}
+
+.cmb2-id-fonto-fonts-loading-embed-code .cmb2-metabox-title:before
+{
+    width: 23px;
+    height: 24px;
+    margin-top: -3px;
+
+    background-image: url('../../images/loading-icon.svg');
+}
+
+.cmb2-id-fonto-weights-styles-matching .cmb2-metabox-title:before
+{
+    width: 34px;
+    height: 27px;
+
+    background-image: url('../../images/matching-icon.svg');
+}
+
+.cmb2-id-fonto-embed-code .cmb2-textarea-code
+{
+    min-height: 150px;
+    margin: 25px 0 5px 0;
+}
+
+.postbox-container .cmb2-id-fonto-font-name-style .cmb-th,
+.postbox-container .cmb2-id-fonto-font-name-style .cmb-td
+{
+    float: none;
+
+    width: 100%;
+}
+
+.postbox-container .cmb2-id-fonto-font-name-style .cmb-th
+{
+    margin-bottom: 20px;
+}
+
+#fonto_font_family_name
+{
+    width: 100%;
+}
+
+.cmb2-id-fonto-font-variations .cmb2-checkbox-list
+{
+    display: -ms-flexbox;
+    display: flex;
+
+    color: #444;
+
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+}
+
+.cmb2-id-fonto-font-variations .cmb2-checkbox-list li
+{
+    -ms-flex-preferred-size: 50%;
+    flex-basis: 50%;
 }
 
 /*--------------------------------------------------------------
