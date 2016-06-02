@@ -144,9 +144,38 @@ class Fonto_Post_Types {
 		) );
 
 		$font_details->add_field( array(
+			'name'         => __( 'Font Files', 'cmb2' ),
+			'our_desc'         => __( 'Upload all the files received from the font service/generator.', 'cmb2' ),
+			'id'           => $prefix . 'font_files',
+			'type'         => 'file_list',
+			'preview_size' => array( 100, 100 ), // Default: array( 50, 50 )
+			'attributes'  => array(
+				// Shown for Self-Hosted fonts
+				'data-conditional-id' => $prefix . 'font_source',
+				'data-conditional-value' => 'self_hosted',
+			),
+			'row_classes' => array( 'background__dark' ),
+			'render_row_cb' => array( $this, 'render_field_callback_our_desc_after_label' ),
+		) );
+
+		$font_details->add_field( array(
+			'name'        => __( 'URL Path to the font files', 'cmb2' ),
+			'our_desc'    => __( 'This is the URL path to be used for the uploaded files.', 'cmb2' ),
+			'id'          => $prefix . 'url_path',
+			'type'        => 'text',
+			'attributes'  => array(
+				// Shown for Self-Hosted fonts
+				'data-conditional-id' => $prefix . 'font_source',
+				'data-conditional-value' => 'self_hosted',
+			),
+			'row_classes' => array( 'background__dark' ),
+			'render_row_cb' => array( $this, 'render_field_callback_our_desc_after_label' ),
+		) );
+
+		$font_details->add_field( array(
 			'name' => __( 'Embed Code', 'cmb2' ),
 			'show_names' => false,
-			'id'   => $prefix . 'embed_code',
+			'id'   => $prefix . 'embed_code_font_service',
 			'type' => 'textarea_code',
 			'attributes'  => array(
 				'placeholder' => 'Your embed code',
@@ -159,6 +188,23 @@ class Fonto_Post_Types {
 			'after_field' => esc_html__( 'The above code will be inserted in the <head> area of your website.', 'fonto' ),
 			'row_classes' => array( 'full-width', 'title__large', 'background__dark' ),
 			'after_row' => '</div><!-- .font-loading-section -->'
+		) );
+
+		$font_details->add_field( array(
+			'name' => __( 'Embed Code', 'cmb2' ),
+			'show_names' => true,
+			'id'   => $prefix . 'embed_code_self_hosted',
+			'type' => 'textarea_code',
+			'attributes'  => array(
+				'placeholder' => 'Your embed code',
+				'rows'        => 5,
+				// Shown for Self-Hosted fonts
+				'data-conditional-id' => $prefix . 'font_source',
+				'data-conditional-value' => 'self_hosted',
+			),
+			'before_field' => __( 'Insert below the CSS code. <a href="#" target="_blank">Learn More</a>', 'cmb2' ),
+			'after_field' => esc_html__( 'The above code will be inserted in the <head> area of your website.', 'fonto' ),
+			'row_classes' => array( 'full-width', 'title__large', 'background__dark' ),
 		) );
 
 		$font_details->add_field( array(
@@ -234,6 +280,235 @@ class Fonto_Post_Types {
 			// 'inline'  => true, // Toggles display to inline
 			'row_classes' => array( 'font-variations', 'no-divider' ),
 			'render_row_cb' => array( $this, 'render_field_callback_our_desc_after_label' ),
+		) );
+
+		$font_details->add_field( array(
+			'name' => __( 'Font Weights & Styles Variations', 'cmb2' ),
+			'desc' => __( 'Pair the provided fonts references names with their matching weights and styles.', 'cmb2' ),
+			'id'   => $prefix . 'font_weight_style_variations',
+			'type' => 'title',
+			'attributes'  => array(
+				// Shown when using a font names are referenced individualy
+				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-value' => 'individual',
+			),
+			'row_classes' => array( 'full-width', 'title__small', ),
+		) );
+
+		$font_details->add_field( array(
+			'name'        => __( 'Thin 100', 'cmb2' ),
+			'id'          => '100_normal_individual',
+			'type'        => 'text_small',
+			'attributes'  => array(
+				// Shown when using a font names are referenced individualy
+				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-value' => 'individual',
+			),
+			'row_classes' => array( 'grouped-input', 'half-width', ),
+		) );
+
+		$font_details->add_field( array(
+			'name'        => __( 'Thin Italic', 'cmb2' ),
+			'id'          => '100_italic_individual',
+			'type'        => 'text_small',
+			'attributes'  => array(
+				// Shown when using a font names are referenced individualy
+				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-value' => 'individual',
+			),
+			'row_classes' => array( 'grouped-input', 'half-width', ),
+		) );
+
+		$font_details->add_field( array(
+			'name'        => __( 'Extra Light 200', 'cmb2' ),
+			'id'          => '200_normal_individual',
+			'type'        => 'text_small',
+			'attributes'  => array(
+				// Shown when using a font names are referenced individualy
+				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-value' => 'individual',
+			),
+			'row_classes' => array( 'grouped-input', 'half-width', ),
+		) );
+
+		$font_details->add_field( array(
+			'name'        => __( 'Extra Light Italic', 'cmb2' ),
+			'id'          => '200_italic_individual',
+			'type'        => 'text_small',
+			'attributes'  => array(
+				// Shown when using a font names are referenced individualy
+				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-value' => 'individual',
+			),
+			'row_classes' => array( 'grouped-input', 'half-width', ),
+		) );
+
+		$font_details->add_field( array(
+			'name'        => __( 'Light 300', 'cmb2' ),
+			'id'          => '300_normal_individual',
+			'type'        => 'text_small',
+			'attributes'  => array(
+				// Shown when using a font names are referenced individualy
+				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-value' => 'individual',
+			),
+			'row_classes' => array( 'grouped-input', 'half-width', ),
+		) );
+
+		$font_details->add_field( array(
+			'name'        => __( 'Light Italic', 'cmb2' ),
+			'id'          => '300_italic_individual',
+			'type'        => 'text_small',
+			'attributes'  => array(
+				// Shown when using a font names are referenced individualy
+				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-value' => 'individual',
+			),
+			'row_classes' => array( 'grouped-input', 'half-width', ),
+		) );
+
+		$font_details->add_field( array(
+			'name'        => __( 'Regular 400', 'cmb2' ),
+			'id'          => '400_normal_individual',
+			'type'        => 'text_small',
+			'attributes'  => array(
+				// Shown when using a font names are referenced individualy
+				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-value' => 'individual',
+			),
+			'row_classes' => array( 'grouped-input', 'half-width', ),
+		) );
+
+		$font_details->add_field( array(
+			'name'        => __( 'Regular Italic', 'cmb2' ),
+			'id'          => '400_italic_individual',
+			'type'        => 'text_small',
+			'attributes'  => array(
+				// Shown when using a font names are referenced individualy
+				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-value' => 'individual',
+			),
+			'row_classes' => array( 'grouped-input', 'half-width', ),
+		) );
+
+		$font_details->add_field( array(
+			'name'        => __( 'Medium 500', 'cmb2' ),
+			'id'          => '500_normal_individual',
+			'type'        => 'text_small',
+			'attributes'  => array(
+				// Shown when using a font names are referenced individualy
+				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-value' => 'individual',
+			),
+			'row_classes' => array( 'grouped-input', 'half-width', ),
+		) );
+
+		$font_details->add_field( array(
+			'name'        => __( 'Medium Italic', 'cmb2' ),
+			'id'          => '500_italic_individual',
+			'type'        => 'text_small',
+			'attributes'  => array(
+				// Shown when using a font names are referenced individualy
+				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-value' => 'individual',
+			),
+			'row_classes' => array( 'grouped-input', 'half-width', ),
+		) );
+
+		$font_details->add_field( array(
+			'name'        => __( 'Semi Bold 600', 'cmb2' ),
+			'id'          => '600_normal_individual',
+			'type'        => 'text_small',
+			'attributes'  => array(
+				// Shown when using a font names are referenced individualy
+				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-value' => 'individual',
+			),
+			'row_classes' => array( 'grouped-input', 'half-width', ),
+		) );
+
+		$font_details->add_field( array(
+			'name'        => __( 'Semi Bold Italic', 'cmb2' ),
+			'id'          => '600_italic_individual',
+			'type'        => 'text_small',
+			'attributes'  => array(
+				// Shown when using a font names are referenced individualy
+				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-value' => 'individual',
+			),
+			'row_classes' => array( 'grouped-input', 'half-width', ),
+		) );
+
+		$font_details->add_field( array(
+			'name'        => __( 'Bold 700', 'cmb2' ),
+			'id'          => '700_normal_individual',
+			'type'        => 'text_small',
+			'attributes'  => array(
+				// Shown when using a font names are referenced individualy
+				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-value' => 'individual',
+			),
+			'row_classes' => array( 'grouped-input', 'half-width', ),
+		) );
+
+		$font_details->add_field( array(
+			'name'        => __( 'Bold Italic', 'cmb2' ),
+			'id'          => '700_italic_individual',
+			'type'        => 'text_small',
+			'attributes'  => array(
+				// Shown when using a font names are referenced individualy
+				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-value' => 'individual',
+			),
+			'row_classes' => array( 'grouped-input', 'half-width', ),
+		) );
+
+		$font_details->add_field( array(
+			'name'        => __( 'Extra Bold 800', 'cmb2' ),
+			'id'          => '800_normal_individual',
+			'type'        => 'text_small',
+			'attributes'  => array(
+				// Shown when using a font names are referenced individualy
+				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-value' => 'individual',
+			),
+			'row_classes' => array( 'grouped-input', 'half-width', ),
+		) );
+
+		$font_details->add_field( array(
+			'name'        => __( 'Extra Bold Italic', 'cmb2' ),
+			'id'          => '800_italic_individual',
+			'type'        => 'text_small',
+			'attributes'  => array(
+				// Shown when using a font names are referenced individualy
+				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-value' => 'individual',
+			),
+			'row_classes' => array( 'grouped-input', 'half-width', ),
+		) );
+
+		$font_details->add_field( array(
+			'name'        => __( 'Black 900', 'cmb2' ),
+			'id'          => '900_normal_individual',
+			'type'        => 'text_small',
+			'attributes'  => array(
+				// Shown when using a font names are referenced individualy
+				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-value' => 'individual',
+			),
+			'row_classes' => array( 'grouped-input', 'half-width', ),
+		) );
+
+		$font_details->add_field( array(
+			'name'        => __( 'Black Italic', 'cmb2' ),
+			'id'          => '900_italic_individual',
+			'type'        => 'text_small',
+			'attributes'  => array(
+				// Shown when using a font names are referenced individualy
+				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-value' => 'individual',
+			),
+			'row_classes' => array( 'grouped-input', 'half-width', ),
 		) );
 
 	} // End font_custom_fields()
