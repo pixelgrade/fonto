@@ -28,3 +28,181 @@ Misc.
 .postbox .cmb-spinner {
   float: left;
 }
+
+
+
+
+
+// Custom pxg styles
+
+.cmb-row {
+  color: $light-gray;
+}
+
+.option-details {
+  display: block;
+  color: $light-gray;
+  line-height: 1.5;
+  margin-top: 10px;
+}
+
+.font-loading-section {
+  padding-bottom: 36px;
+
+  .cmb-row {
+    margin: 0 -30px;
+    padding: 0 30px;
+
+    background-color: #FCFCFC;
+  }
+}
+
+.note {
+  margin-top: 30px;
+  display: block;
+}
+
+.cmb2-wrap {
+  p:last-of-type {
+    margin-bottom: 0;
+  }
+
+  input[type="text"],
+  textarea {
+    padding: 16px 12px;
+
+    border-radius: 4px;
+    box-shadow: none;
+
+    color: $gray;
+  }
+}
+
+input[type=radio],
+input[type=checkbox] {
+  width: 24px;
+  height: 24px;
+
+  border: 1px solid #DDDDDD;
+
+  box-shadow: none;
+
+  &:focus {
+    box-shadow: none;
+  }
+
+  .cmb2-wrap & {
+    margin-right: 10px;
+  }
+}
+
+input[type=radio]:checked {
+  border: 1px solid #76C6EC;
+
+  &:before {
+    width: 16px;
+    height: 16px;
+    margin: 3px;
+
+    background-color: #76C6EC;
+  }
+}
+
+input[type=checkbox] {
+  border-radius: 2px;
+
+  &:checked {
+    border: 1px solid #76C6EC;
+    background: #76C6EC;
+
+    &:before {
+      color: white;
+      margin: 0;
+    }
+  }
+}
+
+ul.cmb2-radio-list {
+  margin-bottom: -30px;
+
+  li {
+    display: flex;
+
+    input {
+      margin-right: 3px;
+    }
+
+    label {
+      margin-top: 5px;
+    }
+  }
+}
+
+.postbox-container .cmb2-id-fonto-font-source {
+  margin-bottom: 0;
+}
+
+.cmb2-id-fonto-fonts-loading-embed-code .cmb2-metabox-title:before,
+.cmb2-id-fonto-weights-styles-matching .cmb2-metabox-title:before {
+  content: "";
+
+  display: inline-block;
+  vertical-align: middle;
+
+  margin-right: 14px;
+
+  background: center center no-repeat;
+  background-size: 100% 100%;
+}
+
+.cmb2-id-fonto-fonts-loading-embed-code .cmb2-metabox-title:before {
+  width: 23px;
+  height: 24px;
+  margin-top: -3px;
+
+  background-image: url("../../images/loading-icon.svg");
+}
+
+.cmb2-id-fonto-weights-styles-matching .cmb2-metabox-title:before {
+  width: 34px;
+  height: 27px;
+
+  background-image: url("../../images/matching-icon.svg");
+}
+
+.cmb2-id-fonto-weights-styles-matching .cmb2-metabox-title:before {
+
+}
+
+.cmb2-id-fonto-embed-code-font-service .cmb2-textarea-code {
+  margin: 25px 0 5px 0;
+  min-height: 150px;
+}
+
+
+.postbox-container .cmb2-id-fonto-font-name-style {
+  .cmb-th,
+  .cmb-td {
+    float: none;
+    width: 100%;
+  }
+
+  .cmb-th {
+    margin-bottom: 20px;
+  }
+}
+
+#fonto_font_family_name {
+  width: 100%;
+}
+
+.cmb2-id-fonto-font-variations .cmb2-checkbox-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  color: $gray;
+
+  li {
+    flex-basis: 50%;
+  }
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="23px" height="24px" viewBox="0 0 23 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Add-Fonts---Web-Service---Grouped" transform="translate(-213.000000, -419.000000)">
+            <g id="Section-Block" transform="translate(183.000000, 188.000000)">
+                <g id="Load-Fonts" transform="translate(1.000000, 192.000000)">
+                    <g id="Section-Title">
+                        <g id="Arrows" transform="translate(29.000000, 39.000000)">
+                            <g id="Group">
+                                <rect id="Rectangle-447" fill="#484848" x="0" y="21" width="23" height="3" rx="1.5"></rect>
+                                <path d="M18.6417917,6.35796804 L10.6925302,6.35796804 L10.6925302,3.13537625 C10.6925302,2.17616636 10.1826584,1.91802097 9.47480027,2.56184787 L2.93055297,8.54682583 C2.22269489,9.19065273 2.24065889,10.2443623 2.94813476,10.8881892 L9.46639159,16.872783 C10.1746319,17.516994 10.6925302,17.2588486 10.6925302,16.2992546 L10.6925302,12.8884318 L18.6417917,12.8884318 C19.5965592,12.8884318 20.2478498,12.2035014 20.2478498,11.2435232 L20.2478498,8.19110763 C20.2478498,7.23189775 19.5965592,6.35796804 18.6417917,6.35796804 L18.6417917,6.35796804 Z" id="Shape" fill="#76C6EC" transform="translate(11.328180, 9.717450) rotate(-90.000000) translate(-11.328180, -9.717450) "></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
