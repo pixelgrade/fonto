@@ -25,7 +25,5 @@
             //     head.appendChild(temp.firstChild);
             // }
         });
-
-
     });
 }( window.tinymce ));

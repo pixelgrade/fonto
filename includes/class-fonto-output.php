@@ -106,6 +106,10 @@ class Fonto_Output {
 		add_filter( 'mce_external_plugins', array( $this, 'tinymce_raw_head_code_plugin' ) );
 
 		foreach ( array('post.php','post-new.php') as $hook ) {
+			//add the embed code to the WP admin page so we can use it for previews in the typography selects
+			add_action( "admin_head-$hook", array( $this, 'add_admin_embed_code' ) );
+
+			//add the embed code as a JS variable that can be used in the TinyMCE iframe
 			add_action( "admin_head-$hook", array( $this, 'localize_tinymce_raw_head_code_plugin' ) );
 		}
 
@@ -176,8 +180,17 @@ class Fonto_Output {
 		echo $this->get_fonts_embed_code();
 	}
 
+	public function add_admin_embed_code() {
+		// Allow others to stop us from adding the embed code in the <head> area
+		if ( ! apply_filters( $this->prefix . 'add_admin_embed_code', true ) ) {
+			return;
+		}
+
+		echo $this->get_fonts_embed_code();
+	}
+
 	/**
-	 * Adds an external TinyMCE plugin to be loaded into the TinyMCE editor.
+	 * Adds the Raw Head Code external TinyMCE plugin to be loaded into the TinyMCE editor.
 	 *
 	 * @since 1.0.0
 	 *
@@ -190,7 +203,7 @@ class Fonto_Output {
 	}
 
 	/**
-	 * Localize the TinyMCE Raw Head plugin to receive the actual code to inject in the iframe's head
+	 * Localize the TinyMCE Raw Head Code plugin to receive the actual code to inject in the iframe's head
 	 */
 	function localize_tinymce_raw_head_code_plugin() {
 		$embed_code = json_encode( $this->get_fonts_embed_code() );
@@ -206,6 +219,8 @@ class Fonto_Output {
 	}
 
 	/**
+	 * Activate the TinyMCE fontsize and font selects
+	 *
 	 * @param array $options
 	 *
 	 * @return array
@@ -219,6 +234,8 @@ class Fonto_Output {
 	}
 
 	/**
+	 * Add our font families to the fonts select in TinyMCE
+	 *
 	 * @param array $mceInit
 	 *
 	 * @return array
@@ -247,7 +264,7 @@ class Fonto_Output {
 					$font_variations = get_post_meta( $font->ID, $this->prefix . 'font_variations', true );
 					// if the font has some variations then we can use it
 					if ( ! empty( $font_variations ) ) {
-						$custom_font_formats .= esc_html( $font_family_name . '=' . $font_family_name . ';' );
+						$custom_font_formats .= esc_html( $font->post_title . '=' . $font_family_name . ';' );
 					}
 				} elseif ( 'individual' == $font_name_style ) {
 					/* ===== Font Names are Referenced Individually ==== */
@@ -288,7 +305,7 @@ class Fonto_Output {
 		//first set the headers
 		header("Content-type: text/css; charset: UTF-8");
 
-		echo '/* Go on! CSS something */' . PHP_EOL;
+		echo '/* Go on! CSS something nice */' . PHP_EOL;
 
 		$fonts = $this->get_fonts();
 		if ( ! empty( $fonts ) ) {
@@ -302,12 +319,11 @@ class Fonto_Output {
 
 				if ( 'font_service' == $font_source ) {
 					/* ===== WEB FONT SERVICE ==== */
-					// We only need to enqueue the embed code
-					
 
 
 				} elseif ( 'self_hosted' == $font_source ) {
 					/* ===== SELF-HOSTED FONT ==== */
+
 				}
 			}
 		}
