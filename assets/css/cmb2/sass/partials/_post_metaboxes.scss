@@ -18,6 +18,10 @@ Post Metaboxes
 
     > .cmb-field-list > .cmb-row {
       padding: 1.8em 0;
+
+      &:first-of-type {
+        padding-top: 0;
+      }
     }
 
     input[type=text] {
@@ -49,7 +53,7 @@ Post Metaboxes
   }
 
   .cmb-th {
-    width: 18%;
+    width: 48%;
     padding: 0 2% 0 0;
     // text-align: right;
   }
@@ -65,13 +69,13 @@ Post Metaboxes
   }
 
   .cmb-th + .cmb-td {
-    width: 80%;
+    width: 50%;
     float: right;
   }
 
   .cmb-row:not(:last-of-type),
   .cmb-repeatable-group:not(:last-of-type) {
-    border-bottom: 1px solid $light-gray;
+    //border-bottom: 1px solid $light-gray;
 
     @media (max-width: $mobile-break) {
       border-bottom: 0;
@@ -112,5 +116,37 @@ Post Metaboxes
         }
       }
     }
+  }
+}
+
+.cmb-wrap {
+
+}
+
+.cmb-row {
+  color: $light-gray;
+}
+
+.option-details {
+  display: block;
+  color: $light-gray;
+}
+
+.font-loading-section {
+  padding: 36px 0;
+
+  .cmb-row {
+    margin: 0 -30px;
+    padding: 0 30px;
+
+    background-color: #FCFCFC;
+  }
+}
+
+.postbox-container .cmb2-id-fonto-font-name-style {
+  .cmb-th,
+  .cmb-td {
+    float: none;
+    width: 100%;
   }
 }

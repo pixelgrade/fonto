@@ -18,6 +18,7 @@
     "gulp-postcss": "*",
     "gulp-chmod": "*",
     "gulp-rename": "*",
+    "gulp-clean-css": "*",
     "rtlcss": "*",
     "es6-promise": "*"
   }

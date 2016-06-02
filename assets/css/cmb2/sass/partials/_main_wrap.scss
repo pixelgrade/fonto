@@ -21,7 +21,7 @@ Main Wrap
   }
 
   textarea {
-    width: 500px;
+    width: 100%;
 
     &.cmb2-textarea-code {
       font-family: $font-mono;
@@ -71,7 +71,7 @@ Main Wrap
   li {
     font-size: $font-size;
     line-height: 16px;
-    margin: 1px 0 5px 0;
+    margin: 1px 0 30px 0;
   }
 
   // .cmb-field-list .cmb-field-list {
@@ -237,6 +237,9 @@ Main Wrap
 .cmb-th label {
   display: block;
   padding: 5px 0;
+
+  font-size: 16px;
+  color: $gray;
 }
 
 .cmb-th + .cmb-td {
@@ -323,10 +326,16 @@ span.cmb2-metabox-description {
   font-style: italic;
 }
 
+.cmb2-metabox-our-description {
+  color: $light-gray;
+}
+
 .cmb2-metabox-title {
   margin: 0 0 5px 0;
   padding: 5px 0 0 0;
-  font-size: 14px;
+
+  font-size: 23px;
+  color: $dark-gray;
 }
 
 .cmb-inline ul {

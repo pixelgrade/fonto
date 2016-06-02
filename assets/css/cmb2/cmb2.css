@@ -25,7 +25,7 @@ Main Wrap
 
 .cmb2-wrap textarea
 {
-    width: 500px;
+    width: 100%;
 }
 
 .cmb2-wrap textarea.cmb2-textarea-code
@@ -77,7 +77,7 @@ Main Wrap
     font-size: 14px;
     line-height: 16px;
 
-    margin: 1px 0 5px 0;
+    margin: 1px 0 30px 0;
 }
 
 .cmb2-wrap select
@@ -113,7 +113,7 @@ Main Wrap
 
 .cmb2-wrap .mceLayout
 {
-    border: 1px solid #e9e9e9 !important;
+    border: 1px solid #aaa !important;
 }
 
 .cmb2-wrap .mceIframeContainer
@@ -221,7 +221,7 @@ Main Wrap
     max-width: 1000px;
     padding: 0 1em;
 
-    border: 1px solid #e9e9e9;
+    border: 1px solid #aaa;
 }
 
 .cmb-repeatable-grouping.cmb-row
@@ -241,7 +241,7 @@ Main Wrap
 
     vertical-align: top;
 
-    color: #222;
+    color: #232323;
 }
 
 @media (max-width: 450px)
@@ -274,7 +274,7 @@ Main Wrap
 
         content: '';
 
-        border-bottom: 1px solid #e9e9e9;
+        border-bottom: 1px solid #aaa;
     }
 }
 
@@ -295,9 +295,13 @@ Main Wrap
 
 .cmb-th label
 {
+    font-size: 16px;
+
     display: block;
 
     padding: 5px 0;
+
+    color: #444;
 }
 
 .cmb-th + .cmb-td
@@ -334,7 +338,7 @@ Main Wrap
     margin: 0 -1em;
     padding: 8px 12px 8px 2.2em;
 
-    background-color: #e9e9e9;
+    background-color: #aaa;
 }
 
 .cmb-repeatable-group .cmb-group-title h4
@@ -385,7 +389,7 @@ Main Wrap
 
     content: '';
 
-    border-bottom: 1px solid #e9e9e9;
+    border-bottom: 1px solid #aaa;
 }
 
 .cmb-repeatable-group .cmb-shift-rows
@@ -423,22 +427,29 @@ p.cmb2-metabox-description
     margin: 0;
     padding-top: .5em;
 
-    color: #aaa;
+    color: #444;
 }
 
 span.cmb2-metabox-description
 {
     font-style: italic;
 
+    color: #444;
+}
+
+.cmb2-metabox-our-description
+{
     color: #aaa;
 }
 
 .cmb2-metabox-title
 {
-    font-size: 14px;
+    font-size: 23px;
 
     margin: 0 0 5px 0;
     padding: 5px 0 0 0;
+
+    color: #232323;
 }
 
 .cmb-inline ul
@@ -479,7 +490,7 @@ span.cmb2-metabox-description
     margin: 15px 0 0 0;
     padding: 5px;
 
-    border: 1px solid #e9e9e9;
+    border: 1px solid #aaa;
     -moz-border-radius: 2px;
          border-radius: 2px;
     background: #fff;
@@ -601,6 +612,12 @@ Post Metaboxes
     padding: 1.8em 0;
 }
 
+.postbox-container .cmb2-wrap > .cmb-field-list > .cmb-row:first-of-type,
+.cmb-type-group .cmb2-wrap > .cmb-field-list > .cmb-row:first-of-type
+{
+    padding-top: 0;
+}
+
 .postbox-container .cmb2-wrap input[type=text].cmb2-oembed,
 .cmb-type-group .cmb2-wrap input[type=text].cmb2-oembed
 {
@@ -638,7 +655,7 @@ Post Metaboxes
 .postbox-container .cmb-th,
 .cmb-type-group .cmb-th
 {
-    width: 18%;
+    width: 48%;
     padding: 0 2% 0 0;
 }
 
@@ -662,15 +679,7 @@ Post Metaboxes
 {
     float: right;
 
-    width: 80%;
-}
-
-.postbox-container .cmb-row:not(:last-of-type),
-.postbox-container .cmb-repeatable-group:not(:last-of-type),
-.cmb-type-group .cmb-row:not(:last-of-type),
-.cmb-type-group .cmb-repeatable-group:not(:last-of-type)
-{
-    border-bottom: 1px solid #e9e9e9;
+    width: 50%;
 }
 
 @media (max-width: 450px)
@@ -743,6 +752,39 @@ Post Metaboxes
 .cmb-type-group .cmb2-metabox > .cmb-row .cmb-row.table-layout .cmb-repeat-table .cmb-tbody .cmb-td.cmb-remove-row
 {
     padding-right: 0;
+}
+
+.cmb-row
+{
+    color: #aaa;
+}
+
+.option-details
+{
+    display: block;
+
+    color: #aaa;
+}
+
+.font-loading-section
+{
+    padding: 36px 0;
+}
+
+.font-loading-section .cmb-row
+{
+    margin: 0 -30px;
+    padding: 0 30px;
+
+    background-color: #fcfcfc;
+}
+
+.postbox-container .cmb2-id-fonto-font-name-style .cmb-th,
+.postbox-container .cmb2-id-fonto-font-name-style .cmb-td
+{
+    float: none;
+
+    width: 100%;
 }
 
 /*--------------------------------------------------------------
@@ -835,7 +877,7 @@ Sidebar Placement Adjustments
 .inner-sidebar .cmb-repeatable-group,
 #side-sortables .cmb-repeatable-group
 {
-    border-bottom: 1px solid #e9e9e9;
+    border-bottom: 1px solid #aaa;
 }
 
 .inner-sidebar .cmb-type-group > .cmb-td > .cmb-repeatable-group,
@@ -904,7 +946,7 @@ Sidebar Placement Adjustments
 
     content: '';
 
-    border-bottom: 1px solid #e9e9e9;
+    border-bottom: 1px solid #aaa;
 }
 
 .inner-sidebar .cmb-th label,
@@ -1092,6 +1134,11 @@ Sidebar Placement Adjustments
 .cmb2-metabox button.dashicons-before.dashicons-no-alt.cmb-remove-group-row:not([disabled]):hover
 {
     color: #f00;
+}
+
+.cmb2-radio-list
+{
+    color: #444;
 }
 
 /*
