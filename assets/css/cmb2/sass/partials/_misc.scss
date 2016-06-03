@@ -53,7 +53,8 @@ Misc.
 
     background-color: #FCFCFC;
 
-    &:last-of-type {
+    &:nth-child(n-1),
+    &:nth-child(n) {
       padding-bottom: 36px;
     }
   }
@@ -213,14 +214,14 @@ ul.cmb2-radio-list {
 }
 
 // Font matching labels
-input[value="100_normal"] + label,
-label[for="100_normal_individual"],
-input[value="100_italic"] + label,
-label[for="100_italic_individual"],
-input[value="200_normal"] + label,
-label[for="200_normal_individual"],
-input[value="200_italic"] + label,
-label[for="200_italic_individual"] {
+input[value*="100_normal"] + label,
+label[for*="100_normal_individual"],
+input[value*="100_italic"] + label,
+label[for*="100_italic_individual"],
+input[value*="200_normal"] + label,
+label[for*="200_normal_individual"],
+input[value*="200_italic"] + label,
+label[for*="200_italic_individual"] {
   font-family: "Open Sans Condensed", sans-serif;
   font-weight: 300;
 }
@@ -257,4 +258,28 @@ label[for*="900"] {
 input[value*="italic"] + label,
 label[for*="italic"] {
   font-style: italic;
+}
+
+.matching-fields-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .cmb-row {
+    flex-basis: 48%;
+
+    &.cmb-row {
+      border-bottom: 0;
+    }
+
+    .cmb-td,
+    .cmb-th {
+      float: none;
+      width: 100%;
+    }
+
+    .cmb-td input {
+      width: 100%;
+    }
+  }
 }

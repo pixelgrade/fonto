@@ -849,7 +849,8 @@ Misc.
     background-color: #fcfcfc;
 }
 
-.font-loading-section .cmb-row:last-of-type
+.font-loading-section .cmb-row:nth-child(n-1),
+.font-loading-section .cmb-row:nth-child(n)
 {
     padding-bottom: 36px;
 }
@@ -1036,14 +1037,14 @@ ul.cmb2-radio-list li label
     flex-basis: 50%;
 }
 
-input[value='100_normal'] + label,
-label[for='100_normal_individual'],
-input[value='100_italic'] + label,
-label[for='100_italic_individual'],
-input[value='200_normal'] + label,
-label[for='200_normal_individual'],
-input[value='200_italic'] + label,
-label[for='200_italic_individual']
+input[value*='100_normal'] + label,
+label[for*='100_normal_individual'],
+input[value*='100_italic'] + label,
+label[for*='100_italic_individual'],
+input[value*='200_normal'] + label,
+label[for*='200_normal_individual'],
+input[value*='200_italic'] + label,
+label[for*='200_italic_individual']
 {
     font-family: 'Open Sans Condensed', sans-serif;
     font-weight: 300;
@@ -1087,6 +1088,41 @@ input[value*='italic'] + label,
 label[for*='italic']
 {
     font-style: italic;
+}
+
+.matching-fields-section
+{
+    display: -ms-flexbox;
+    display: flex;
+
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.matching-fields-section .cmb-row
+{
+    -ms-flex-preferred-size: 48%;
+    flex-basis: 48%;
+}
+
+.matching-fields-section .cmb-row.cmb-row
+{
+    border-bottom: 0;
+}
+
+.matching-fields-section .cmb-row .cmb-td,
+.matching-fields-section .cmb-row .cmb-th
+{
+    float: none;
+
+    width: 100%;
+}
+
+.matching-fields-section .cmb-row .cmb-td input
+{
+    width: 100%;
 }
 
 /*--------------------------------------------------------------

@@ -303,6 +303,7 @@ class Fonto_Post_Types {
 				'data-conditional-value' => 'individual',
 			),
 			'row_classes' => array( 'grouped-input', 'half-width', ),
+			'before_row' => '<div class="matching-fields-section">',
 		) );
 
 		$font_details->add_field( array(
@@ -507,6 +508,7 @@ class Fonto_Post_Types {
 				'data-conditional-value' => 'individual',
 			),
 			'row_classes' => array( 'grouped-input', 'half-width', ),
+			'after_row'   => '</div><!-- .matching-fields-section -->',
 		) );
 
 	} // End font_custom_fields()
