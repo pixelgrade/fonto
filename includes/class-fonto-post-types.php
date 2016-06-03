@@ -165,6 +165,7 @@ class Fonto_Post_Types {
 				// Shown for Self-Hosted fonts
 				'data-conditional-id' => $prefix . 'font_source',
 				'data-conditional-value' => 'self_hosted',
+				'disabled' => 'disabled',
 			),
 			'row_classes' => array( 'background__dark' ),
 			'render_row_cb' => array( $this, 'render_field_callback_our_desc_after_label' ),

@@ -82,6 +82,10 @@ Misc.
 
     color: $gray;
   }
+
+  input:disabled {
+    background-color: #F1F1F1;
+  }
 }
 
 input[type=radio],
@@ -186,9 +190,12 @@ ul.cmb2-radio-list {
 
 
 // Webfont Service embed code textarea
-.cmb2-id-fonto-embed-code-font-service .cmb2-textarea-code {
-  margin: 25px 0 5px 0;
-  min-height: 150px;
+.cmb2-id-fonto-embed-code-font-service,
+.cmb2-id-fonto-embed-code-self-hosted {
+  .cmb2-textarea-code {
+    margin: 25px 0 5px 0;
+    min-height: 150px;
+  }
 }
 
 
@@ -196,13 +203,85 @@ ul.cmb2-radio-list {
 
 
 // Self hosted fonts
-
 .cmb2-id-fonto-font-files {
-  .cmb2-upload-button {
+  .cmb-td {
+    text-align: center;
+  }
 
+  .cmb2-upload-button {
+    padding-top: 70px;
+    height: 100px;
+
+    background: url('../../images/add-fonts-button.png') center 10px no-repeat transparent;
+    box-shadow: none;
+
+    &:hover {
+      background: url('../../images/add-fonts-button.png') center 10px no-repeat #FAFAFA;
+    }
+  }
+
+  .cmb-attach-list:not(:empty) {
+    margin-top: 20px;
+    padding: 12px 20px;
+
+    border: 1px dashed $borders;
+    border-radius: 4px;
+
+    font-size: 13px;
+    text-align: left;
+
+    background-color: white;
+
+    li {
+      margin-bottom: 10px;
+      font-size: 13px;
+      color: $gray;
+
+      &, strong {
+        font-weight: 100;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 }
 
+.cmb2-id-fonto-url-path {
+  position: relative;
+
+  &:before {
+    content: "";
+
+    position: absolute;
+    bottom: 0;
+    left: 30px;
+    right: 30px;
+
+    height: 0;
+
+    border-bottom: 1px solid $borders;
+  }
+
+  input {
+    width: 100%;
+  }
+}
+
+.cmb2-id-fonto-embed-code-self-hosted {
+  .postbox-container & {
+    .cmb-td,
+    .cmb-th {
+      float: none;
+      width: 100%;
+    }
+  }
+
+  .font-loading-section &.cmb-row {
+    padding-top: 30px;
+  }
+}
 
 
 

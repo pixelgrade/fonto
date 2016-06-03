@@ -881,6 +881,11 @@ Misc.
     box-shadow: none;
 }
 
+.cmb2-wrap input:disabled
+{
+    background-color: #f1f1f1;
+}
+
 input[type=radio],
 input[type=checkbox]
 {
@@ -993,10 +998,101 @@ ul.cmb2-radio-list li label
     background-image: url('../../images/matching-icon.svg');
 }
 
-.cmb2-id-fonto-embed-code-font-service .cmb2-textarea-code
+.cmb2-id-fonto-embed-code-font-service .cmb2-textarea-code,
+.cmb2-id-fonto-embed-code-self-hosted .cmb2-textarea-code
 {
     min-height: 150px;
     margin: 25px 0 5px 0;
+}
+
+.cmb2-id-fonto-font-files .cmb-td
+{
+    text-align: center;
+}
+
+.cmb2-id-fonto-font-files .cmb2-upload-button
+{
+    height: 100px;
+    padding-top: 70px;
+
+    background: url('../../images/add-fonts-button.png') center 10px no-repeat transparent;
+    box-shadow: none;
+}
+
+.cmb2-id-fonto-font-files .cmb2-upload-button:hover
+{
+    background: url('../../images/add-fonts-button.png') center 10px no-repeat #fafafa;
+}
+
+.cmb2-id-fonto-font-files .cmb-attach-list:not(:empty)
+{
+    font-size: 13px;
+
+    margin-top: 20px;
+    padding: 12px 20px;
+
+    text-align: right;
+
+    border: 1px dashed #eee;
+    border-radius: 4px;
+    background-color: white;
+}
+
+.cmb2-id-fonto-font-files .cmb-attach-list:not(:empty) li
+{
+    font-size: 13px;
+
+    margin-bottom: 10px;
+
+    color: #444;
+}
+
+.cmb2-id-fonto-font-files .cmb-attach-list:not(:empty) li,
+.cmb2-id-fonto-font-files .cmb-attach-list:not(:empty) li strong
+{
+    font-weight: 100;
+}
+
+.cmb2-id-fonto-font-files .cmb-attach-list:not(:empty) li:last-child
+{
+    margin-bottom: 0;
+}
+
+.cmb2-id-fonto-url-path
+{
+    position: relative;
+}
+
+.cmb2-id-fonto-url-path:before
+{
+    position: absolute;
+    left: 30px;
+    bottom: 0;
+    right: 30px;
+
+    height: 0;
+
+    content: '';
+
+    border-bottom: 1px solid #eee;
+}
+
+.cmb2-id-fonto-url-path input
+{
+    width: 100%;
+}
+
+.postbox-container .cmb2-id-fonto-embed-code-self-hosted .cmb-td,
+.postbox-container .cmb2-id-fonto-embed-code-self-hosted .cmb-th
+{
+    float: none;
+
+    width: 100%;
+}
+
+.font-loading-section .cmb2-id-fonto-embed-code-self-hosted.cmb-row
+{
+    padding-top: 30px;
 }
 
 .postbox-container .cmb2-id-fonto-font-name-style .cmb-th,
