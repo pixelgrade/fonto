@@ -4,6 +4,8 @@
 /*--------------------------------------------------------------
 Main Wrap
 --------------------------------------------------------------*/
+@import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:600,600italic,700,700italic,800,800italic);
 .cmb2-wrap
 {
     margin: 0;
@@ -469,7 +471,7 @@ label + .cmb2-metabox-our-description
 
 .cmb2-metabox-title
 {
-    margin: 0 0 5px 0;
+    margin: 0;
     padding: 5px 0 0 0;
 }
 
@@ -839,17 +841,17 @@ Misc.
     color: #aaa;
 }
 
-.font-loading-section
-{
-    padding-bottom: 36px;
-}
-
 .font-loading-section .cmb-row
 {
     margin: 0 -30px;
     padding: 0 30px;
 
     background-color: #fcfcfc;
+}
+
+.font-loading-section .cmb-row:last-of-type
+{
+    padding-bottom: 36px;
 }
 
 .note
@@ -992,6 +994,11 @@ ul.cmb2-radio-list li label
     margin: 25px 0 5px 0;
 }
 
+.postbox-container .cmb2-id-fonto-font-name-style
+{
+    padding-top: 20px !important;
+}
+
 .postbox-container .cmb2-id-fonto-font-name-style .cmb-th,
 .postbox-container .cmb2-id-fonto-font-name-style .cmb-td
 {
@@ -1023,8 +1030,63 @@ ul.cmb2-radio-list li label
 
 .cmb2-id-fonto-font-variations .cmb2-checkbox-list li
 {
+    font-size: 16px;
+
     -ms-flex-preferred-size: 50%;
     flex-basis: 50%;
+}
+
+input[value='100_normal'] + label,
+label[for='100_normal_individual'],
+input[value='100_italic'] + label,
+label[for='100_italic_individual'],
+input[value='200_normal'] + label,
+label[for='200_normal_individual'],
+input[value='200_italic'] + label,
+label[for='200_italic_individual']
+{
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: 300;
+}
+
+input[value*='300'] + label,
+label[for*='300']
+{
+    font-weight: 300;
+}
+
+input[value*='400'] + label,
+label[for*='400']
+{
+    font-weight: 400;
+}
+
+input[value*='500'] + label,
+label[for*='500']
+{
+    font-weight: 600;
+}
+
+input[value*='600'] + label,
+label[for*='600'],
+input[value*='700'] + label,
+label[for*='700']
+{
+    font-weight: 700;
+}
+
+input[value*='800'] + label,
+label[for*='800'],
+input[value*='900'] + label,
+label[for*='900']
+{
+    font-weight: 800;
+}
+
+input[value*='italic'] + label,
+label[for*='italic']
+{
+    font-style: italic;
 }
 
 /*--------------------------------------------------------------

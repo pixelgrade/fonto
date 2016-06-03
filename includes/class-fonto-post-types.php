@@ -269,7 +269,7 @@ class Fonto_Post_Types {
 				'700_italic' => __( 'Bold Italic', 'cmb2' ),
 				'800_normal' => __( 'ExtraBold 800', 'cmb2' ),
 				'800_italic' => __( 'ExtraBold Italic', 'cmb2' ),
-				'900_normal' => __( 'Black 100', 'cmb2' ),
+				'900_normal' => __( 'Black 900', 'cmb2' ),
 				'900_italic' => __( 'Black Italic', 'cmb2' ),
 			),
 			'attributes'  => array(

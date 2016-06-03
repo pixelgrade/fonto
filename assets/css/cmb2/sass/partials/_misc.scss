@@ -47,13 +47,15 @@ Misc.
 }
 
 .font-loading-section {
-  padding-bottom: 36px;
-
   .cmb-row {
     margin: 0 -30px;
     padding: 0 30px;
 
     background-color: #FCFCFC;
+
+    &:last-of-type {
+      padding-bottom: 36px;
+    }
   }
 }
 
@@ -181,6 +183,8 @@ ul.cmb2-radio-list {
 
 
 .postbox-container .cmb2-id-fonto-font-name-style {
+  padding-top: 20px !important;
+
   .cmb-th,
   .cmb-td {
     float: none;
@@ -204,5 +208,53 @@ ul.cmb2-radio-list {
 
   li {
     flex-basis: 50%;
+    font-size: 16px;
   }
+}
+
+// Font matching labels
+input[value="100_normal"] + label,
+label[for="100_normal_individual"],
+input[value="100_italic"] + label,
+label[for="100_italic_individual"],
+input[value="200_normal"] + label,
+label[for="200_normal_individual"],
+input[value="200_italic"] + label,
+label[for="200_italic_individual"] {
+  font-family: "Open Sans Condensed", sans-serif;
+  font-weight: 300;
+}
+
+input[value*="300"] + label,
+label[for*="300"] {
+  font-weight: 300;
+}
+
+input[value*="400"] + label,
+label[for*="400"] {
+  font-weight: 400;
+}
+
+input[value*="500"] + label,
+label[for*="500"] {
+  font-weight: 600;
+}
+
+input[value*="600"] + label,
+label[for*="600"],
+input[value*="700"] + label,
+label[for*="700"] {
+  font-weight: 700;
+}
+
+input[value*="800"] + label,
+label[for*="800"],
+input[value*="900"] + label,
+label[for*="900"] {
+  font-weight: 800;
+}
+
+input[value*="italic"] + label,
+label[for*="italic"] {
+  font-style: italic;
 }
