@@ -4,6 +4,8 @@
 /*--------------------------------------------------------------
 Main Wrap
 --------------------------------------------------------------*/
+@import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:600,600italic,700,700italic,800,800italic);
 .cmb2-wrap
 {
     margin: 0;
@@ -454,7 +456,8 @@ span.cmb2-metabox-description
     color: #444;
 }
 
-.cmb2-metabox-our-description
+.cmb2-metabox-our-description,
+#postbox-container-2 .cmb-type-title.cmb2-id-fonto-font-weight-style-variations .cmb2-metabox-description
 {
     font-size: 14px;
     line-height: 1.7;
@@ -462,14 +465,15 @@ span.cmb2-metabox-description
     color: #aaa;
 }
 
-label + .cmb2-metabox-our-description
+label + .cmb2-metabox-our-description,
+#postbox-container-2 .cmb-type-title.cmb2-id-fonto-font-weight-style-variations label + .cmb2-metabox-description
 {
     margin-top: 0;
 }
 
 .cmb2-metabox-title
 {
-    margin: 0 0 5px 0;
+    margin: 0;
     padding: 5px 0 0 0;
 }
 
@@ -839,9 +843,11 @@ Misc.
     color: #aaa;
 }
 
-.font-loading-section
+.note
 {
-    padding-bottom: 36px;
+    display: block;
+
+    margin-top: 30px;
 }
 
 .font-loading-section .cmb-row
@@ -852,11 +858,12 @@ Misc.
     background-color: #fcfcfc;
 }
 
-.note
+.font-loading-section .cmb-row:nth-child(n-1),
+.font-loading-section .cmb-row:nth-child(n)
 {
-    display: block;
+    padding-bottom: 36px;
 
-    margin-top: 30px;
+    border-bottom: 0;
 }
 
 .cmb2-wrap p:last-of-type
@@ -872,6 +879,11 @@ Misc.
     color: #444;
     border-radius: 4px;
     box-shadow: none;
+}
+
+.cmb2-wrap input:disabled
+{
+    background-color: #f1f1f1;
 }
 
 input[type=radio],
@@ -986,10 +998,101 @@ ul.cmb2-radio-list li label
     background-image: url('../../images/matching-icon.svg');
 }
 
-.cmb2-id-fonto-embed-code-font-service .cmb2-textarea-code
+.cmb2-id-fonto-embed-code-font-service .cmb2-textarea-code,
+.cmb2-id-fonto-embed-code-self-hosted .cmb2-textarea-code
 {
     min-height: 150px;
     margin: 25px 0 5px 0;
+}
+
+.cmb2-id-fonto-font-files .cmb-td
+{
+    text-align: center;
+}
+
+.cmb2-id-fonto-font-files .cmb2-upload-button
+{
+    height: 100px;
+    padding-top: 70px;
+
+    background: url('../../images/add-fonts-button.png') center 10px no-repeat transparent;
+    box-shadow: none;
+}
+
+.cmb2-id-fonto-font-files .cmb2-upload-button:hover
+{
+    background: url('../../images/add-fonts-button.png') center 10px no-repeat #fafafa;
+}
+
+.cmb2-id-fonto-font-files .cmb-attach-list:not(:empty)
+{
+    font-size: 13px;
+
+    margin-top: 20px;
+    padding: 12px 20px;
+
+    text-align: left;
+
+    border: 1px dashed #eee;
+    border-radius: 4px;
+    background-color: white;
+}
+
+.cmb2-id-fonto-font-files .cmb-attach-list:not(:empty) li
+{
+    font-size: 13px;
+
+    margin-bottom: 10px;
+
+    color: #444;
+}
+
+.cmb2-id-fonto-font-files .cmb-attach-list:not(:empty) li,
+.cmb2-id-fonto-font-files .cmb-attach-list:not(:empty) li strong
+{
+    font-weight: 100;
+}
+
+.cmb2-id-fonto-font-files .cmb-attach-list:not(:empty) li:last-child
+{
+    margin-bottom: 0;
+}
+
+.cmb2-id-fonto-url-path
+{
+    position: relative;
+}
+
+.cmb2-id-fonto-url-path:before
+{
+    position: absolute;
+    right: 30px;
+    bottom: 0;
+    left: 30px;
+
+    height: 0;
+
+    content: '';
+
+    border-bottom: 1px solid #eee;
+}
+
+.cmb2-id-fonto-url-path input
+{
+    width: 100%;
+}
+
+.postbox-container .cmb2-id-fonto-embed-code-self-hosted .cmb-td,
+.postbox-container .cmb2-id-fonto-embed-code-self-hosted .cmb-th
+{
+    float: none;
+
+    width: 100%;
+}
+
+.font-loading-section .cmb2-id-fonto-embed-code-self-hosted.cmb-row
+{
+    padding-top: 30px;
 }
 
 .postbox-container .cmb2-id-fonto-font-name-style .cmb-th,
@@ -1005,9 +1108,19 @@ ul.cmb2-radio-list li label
     margin-bottom: 20px;
 }
 
+.cmb2-metabox > .cmb-row.cmb-row.cmb2-id-fonto-font-name-style
+{
+    padding-top: 20px;
+}
+
 #fonto_font_family_name
 {
     width: 100%;
+}
+
+.cmb2-id-fonto-font-variations.cmb-row.cmb2-id-fonto-font-variations
+{
+    border-bottom: 0;
 }
 
 .cmb2-id-fonto-font-variations .cmb2-checkbox-list
@@ -1023,8 +1136,123 @@ ul.cmb2-radio-list li label
 
 .cmb2-id-fonto-font-variations .cmb2-checkbox-list li
 {
+    font-size: 16px;
+
     -ms-flex-preferred-size: 50%;
     flex-basis: 50%;
+}
+
+#postbox-container-2 .cmb-type-title.cmb2-id-fonto-font-weight-style-variations
+{
+    border-top: 0;
+}
+
+#postbox-container-2 .cmb-type-title.cmb2-id-fonto-font-weight-style-variations .cmb2-metabox-title
+{
+    font-size: 16px;
+}
+
+#postbox-container-2 .cmb-type-title.cmb2-id-fonto-font-weight-style-variations .cmb2-metabox-description
+{
+    font-style: normal;
+
+    margin-bottom: 6px;
+    padding-top: 0;
+}
+
+input[value*='100_normal'] + label,
+label[for*='100_normal_individual'],
+input[value*='100_italic'] + label,
+label[for*='100_italic_individual'],
+input[value*='200_normal'] + label,
+label[for*='200_normal_individual'],
+input[value*='200_italic'] + label,
+label[for*='200_italic_individual']
+{
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: 300;
+}
+
+input[value*='300'] + label,
+label[for*='300']
+{
+    font-weight: 300;
+}
+
+input[value*='400'] + label,
+label[for*='400']
+{
+    font-weight: 400;
+}
+
+input[value*='500'] + label,
+label[for*='500']
+{
+    font-weight: 600;
+}
+
+input[value*='600'] + label,
+label[for*='600'],
+input[value*='700'] + label,
+label[for*='700']
+{
+    font-weight: 700;
+}
+
+input[value*='800'] + label,
+label[for*='800'],
+input[value*='900'] + label,
+label[for*='900']
+{
+    font-weight: 800;
+}
+
+input[value*='italic'] + label,
+label[for*='italic']
+{
+    font-style: italic;
+}
+
+.matching-fields-section
+{
+    display: -ms-flexbox;
+    display: flex;
+
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.matching-fields-section .cmb-row
+{
+    -ms-flex-preferred-size: 47.25%;
+    flex-basis: 47.25%;
+}
+
+.matching-fields-section .cmb-row.cmb-row
+{
+    padding-bottom: 15px;
+
+    border-bottom: 0;
+}
+
+.matching-fields-section .cmb-row .cmb-td,
+.matching-fields-section .cmb-row .cmb-th
+{
+    float: none;
+
+    width: 100%;
+}
+
+.matching-fields-section .cmb-row .cmb-td input
+{
+    width: 100%;
+}
+
+.matching-fields-section label
+{
+    padding-bottom: 10px;
 }
 
 /*--------------------------------------------------------------

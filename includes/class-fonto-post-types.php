@@ -196,6 +196,7 @@ class Fonto_Post_Types {
 				// Shown for Self-Hosted fonts
 				'data-conditional-id' => $prefix . 'font_source',
 				'data-conditional-value' => 'self_hosted',
+				'disabled' => 'disabled',
 			),
 			'row_classes' => array( 'background__dark' ),
 			'render_row_cb' => array( $this, 'render_field_callback_our_desc_after_label' ),
@@ -298,7 +299,7 @@ class Fonto_Post_Types {
 				'700_italic' => __( 'Bold Italic', 'cmb2' ),
 				'800_normal' => __( 'ExtraBold 800', 'cmb2' ),
 				'800_italic' => __( 'ExtraBold Italic', 'cmb2' ),
-				'900_normal' => __( 'Black 100', 'cmb2' ),
+				'900_normal' => __( 'Black 900', 'cmb2' ),
 				'900_italic' => __( 'Black Italic', 'cmb2' ),
 			),
 			'attributes'  => array(
@@ -334,6 +335,7 @@ class Fonto_Post_Types {
 				'data-conditional-value' => 'individual',
 			),
 			'row_classes' => array( 'grouped-input', 'half-width', ),
+			'before_row' => '<div class="matching-fields-section">',
 		) );
 
 		$font_details->add_field( array(
@@ -538,6 +540,7 @@ class Fonto_Post_Types {
 				'data-conditional-value' => 'individual',
 			),
 			'row_classes' => array( 'grouped-input', 'half-width', ),
+			'after_row'   => '</div><!-- .matching-fields-section -->',
 		) );
 
 	} // End font_custom_fields()

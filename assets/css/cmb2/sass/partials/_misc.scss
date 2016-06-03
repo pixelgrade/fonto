@@ -32,9 +32,11 @@ Misc.
 
 
 
-
+////////////////////
 // Custom pxg styles
+////////////////////
 
+// Various styles
 .cmb-row {
   color: $light-gray;
 }
@@ -46,20 +48,24 @@ Misc.
   margin-top: 10px;
 }
 
-.font-loading-section {
-  padding-bottom: 36px;
+.note {
+  margin-top: 30px;
+  display: block;
+}
 
+.font-loading-section {
   .cmb-row {
     margin: 0 -30px;
     padding: 0 30px;
 
     background-color: #FCFCFC;
-  }
-}
 
-.note {
-  margin-top: 30px;
-  display: block;
+    &:nth-child(n-1),
+    &:nth-child(n) {
+      padding-bottom: 36px;
+      border-bottom: 0;
+    }
+  }
 }
 
 .cmb2-wrap {
@@ -75,6 +81,10 @@ Misc.
     box-shadow: none;
 
     color: $gray;
+  }
+
+  input:disabled {
+    background-color: #F1F1F1;
   }
 }
 
@@ -142,6 +152,11 @@ ul.cmb2-radio-list {
   margin-bottom: 0;
 }
 
+
+
+
+
+// Fonts Loading, Fonts Matching icons
 .cmb2-id-fonto-fonts-loading-embed-code .cmb2-metabox-title:before,
 .cmb2-id-fonto-weights-styles-matching .cmb2-metabox-title:before {
   content: "";
@@ -170,16 +185,108 @@ ul.cmb2-radio-list {
   background-image: url("../../images/matching-icon.svg");
 }
 
-.cmb2-id-fonto-weights-styles-matching .cmb2-metabox-title:before {
 
+
+
+
+// Webfont Service embed code textarea
+.cmb2-id-fonto-embed-code-font-service,
+.cmb2-id-fonto-embed-code-self-hosted {
+  .cmb2-textarea-code {
+    margin: 25px 0 5px 0;
+    min-height: 150px;
+  }
 }
 
-.cmb2-id-fonto-embed-code-font-service .cmb2-textarea-code {
-  margin: 25px 0 5px 0;
-  min-height: 150px;
+
+
+
+
+// Self hosted fonts
+.cmb2-id-fonto-font-files {
+  .cmb-td {
+    text-align: center;
+  }
+
+  .cmb2-upload-button {
+    padding-top: 70px;
+    height: 100px;
+
+    background: url('../../images/add-fonts-button.png') center 10px no-repeat transparent;
+    box-shadow: none;
+
+    &:hover {
+      background: url('../../images/add-fonts-button.png') center 10px no-repeat #FAFAFA;
+    }
+  }
+
+  .cmb-attach-list:not(:empty) {
+    margin-top: 20px;
+    padding: 12px 20px;
+
+    border: 1px dashed $borders;
+    border-radius: 4px;
+
+    font-size: 13px;
+    text-align: left;
+
+    background-color: white;
+
+    li {
+      margin-bottom: 10px;
+      font-size: 13px;
+      color: $gray;
+
+      &, strong {
+        font-weight: 100;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.cmb2-id-fonto-url-path {
+  position: relative;
+
+  &:before {
+    content: "";
+
+    position: absolute;
+    bottom: 0;
+    left: 30px;
+    right: 30px;
+
+    height: 0;
+
+    border-bottom: 1px solid $borders;
+  }
+
+  input {
+    width: 100%;
+  }
+}
+
+.cmb2-id-fonto-embed-code-self-hosted {
+  .postbox-container & {
+    .cmb-td,
+    .cmb-th {
+      float: none;
+      width: 100%;
+    }
+  }
+
+  .font-loading-section &.cmb-row {
+    padding-top: 30px;
+  }
 }
 
 
+
+
+// Font Family name field
 .postbox-container .cmb2-id-fonto-font-name-style {
   .cmb-th,
   .cmb-td {
@@ -192,17 +299,139 @@ ul.cmb2-radio-list {
   }
 }
 
+.cmb2-metabox > .cmb-row.cmb-row.cmb2-id-fonto-font-name-style {
+  padding-top: 20px;
+}
+
 #fonto_font_family_name {
   width: 100%;
 }
 
-.cmb2-id-fonto-font-variations .cmb2-checkbox-list {
+
+
+
+
+// Available Font Variations + checkboxes list
+.cmb2-id-fonto-font-variations {
+  &.cmb-row.cmb2-id-fonto-font-variations {
+    border-bottom: 0;
+  }
+
+  .cmb2-checkbox-list {
+    display: flex;
+    flex-wrap: wrap;
+
+    color: $gray;
+
+    li {
+      flex-basis: 50%;
+      font-size: 16px;
+    }
+  }
+}
+
+
+
+
+
+// Font Weights & Styles Variations title
+#postbox-container-2 .cmb-type-title.cmb2-id-fonto-font-weight-style-variations {
+  border-top: 0;
+
+  .cmb2-metabox-title {
+    font-size: 16px;
+  }
+
+  .cmb2-metabox-description {
+    @extend .cmb2-metabox-our-description;
+    padding-top: 0;
+    margin-bottom: 6px;
+    font-style: normal;
+  }
+}
+
+
+
+
+
+
+// Font matching labels
+input[value*="100_normal"] + label,
+label[for*="100_normal_individual"],
+input[value*="100_italic"] + label,
+label[for*="100_italic_individual"],
+input[value*="200_normal"] + label,
+label[for*="200_normal_individual"],
+input[value*="200_italic"] + label,
+label[for*="200_italic_individual"] {
+  font-family: "Open Sans Condensed", sans-serif;
+  font-weight: 300;
+}
+
+input[value*="300"] + label,
+label[for*="300"] {
+  font-weight: 300;
+}
+
+input[value*="400"] + label,
+label[for*="400"] {
+  font-weight: 400;
+}
+
+input[value*="500"] + label,
+label[for*="500"] {
+  font-weight: 600;
+}
+
+input[value*="600"] + label,
+label[for*="600"],
+input[value*="700"] + label,
+label[for*="700"] {
+  font-weight: 700;
+}
+
+input[value*="800"] + label,
+label[for*="800"],
+input[value*="900"] + label,
+label[for*="900"] {
+  font-weight: 800;
+}
+
+input[value*="italic"] + label,
+label[for*="italic"] {
+  font-style: italic;
+}
+
+
+
+
+
+// Matching Weights & Styles Variations fields
+.matching-fields-section {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 
-  color: $gray;
+  .cmb-row {
+    flex-basis: 47.25%;
 
-  li {
-    flex-basis: 50%;
+    &.cmb-row {
+      border-bottom: 0;
+      padding-bottom: 15px;
+    }
+
+    .cmb-td,
+    .cmb-th {
+      float: none;
+      width: 100%;
+    }
+
+    .cmb-td input {
+      width: 100%;
+    }
+  }
+
+  label {
+    padding-bottom: 10px;
   }
 }
