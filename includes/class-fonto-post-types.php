@@ -60,7 +60,7 @@ class Fonto_Post_Types {
 			'rewrite'             => false,
 			'has_archive'         => false,
 			'hierarchical'        => false,
-			'supports'            => array( 'title', ),
+			'supports'            => array( 'title', 'editor', 'thumbnail' ),
 			'menu_position'       => 30,
 			'menu_icon'           => 'dashicons-editor-textcolor',
 		);
@@ -82,6 +82,37 @@ class Fonto_Post_Types {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ), 10, 1 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_styles' ), 10, 1 );
 
+		//change the upload directory for our font CPT
+		add_filter( 'upload_dir', array( $this, 'custom_upload_directory' ) );
+	}
+
+	/**
+	 * Change Upload Directory for Custom Post-Type
+	 *
+	 * This will change the upload directory for a custom post-type. Attachments will
+	 * now be uploaded to an "uploads" directory within the folder of your plugin. Make
+	 * sure you swap out "post-type" in the if-statement with the appropriate value...
+	 */
+	public function custom_upload_directory( $path ) {
+		// Check if uploading from inside a post/page/cpt - if not, default Upload folder is used
+		$use_default_dir = ( isset($_REQUEST['post_id'] ) && $_REQUEST['post_id'] == 0 ) ? true : false;
+		if( ! empty( $path['error'] ) || $use_default_dir )
+			return $path;
+
+		// Check if correct post type
+		$the_post_type = get_post_type( $_REQUEST['post_id'] );
+		if( 'font' != $the_post_type )
+			return $path;
+
+		$customdir = '/' . date( 'Y/m' );
+
+		//remove default subdir (year/month) and add custom dir INSIDE THE DEFAULT UPLOAD DIR
+		$path['path']    = str_replace( $path['subdir'], '/fonts' . $customdir, $path['path']);
+		$path['url']     = str_replace( $path['subdir'], '/fonts' . $customdir, $path['url']);
+
+		$path['subdir']  = $customdir;
+
+		return $path;
 	}
 
 	/**
