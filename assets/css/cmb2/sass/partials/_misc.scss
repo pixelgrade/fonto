@@ -32,9 +32,11 @@ Misc.
 
 
 
-
+////////////////////
 // Custom pxg styles
+////////////////////
 
+// Various styles
 .cmb-row {
   color: $light-gray;
 }
@@ -44,6 +46,11 @@ Misc.
   color: $light-gray;
   line-height: 1.5;
   margin-top: 10px;
+}
+
+.note {
+  margin-top: 30px;
+  display: block;
 }
 
 .font-loading-section {
@@ -56,13 +63,9 @@ Misc.
     &:nth-child(n-1),
     &:nth-child(n) {
       padding-bottom: 36px;
+      border-bottom: 0;
     }
   }
-}
-
-.note {
-  margin-top: 30px;
-  display: block;
 }
 
 .cmb2-wrap {
@@ -145,6 +148,11 @@ ul.cmb2-radio-list {
   margin-bottom: 0;
 }
 
+
+
+
+
+// Fonts Loading, Fonts Matching icons
 .cmb2-id-fonto-fonts-loading-embed-code .cmb2-metabox-title:before,
 .cmb2-id-fonto-weights-styles-matching .cmb2-metabox-title:before {
   content: "";
@@ -173,19 +181,34 @@ ul.cmb2-radio-list {
   background-image: url("../../images/matching-icon.svg");
 }
 
-.cmb2-id-fonto-weights-styles-matching .cmb2-metabox-title:before {
 
-}
 
+
+
+// Webfont Service embed code textarea
 .cmb2-id-fonto-embed-code-font-service .cmb2-textarea-code {
   margin: 25px 0 5px 0;
   min-height: 150px;
 }
 
 
-.postbox-container .cmb2-id-fonto-font-name-style {
-  padding-top: 20px !important;
 
+
+
+// Self hosted fonts
+
+.cmb2-id-fonto-font-files {
+  .cmb2-upload-button {
+
+  }
+}
+
+
+
+
+
+// Font Family name field
+.postbox-container .cmb2-id-fonto-font-name-style {
   .cmb-th,
   .cmb-td {
     float: none;
@@ -197,21 +220,61 @@ ul.cmb2-radio-list {
   }
 }
 
+.cmb2-metabox > .cmb-row.cmb-row.cmb2-id-fonto-font-name-style {
+  padding-top: 20px;
+}
+
 #fonto_font_family_name {
   width: 100%;
 }
 
-.cmb2-id-fonto-font-variations .cmb2-checkbox-list {
-  display: flex;
-  flex-wrap: wrap;
 
-  color: $gray;
 
-  li {
-    flex-basis: 50%;
-    font-size: 16px;
+
+
+// Available Font Variations + checkboxes list
+.cmb2-id-fonto-font-variations {
+  &.cmb-row.cmb2-id-fonto-font-variations {
+    border-bottom: 0;
+  }
+
+  .cmb2-checkbox-list {
+    display: flex;
+    flex-wrap: wrap;
+
+    color: $gray;
+
+    li {
+      flex-basis: 50%;
+      font-size: 16px;
+    }
   }
 }
+
+
+
+
+
+// Font Weights & Styles Variations title
+#postbox-container-2 .cmb-type-title.cmb2-id-fonto-font-weight-style-variations {
+  border-top: 0;
+
+  .cmb2-metabox-title {
+    font-size: 16px;
+  }
+
+  .cmb2-metabox-description {
+    @extend .cmb2-metabox-our-description;
+    padding-top: 0;
+    margin-bottom: 6px;
+    font-style: normal;
+  }
+}
+
+
+
+
+
 
 // Font matching labels
 input[value*="100_normal"] + label,
@@ -260,16 +323,22 @@ label[for*="italic"] {
   font-style: italic;
 }
 
+
+
+
+
+// Matching Weights & Styles Variations fields
 .matching-fields-section {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 
   .cmb-row {
-    flex-basis: 48%;
+    flex-basis: 47.25%;
 
     &.cmb-row {
       border-bottom: 0;
+      padding-bottom: 15px;
     }
 
     .cmb-td,
@@ -281,5 +350,9 @@ label[for*="italic"] {
     .cmb-td input {
       width: 100%;
     }
+  }
+
+  label {
+    padding-bottom: 10px;
   }
 }

@@ -456,7 +456,8 @@ span.cmb2-metabox-description
     color: #444;
 }
 
-.cmb2-metabox-our-description
+.cmb2-metabox-our-description,
+#postbox-container-2 .cmb-type-title.cmb2-id-fonto-font-weight-style-variations .cmb2-metabox-description
 {
     font-size: 14px;
     line-height: 1.7;
@@ -464,7 +465,8 @@ span.cmb2-metabox-description
     color: #aaa;
 }
 
-label + .cmb2-metabox-our-description
+label + .cmb2-metabox-our-description,
+#postbox-container-2 .cmb-type-title.cmb2-id-fonto-font-weight-style-variations label + .cmb2-metabox-description
 {
     margin-top: 0;
 }
@@ -841,6 +843,13 @@ Misc.
     color: #aaa;
 }
 
+.note
+{
+    display: block;
+
+    margin-top: 30px;
+}
+
 .font-loading-section .cmb-row
 {
     margin: 0 -30px;
@@ -853,13 +862,8 @@ Misc.
 .font-loading-section .cmb-row:nth-child(n)
 {
     padding-bottom: 36px;
-}
 
-.note
-{
-    display: block;
-
-    margin-top: 30px;
+    border-bottom: 0;
 }
 
 .cmb2-wrap p:last-of-type
@@ -995,11 +999,6 @@ ul.cmb2-radio-list li label
     margin: 25px 0 5px 0;
 }
 
-.postbox-container .cmb2-id-fonto-font-name-style
-{
-    padding-top: 20px !important;
-}
-
 .postbox-container .cmb2-id-fonto-font-name-style .cmb-th,
 .postbox-container .cmb2-id-fonto-font-name-style .cmb-td
 {
@@ -1013,9 +1012,19 @@ ul.cmb2-radio-list li label
     margin-bottom: 20px;
 }
 
+.cmb2-metabox > .cmb-row.cmb-row.cmb2-id-fonto-font-name-style
+{
+    padding-top: 20px;
+}
+
 #fonto_font_family_name
 {
     width: 100%;
+}
+
+.cmb2-id-fonto-font-variations.cmb-row.cmb2-id-fonto-font-variations
+{
+    border-bottom: 0;
 }
 
 .cmb2-id-fonto-font-variations .cmb2-checkbox-list
@@ -1035,6 +1044,24 @@ ul.cmb2-radio-list li label
 
     -ms-flex-preferred-size: 50%;
     flex-basis: 50%;
+}
+
+#postbox-container-2 .cmb-type-title.cmb2-id-fonto-font-weight-style-variations
+{
+    border-top: 0;
+}
+
+#postbox-container-2 .cmb-type-title.cmb2-id-fonto-font-weight-style-variations .cmb2-metabox-title
+{
+    font-size: 16px;
+}
+
+#postbox-container-2 .cmb-type-title.cmb2-id-fonto-font-weight-style-variations .cmb2-metabox-description
+{
+    font-style: normal;
+
+    margin-bottom: 6px;
+    padding-top: 0;
 }
 
 input[value*='100_normal'] + label,
@@ -1103,12 +1130,14 @@ label[for*='italic']
 
 .matching-fields-section .cmb-row
 {
-    -ms-flex-preferred-size: 48%;
-    flex-basis: 48%;
+    -ms-flex-preferred-size: 47.25%;
+    flex-basis: 47.25%;
 }
 
 .matching-fields-section .cmb-row.cmb-row
 {
+    padding-bottom: 15px;
+
     border-bottom: 0;
 }
 
@@ -1123,6 +1152,11 @@ label[for*='italic']
 .matching-fields-section .cmb-row .cmb-td input
 {
     width: 100%;
+}
+
+.matching-fields-section label
+{
+    padding-bottom: 10px;
 }
 
 /*--------------------------------------------------------------
