@@ -2,8 +2,6 @@
 /**
  * Document for class Fonto_Post_Types
  *
- * PHP Version 5.6
- *
  * @category Class
  * @package Fonto
  * @author   PixelGrade <contact@pixelgrade.com>
@@ -16,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Class to handle custom post types: registration, taxonomies and custom fields
+ * Class to handle the : registration, taxonomies and custom fields
  *
  * @category include
  * @package  Fonto
@@ -187,7 +185,6 @@ class Fonto_Post_Types {
 			'before_field' => __( 'Insert below the embed code (JS/CSS) provided by the font service. <a href="#" target="_blank">Learn More</a>', 'cmb2' ),
 			'after_field' => esc_html__( 'The above code will be inserted in the <head> area of your website.', 'fonto' ),
 			'row_classes' => array( 'full-width', 'title__large', 'background__dark' ),
-			'after_row' => '</div><!-- .font-loading-section -->'
 		) );
 
 		$font_details->add_field( array(
@@ -205,6 +202,7 @@ class Fonto_Post_Types {
 			'before_field' => __( 'Insert below the CSS code. <a href="#" target="_blank">Learn More</a>', 'cmb2' ),
 			'after_field' => esc_html__( 'The above code will be inserted in the <head> area of your website.', 'fonto' ),
 			'row_classes' => array( 'full-width', 'title__large', 'background__dark' ),
+			'after_row' => '</div><!-- .font-loading-section -->'
 		) );
 
 		$font_details->add_field( array(
@@ -234,7 +232,7 @@ class Fonto_Post_Types {
 			'name'    => __( 'Font Family Name', 'cmb2' ),
 			'our_desc'    => __( 'Insert the CSS font name as provided by the font service.', 'cmb2' ),
 			'id'      => $prefix . 'font_family_name',
-			'type'    => 'text_medium',
+			'type'    => 'text',
 			'attributes'  => array(
 				'placeholder' => 'Proxima Nova',
 				// Shown when using a single font family name
@@ -297,7 +295,7 @@ class Fonto_Post_Types {
 
 		$font_details->add_field( array(
 			'name'        => __( 'Thin 100', 'cmb2' ),
-			'id'          => '100_normal_individual',
+			'id'          => $prefix . '100_normal_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
@@ -309,7 +307,7 @@ class Fonto_Post_Types {
 
 		$font_details->add_field( array(
 			'name'        => __( 'Thin Italic', 'cmb2' ),
-			'id'          => '100_italic_individual',
+			'id'          => $prefix . '100_italic_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
@@ -321,7 +319,7 @@ class Fonto_Post_Types {
 
 		$font_details->add_field( array(
 			'name'        => __( 'Extra Light 200', 'cmb2' ),
-			'id'          => '200_normal_individual',
+			'id'          => $prefix . '200_normal_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
@@ -333,7 +331,7 @@ class Fonto_Post_Types {
 
 		$font_details->add_field( array(
 			'name'        => __( 'Extra Light Italic', 'cmb2' ),
-			'id'          => '200_italic_individual',
+			'id'          => $prefix . '200_italic_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
@@ -345,7 +343,7 @@ class Fonto_Post_Types {
 
 		$font_details->add_field( array(
 			'name'        => __( 'Light 300', 'cmb2' ),
-			'id'          => '300_normal_individual',
+			'id'          => $prefix . '300_normal_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
@@ -357,7 +355,7 @@ class Fonto_Post_Types {
 
 		$font_details->add_field( array(
 			'name'        => __( 'Light Italic', 'cmb2' ),
-			'id'          => '300_italic_individual',
+			'id'          => $prefix . '300_italic_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
@@ -369,7 +367,7 @@ class Fonto_Post_Types {
 
 		$font_details->add_field( array(
 			'name'        => __( 'Regular 400', 'cmb2' ),
-			'id'          => '400_normal_individual',
+			'id'          => $prefix . '400_normal_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
@@ -381,7 +379,7 @@ class Fonto_Post_Types {
 
 		$font_details->add_field( array(
 			'name'        => __( 'Regular Italic', 'cmb2' ),
-			'id'          => '400_italic_individual',
+			'id'          => $prefix . '400_italic_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
@@ -393,7 +391,7 @@ class Fonto_Post_Types {
 
 		$font_details->add_field( array(
 			'name'        => __( 'Medium 500', 'cmb2' ),
-			'id'          => '500_normal_individual',
+			'id'          => $prefix . '500_normal_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
@@ -405,7 +403,7 @@ class Fonto_Post_Types {
 
 		$font_details->add_field( array(
 			'name'        => __( 'Medium Italic', 'cmb2' ),
-			'id'          => '500_italic_individual',
+			'id'          => $prefix . '500_italic_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
@@ -417,7 +415,7 @@ class Fonto_Post_Types {
 
 		$font_details->add_field( array(
 			'name'        => __( 'Semi Bold 600', 'cmb2' ),
-			'id'          => '600_normal_individual',
+			'id'          => $prefix . '600_normal_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
@@ -429,7 +427,7 @@ class Fonto_Post_Types {
 
 		$font_details->add_field( array(
 			'name'        => __( 'Semi Bold Italic', 'cmb2' ),
-			'id'          => '600_italic_individual',
+			'id'          => $prefix . '600_italic_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
@@ -441,7 +439,7 @@ class Fonto_Post_Types {
 
 		$font_details->add_field( array(
 			'name'        => __( 'Bold 700', 'cmb2' ),
-			'id'          => '700_normal_individual',
+			'id'          => $prefix . '700_normal_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
@@ -453,7 +451,7 @@ class Fonto_Post_Types {
 
 		$font_details->add_field( array(
 			'name'        => __( 'Bold Italic', 'cmb2' ),
-			'id'          => '700_italic_individual',
+			'id'          => $prefix . '700_italic_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
@@ -465,7 +463,7 @@ class Fonto_Post_Types {
 
 		$font_details->add_field( array(
 			'name'        => __( 'Extra Bold 800', 'cmb2' ),
-			'id'          => '800_normal_individual',
+			'id'          => $prefix . '800_normal_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
@@ -477,7 +475,7 @@ class Fonto_Post_Types {
 
 		$font_details->add_field( array(
 			'name'        => __( 'Extra Bold Italic', 'cmb2' ),
-			'id'          => '800_italic_individual',
+			'id'          => $prefix . '800_italic_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
@@ -489,7 +487,7 @@ class Fonto_Post_Types {
 
 		$font_details->add_field( array(
 			'name'        => __( 'Black 900', 'cmb2' ),
-			'id'          => '900_normal_individual',
+			'id'          => $prefix . '900_normal_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
@@ -501,7 +499,7 @@ class Fonto_Post_Types {
 
 		$font_details->add_field( array(
 			'name'        => __( 'Black Italic', 'cmb2' ),
-			'id'          => '900_italic_individual',
+			'id'          => $prefix . '900_italic_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy

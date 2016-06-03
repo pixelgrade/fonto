@@ -55,6 +55,14 @@ class Fonto extends Fonto_Init {
 	public $post_types = null;
 
 	/**
+	 * Output class object
+	 * @var     Fonto_Output
+	 * @access  public
+	 * @since   1.0.0
+	 */
+	public $output = null;
+
+	/**
 	 * Option class object
 	 * @var     Fonto_Option
 	 * @access  public
@@ -153,6 +161,7 @@ class Fonto extends Fonto_Init {
 		// Load plugin class files.
 		include_once 'class-fonto-settings.php';
 		include_once 'class-fonto-post-types.php';
+		include_once 'class-fonto-output.php';
 
 		// Load plugin libraries.
 		include_once 'lib/class-fonto-admin-api.php';
@@ -201,6 +210,11 @@ class Fonto extends Fonto_Init {
 		// Add custom post types.
 		if ( is_null( $this->post_types ) ) {
 			$this->post_types = Fonto_Post_Types::instance( $this );
+		}
+
+		// Add the output - this is where things get interesting
+		if ( is_null( $this->output) ) {
+			$this->output = Fonto_Output::instance( $this );
 		}
 
 	}
