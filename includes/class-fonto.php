@@ -1,8 +1,7 @@
 <?php
 /**
- * Document for Fonto
+ * Document for Fonto Class
  *
- * PHP Version 5.6
  *
  * @category Class
  * @package  Fonto
@@ -168,6 +167,9 @@ class Fonto extends Fonto_Init {
 		include_once 'lib/class-fonto-post-type.php';
 		include_once 'lib/class-fonto-taxonomy.php';
 
+		// Load extras
+		include_once 'extras.php';
+
 		/* Load vendors */
 		// The main CMB2
 		if ( file_exists( dirname( __FILE__ ) . '/vendor/cmb2/init.php' ) ) {
@@ -178,6 +180,9 @@ class Fonto extends Fonto_Init {
 		if ( file_exists( dirname( __FILE__ ) . '/vendor/cmb2-conditionals/cmb2-conditionals.php' ) ) {
 			require_once dirname( __FILE__ ) . '/vendor/cmb2-conditionals/cmb2-conditionals.php';
 		}
+
+		/* Load integrations */
+		add_action( 'init', array( $this, 'load_integrations' ) );
 
 		// Load plugin environment variables.
 		$this->dir = dirname( $this->file );
@@ -216,6 +221,9 @@ class Fonto extends Fonto_Init {
 		if ( is_null( $this->output) ) {
 			$this->output = Fonto_Output::instance( $this );
 		}
+
+		//Add our fonts mime types
+		add_filter( 'upload_mimes', array( $this, 'extra_mime_types' ) );
 
 	}
 
@@ -321,6 +329,24 @@ class Fonto extends Fonto_Init {
 	} // End admin_enqueue_scripts ()
 
 	/**
+	 * Load various integrations with other plugins
+	 * @access  public
+	 * @since   1.0.0
+	 * @return  void
+	 */
+	public function load_integrations() {
+
+		/**
+		 * Load Customify compatibility file.
+		 * https://wordpress.org/plugins/customify/
+		 */
+		if ( class_exists( 'PixCustomifyPlugin' ) ) {
+			require_once dirname( __FILE__ ) . '/integrations/customify.php';
+		}
+
+	} // End load_integrations ()
+
+	/**
 	 * Load plugin localisation
 	 * @access  public
 	 * @since   1.0.0
@@ -345,6 +371,26 @@ class Fonto extends Fonto_Init {
 
 		load_textdomain( $domain, WP_LANG_DIR . '/' . $domain . '/' . $domain . '-' . $locale . '.mo' );
 		load_plugin_textdomain( $domain, false, dirname( plugin_basename( $this->file ) ) . '/lang/' );
+	}
+
+	/**
+	 * Add mime types specific to font files
+	 *
+	 * @param array $mimes
+	 *
+	 * @return array
+	 */
+	function extra_mime_types( $mimes ) {
+		$mimes['eot'] = 'application/vnd.ms-fontobject';
+		$mimes['otf|ttf'] = 'application/font-sfnt';
+		$mimes['woff'] = 'application/font-woff';
+		//people are not quite sure yet on the mime-type, so it's best to use them both
+		$mimes['woff2'] = 'application/font-woff2';
+		$mimes['woff2'] = 'font/woff2';
+
+		$mimes['svg'] = 'image/svg+xml';
+
+		return $mimes;
 	}
 
 	/**

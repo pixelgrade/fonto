@@ -22,6 +22,8 @@ class CMB2_Type_File_List extends CMB2_Type_File_Base {
 		$query_args = $field->args( 'query_args' );
 		$output     = '';
 
+		global $post;
+
 		$output .= parent::render( array(
 			'type'             => 'hidden',
 			'class'            => 'cmb2-upload-file cmb2-upload-list',
@@ -31,6 +33,7 @@ class CMB2_Type_File_List extends CMB2_Type_File_Base {
 			'data-previewsize' => is_array( $img_size ) ? sprintf( '[%s]', implode( ',', $img_size ) ) : 50,
 			'data-queryargs'   => ! empty( $query_args ) ? json_encode( $query_args ) : '',
 			'js_dependencies'  => 'media-editor',
+			'data-post_id' => $post->ID,
 		) );
 
 		$output .= parent::render( array(
@@ -39,6 +42,7 @@ class CMB2_Type_File_List extends CMB2_Type_File_Base {
 			'value' => esc_html( $this->_text( 'add_upload_files_text', __( 'Add or Upload Files', 'cmb2' ) ) ),
 			'name'  => '',
 			'id'    => '',
+			'data-post_id' => $post->ID,
 		) );
 
 		$output .= '<ul id="' . $this->_id( '-status' ) . '" class="cmb2-media-status cmb-attach-list">';
