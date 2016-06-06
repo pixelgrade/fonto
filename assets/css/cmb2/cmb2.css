@@ -874,7 +874,7 @@ Misc.
 .cmb2-wrap input[type='text'],
 .cmb2-wrap textarea
 {
-    padding: 16px 12px;
+    padding: 12px 12px;
 
     color: #444;
     border-radius: 4px;
@@ -996,6 +996,12 @@ ul.cmb2-radio-list li label
     height: 27px;
 
     background-image: url('../../images/matching-icon.svg');
+}
+
+#fonto_url_path
+{
+    font-weight: 500;
+    font-style: italic;
 }
 
 .cmb2-id-fonto-embed-code-font-service .cmb2-textarea-code,
@@ -1253,6 +1259,17 @@ label[for*='italic']
 .matching-fields-section label
 {
     padding-bottom: 10px;
+}
+
+.matching-fields-section input
+{
+    font-weight: 600;
+}
+
+.matching-fields-section input[value]:not([value=''])
+{
+    border-color: #bde4f6;
+    background-color: #f6fcff;
 }
 
 /*--------------------------------------------------------------

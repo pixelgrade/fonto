@@ -75,7 +75,7 @@ Misc.
 
   input[type="text"],
   textarea {
-    padding: 16px 12px;
+    padding: 12px 12px;
 
     border-radius: 4px;
     box-shadow: none;
@@ -183,6 +183,11 @@ ul.cmb2-radio-list {
   height: 27px;
 
   background-image: url("../../images/matching-icon.svg");
+}
+
+#fonto_url_path {
+  font-weight: 500;
+  font-style: italic;
 }
 
 
@@ -433,5 +438,14 @@ label[for*="italic"] {
 
   label {
     padding-bottom: 10px;
+  }
+
+  input {
+    font-weight: 600;
+
+    &[value]:not([value=""]) {
+      background-color: #F6FCFF;
+      border-color: #BDE4F6;
+    }
   }
 }
