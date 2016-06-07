@@ -60,7 +60,7 @@ class Fonto_Post_Types {
 			'rewrite'             => false,
 			'has_archive'         => false,
 			'hierarchical'        => false,
-			'supports'            => array( 'title', 'editor', 'thumbnail' ),
+			'supports'            => array( 'title', ),
 			'menu_position'       => 30,
 			'menu_icon'           => 'dashicons-editor-textcolor',
 		);

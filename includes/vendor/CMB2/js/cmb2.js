@@ -188,11 +188,15 @@ window.CMB2 = (function (window, document, $, undefined) {
             return;
         }
 
+        if ( media.fieldData.post_id ) {
+            wp.media.model.settings.post.id = media.fieldData.post_id;
+        }
+
         // Create the media frame.
         // depending on whether we have a post ID in the wp.media settings we create a 'post' frame or a default one (select)
         // the difference lies in the fact that for 'post' it will attach the uploads to the current post
         media.frames[media.field] = wp.media({
-            frame: ( wp.media.model.settings.post.id == null || wp.media.model.settings.post.id == 0 ) ? '' : 'post',
+            frame: ( wp.media.model.settings.post.id == null || wp.media.model.settings.post.id == 0 ) ? 'select' : 'post',
             title: cmb.metabox().find('label[for=' + media.field + ']').text(),
             library: media.fieldData.queryargs || {},
             button: {
@@ -293,6 +297,7 @@ window.CMB2 = (function (window, document, $, undefined) {
         // When a file is selected, run a callback.
         media.frames[media.field]
             .on('select', cmb.mediaHandlers.selectFile)
+            .on('insert', cmb.mediaHandlers.selectFile)
             .on('open', cmb.mediaHandlers.openModal);
 
         // Finally, open the modal
