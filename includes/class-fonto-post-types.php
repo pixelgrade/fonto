@@ -84,6 +84,23 @@ class Fonto_Post_Types {
 
 		//change the upload directory for our font CPT
 		add_filter( 'upload_dir', array( $this, 'custom_upload_directory' ) );
+
+		//Add AJAX actions
+		add_action( 'wp_ajax_sample_font_url_path', array( $this, 'wp_ajax_sample_font_url_path' ), 1 );
+	}
+
+	/**
+	 * Ajax handler to retrieve the sample Font URL path to where the font files are uploaded
+	 *
+	 * @since 3.1.0
+	 */
+	function wp_ajax_sample_font_url_path() {
+		check_ajax_referer( 'samplepermalink', 'samplepermalinknonce' );
+
+		//get the current URL for the uploads directory
+		$uploads = wp_upload_dir();
+
+		wp_die( $uploads['url'] );
 	}
 
 	/**
@@ -101,14 +118,18 @@ class Fonto_Post_Types {
 
 		// Check if correct post type
 		$the_post_type = get_post_type( $_REQUEST['post_id'] );
-		if( 'font' != $the_post_type )
+		if( 'font' != $the_post_type ) {
 			return $path;
+		}
 
-		$customdir = '/' . date( 'Y/m' );
+		//generate a unique hashid for the post_id to use a directory to upload the font files
+		$hashid = $this->parent->hash_encode_ID( $_REQUEST['post_id'] );
+
+		$customdir = '/fonts/' . $hashid;
 
 		//remove default subdir (year/month) and add custom dir INSIDE THE DEFAULT UPLOAD DIR
-		$path['path']    = str_replace( $path['subdir'], '/fonts' . $customdir, $path['path']);
-		$path['url']     = str_replace( $path['subdir'], '/fonts' . $customdir, $path['url']);
+		$path['path']    = str_replace( $path['subdir'], $customdir, $path['path']);
+		$path['url']     = str_replace( $path['subdir'], $customdir, $path['url']);
 
 		$path['subdir']  = $customdir;
 
@@ -196,7 +217,7 @@ class Fonto_Post_Types {
 				// Shown for Self-Hosted fonts
 				'data-conditional-id' => $prefix . 'font_source',
 				'data-conditional-value' => 'self_hosted',
-				'disabled' => 'disabled',
+				'readonly' => 'readonly',
 			),
 			'row_classes' => array( 'background__dark' ),
 			'render_row_cb' => array( $this, 'render_field_callback_our_desc_after_label' ),
@@ -605,6 +626,13 @@ class Fonto_Post_Types {
 	 * @return  void
 	 */
 	public function admin_enqueue_styles() {
+		global $post;
+
+		// If the post we're editing isn't a font type, exit this function
+		if ( ! $post || 'font' != $post->post_type ) {
+			return;
+		}
+
 		//Allow others to stop us in enqueueing the CSS
 		if ( ! apply_filters( $this->parent->_token . '_cmb2_enqueue_css', true ) ) {
 			return false;
@@ -629,6 +657,13 @@ class Fonto_Post_Types {
 	 * @return  void
 	 */
 	public function admin_enqueue_scripts() {
+		global $post;
+
+		// If the post we're editing isn't a font type, exit this function
+		if ( ! $post || 'font' != $post->post_type ) {
+			return;
+		}
+
 		//Allow others to stop us in enqueueing the JS
 		if ( ! apply_filters( $this->parent->_token . '_cmb2_enqueue_js', true ) ) {
 			return false;

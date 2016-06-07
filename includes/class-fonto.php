@@ -31,11 +31,19 @@ class Fonto extends Fonto_Init {
 
 	/**
 	 * The single instance of Fonto.
-	 * @var     object
+	 * @var     Fonto
 	 * @access  private
 	 * @since     1.0.0
 	 */
 	private static $_instance = null;
+
+	/**
+	 * The single instance of Hashids.
+	 * @var     Hashids
+	 * @access  private
+	 * @since     1.0.0
+	 */
+	protected static $hashids = null;
 
 	/**
 	 * Settings class object
@@ -169,6 +177,9 @@ class Fonto extends Fonto_Init {
 
 		// Load extras
 		include_once 'extras.php';
+
+		// Initialize hashids used for upload directories
+		$this->initialize_hashids();
 
 		/* Load vendors */
 		// The main CMB2
@@ -391,6 +402,52 @@ class Fonto extends Fonto_Init {
 		$mimes['svg'] = 'image/svg+xml';
 
 		return $mimes;
+	}
+
+	/**
+	 * Initialize the Hashids library with our own salt and settings
+	 */
+	protected function initialize_hashids() {
+		//Used for generating post_ID hashes without collisions
+		require_once( dirname( __FILE__ ) . '/vendor/hashids/Hashids.php');
+
+		//do not change this salt - never ever
+		//if you do change the salt any previous hashed IDs will no longer work
+
+		//the minimum hash length is 8
+		self::$hashids = new Hashids('youshouldgetuniquefontdirectories', 8);
+	}
+
+	/**
+	 * Given an positive integer ID return a hash string
+	 *
+	 * @param integer $id
+	 *
+	 * @return string
+	 */
+	public function hash_encode_ID( $id ) {
+		return self::$hashids->encode( $id );
+	}
+
+	/**
+	 * Given an hash string return the decoded ID (positive integer)
+	 *
+	 * @param string $hash_ID
+	 *
+	 * @return int|bool
+	 */
+	public function hash_decode_ID( $hash_ID ) {
+		$data = self::$hashids->decode( $hash_ID );
+
+		if ( empty( $data ) ) {
+			return false;
+		}
+
+		if ( is_array( $data ) ) {
+			return array_shift( $data );
+		}
+
+		return $data;
 	}
 
 	/**
