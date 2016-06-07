@@ -86,6 +86,10 @@ Misc.
   input:disabled {
     background-color: #F1F1F1;
   }
+
+  textarea.cmb2-textarea-code.cmb2-textarea-code {
+    font-family: "Anonymous Pro", serif;
+  }
 }
 
 input[type=radio],
@@ -210,23 +214,35 @@ ul.cmb2-radio-list {
 // Self hosted fonts
 .cmb2-id-fonto-font-files {
   .cmb-td {
+    position: relative;
     text-align: center;
   }
 
   .cmb2-upload-button {
-    padding-top: 70px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translateX(-50%) translateY(-50%);
+
+    padding-top: 50px;
     height: 100px;
 
+    border: 0;
     background: url('../../images/add-fonts-button.png') center 10px no-repeat transparent;
     box-shadow: none;
 
-    &:hover {
-      background: url('../../images/add-fonts-button.png') center 10px no-repeat #FAFAFA;
+    &:hover,
+    &:active,
+    &:focus {
+      box-shadow: none;
+      background: url('../../images/add-fonts-button.png') center 10px no-repeat transparent;
+      transform: translateX(-50%) translateY(-50%);
     }
   }
 
-  .cmb-attach-list:not(:empty) {
-    margin-top: 20px;
+  .cmb-attach-list {
+    min-height: 130px;
     padding: 12px 20px;
 
     border: 1px dashed $borders;
@@ -235,6 +251,7 @@ ul.cmb2-radio-list {
     font-size: 13px;
     text-align: left;
 
+    pointer-events: none;
     background-color: white;
 
     li {
@@ -249,6 +266,50 @@ ul.cmb2-radio-list {
       &:last-child {
         margin-bottom: 0;
       }
+    }
+  }
+
+  .edit-fonts-icon {
+    display: none;
+
+    &, &:before {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+
+      z-index: 1;
+
+      transform: translateX(-50%) translateY(-50%);
+    }
+
+    pointer-events: none;
+    color: #000000;
+
+    &:before {
+      content: "\f464";
+      display: block;
+      font-size: 50px;
+    }
+  }
+
+  // When the list is populated,
+  // hide the upload button and
+  // enable the list
+  .is--populated {
+    .cmb-attach-list {;
+      pointer-events: auto;
+
+      &:hover {
+        opacity: .6;
+
+        & + .edit-fonts-icon {
+          display: block;
+        }
+      }
+    }
+
+    .cmb2-upload-button {
+      display: none;
     }
   }
 }

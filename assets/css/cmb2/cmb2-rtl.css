@@ -6,6 +6,7 @@ Main Wrap
 --------------------------------------------------------------*/
 @import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:600,600italic,700,700italic,800,800italic);
+@import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
 .cmb2-wrap
 {
     margin: 0;
@@ -886,6 +887,11 @@ Misc.
     background-color: #f1f1f1;
 }
 
+.cmb2-wrap textarea.cmb2-textarea-code.cmb2-textarea-code
+{
+    font-family: 'Anonymous Pro', serif;
+}
+
 input[type=radio],
 input[type=checkbox]
 {
@@ -1013,38 +1019,55 @@ ul.cmb2-radio-list li label
 
 .cmb2-id-fonto-font-files .cmb-td
 {
+    position: relative;
+
     text-align: center;
 }
 
 .cmb2-id-fonto-font-files .cmb2-upload-button
 {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+
     height: 100px;
-    padding-top: 70px;
+    padding-top: 50px;
+
+    -webkit-transform: translateX(50%) translateY(-50%);
+            transform: translateX(50%) translateY(-50%);
+
+    border: 0;
+    background: url('../../images/add-fonts-button.png') center 10px no-repeat transparent;
+    box-shadow: none;
+}
+
+.cmb2-id-fonto-font-files .cmb2-upload-button:hover,
+.cmb2-id-fonto-font-files .cmb2-upload-button:active,
+.cmb2-id-fonto-font-files .cmb2-upload-button:focus
+{
+    -webkit-transform: translateX(50%) translateY(-50%);
+            transform: translateX(50%) translateY(-50%);
 
     background: url('../../images/add-fonts-button.png') center 10px no-repeat transparent;
     box-shadow: none;
 }
 
-.cmb2-id-fonto-font-files .cmb2-upload-button:hover
-{
-    background: url('../../images/add-fonts-button.png') center 10px no-repeat #fafafa;
-}
-
-.cmb2-id-fonto-font-files .cmb-attach-list:not(:empty)
+.cmb2-id-fonto-font-files .cmb-attach-list
 {
     font-size: 13px;
 
-    margin-top: 20px;
+    min-height: 130px;
     padding: 12px 20px;
 
     text-align: right;
+    pointer-events: none;
 
     border: 1px dashed #eee;
     border-radius: 4px;
     background-color: white;
 }
 
-.cmb2-id-fonto-font-files .cmb-attach-list:not(:empty) li
+.cmb2-id-fonto-font-files .cmb-attach-list li
 {
     font-size: 13px;
 
@@ -1053,15 +1076,65 @@ ul.cmb2-radio-list li label
     color: #444;
 }
 
-.cmb2-id-fonto-font-files .cmb-attach-list:not(:empty) li,
-.cmb2-id-fonto-font-files .cmb-attach-list:not(:empty) li strong
+.cmb2-id-fonto-font-files .cmb-attach-list li,
+.cmb2-id-fonto-font-files .cmb-attach-list li strong
 {
     font-weight: 100;
 }
 
-.cmb2-id-fonto-font-files .cmb-attach-list:not(:empty) li:last-child
+.cmb2-id-fonto-font-files .cmb-attach-list li:last-child
 {
     margin-bottom: 0;
+}
+
+.cmb2-id-fonto-font-files .edit-fonts-icon
+{
+    display: none;
+
+    pointer-events: none;
+
+    color: #000;
+}
+
+.cmb2-id-fonto-font-files .edit-fonts-icon,
+.cmb2-id-fonto-font-files .edit-fonts-icon:before
+{
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    right: 50%;
+
+    -webkit-transform: translateX(50%) translateY(-50%);
+            transform: translateX(50%) translateY(-50%);
+}
+
+.cmb2-id-fonto-font-files .edit-fonts-icon:before
+{
+    font-size: 50px;
+
+    display: block;
+
+    content: '\f464';
+}
+
+.cmb2-id-fonto-font-files .is--populated .cmb-attach-list
+{
+    pointer-events: auto;
+}
+
+.cmb2-id-fonto-font-files .is--populated .cmb-attach-list:hover
+{
+    opacity: .6;
+}
+
+.cmb2-id-fonto-font-files .is--populated .cmb-attach-list:hover + .edit-fonts-icon
+{
+    display: block;
+}
+
+.cmb2-id-fonto-font-files .is--populated .cmb2-upload-button
+{
+    display: none;
 }
 
 .cmb2-id-fonto-url-path
