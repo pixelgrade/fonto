@@ -30,7 +30,7 @@ class CMB2_Type_File_List extends CMB2_Type_File_Base {
 			'size'             => 45,
 			'desc'             => '',
 			'value'            => '',
-			'data-previewsize' => is_array( $img_size ) ? sprintf( '[%s]', implode( ',', $img_size ) ) : 50,
+			'data-previewsize' => is_array( $img_size ) ? sprintf( '[%s]', implode( ',', $img_size ) ) : ( ! empty( $img_size ) ? 50 : false ),
 			'data-queryargs'   => ! empty( $query_args ) ? json_encode( $query_args ) : '',
 			'js_dependencies'  => 'media-editor',
 			'data-post_id' => $post->ID,
@@ -60,7 +60,7 @@ class CMB2_Type_File_List extends CMB2_Type_File_Base {
 					'class'   => false,
 				) );
 
-				if ( $this->is_valid_img_ext( $fullurl ) ) {
+				if ( $img_size && $this->is_valid_img_ext( $fullurl ) ) {
 
 					$output .= $this->img_status_output( array(
 						'image'    => wp_get_attachment_image( $id, $img_size ),
