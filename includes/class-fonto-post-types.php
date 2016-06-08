@@ -198,7 +198,7 @@ class Fonto_Post_Types {
 			'our_desc'         => __( 'Upload all the files received from the font service/generator.', 'cmb2' ),
 			'id'           => $prefix . 'font_files',
 			'type'         => 'file_list',
-			'preview_size' => array( 100, 100 ), // Default: array( 50, 50 )
+			'preview_size' => false, // Default: array( 50, 50 )
 			'attributes'  => array(
 				// Shown for Self-Hosted fonts
 				'data-conditional-id' => $prefix . 'font_source',

@@ -217,7 +217,7 @@ window.CMB2 = (function (window, document, $, undefined) {
 
             // Loop through each attachment
             $(attachment).each(function () {
-                if (this.type && this.type === 'image') {
+                if (media.previewSize && this.type && this.type === 'image') {
                     var width = media.previewSize[0] ? media.previewSize[0] : 50;
                     var height = media.previewSize[1] ? media.previewSize[1] : 50;
 
