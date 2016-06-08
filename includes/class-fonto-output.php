@@ -156,14 +156,43 @@ class Fonto_Output {
 					/* ===== WEB FONT SERVICE ==== */
 
 					//get the embed code
-					$embed = get_post_meta( $font->ID, $this->prefix . 'embed_code_font_service', true );
+					$embed = trim( get_post_meta( $font->ID, $this->prefix . 'embed_code_font_service', true ) );
 
 					if ( ! empty( $embed ) ) {
-						$embed_code .= $embed. PHP_EOL;
+
+						// A little sanity check - people sometimes forget
+						// For font services, we expect the embed code to be some JS either inline or external
+						// If no <scrip> or <style> tags are present, wrap it in a <script>
+
+						// Remove all spaces so we can better compare
+						$temp_embed = str_replace( ' ', '', $embed );
+						if ( strpos( $temp_embed, '</script>' ) === false && strpos( $temp_embed, '</style>' ) === false && strpos( $temp_embed, '<link' ) === false ) {
+							$embed = '<script>' . $embed . '</script>';
+						}
+
+						$embed_code .= $embed . PHP_EOL;
 					}
 
 				} elseif ( 'self_hosted' == $font_source ) {
 					/* ===== SELF-HOSTED FONT ==== */
+
+					//get the embed code
+					$embed = trim( get_post_meta( $font->ID, $this->prefix . 'embed_code_self_hosted', true ) );
+
+					if ( ! empty( $embed ) ) {
+
+						// A little sanity check - people sometimes forget
+						// For self-hosted fonts, we expect the embed code to be some CSS either inline or external
+						// If no <scrip> or <style> tags are present, wrap it in a <style>
+
+						// Remove all spaces so we can better compare
+						$temp_embed = str_replace( ' ', '', $embed );
+						if ( strpos( $temp_embed, '</style>' ) === false && strpos( $temp_embed, '</script>' ) === false && strpos( $temp_embed, '<link' ) === false ) {
+							$embed = '<style type="text/css">' . $embed . '</style>';
+						}
+
+						$embed_code .= $embed . PHP_EOL;
+					}
 				}
 			}
 		}

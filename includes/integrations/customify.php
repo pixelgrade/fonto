@@ -61,23 +61,37 @@ function fonto_add_custom_fonts_to_customify_typography_select( $active_font_fam
 			} elseif ( 'individual' == $font_name_style ) {
 				/* ===== Font Names are Referenced Individually ==== */
 
+				//we assume the worst
+				$valid_font_family = false;
+
 				// We need to loop through all the variations and use only those filled with a font name
 				foreach ( $local_fonto->output->font_variations_options as $id => $display_name ) {
 					$font_family_name = trim( get_post_meta( $font->ID, $local_fonto->output->prefix . $id . '_individual', true ) );
 					if ( ! empty( $font_family_name ) ) {
-						$font_settings['font_family'] = esc_html( $font_family_name );
-						//the display name is the same as the inputed font family
-						$font_settings['font_family_display'] = $font_settings['font_family'];
+						//we have found a valid variation; this makes the font family usable
+						$valid_font_family = true;
 
-						//for these we don't want any CSS messing with the weight and style - so they are all 400 regular
-						$font_settings['variants'] = array( '400' );
+						//the $id is like this 400_regular, so we will split it by '_' to get weight and style
+						list( $variation_weight, $variation_style ) = explode( '_', $id );
+
+						//we need to store for each variant the whole details, including family name
+						$font_settings['variants'][] = array(
+							'font-family' => esc_html( $font_family_name ),
+							'font-weight' => $variation_weight,
+							'font-style' => $variation_style,
+						);
 					}
+				}
+
+				if ( true === $valid_font_family ) {
+					//we will use the font post title for the font family display
+					$font_settings['font_family'] = $font_settings['font_family_display'] = esc_html( $font->post_title );
 				}
 			}
 
 			if ( ! empty( $font_settings ) ) {
 				//display the select option's HTML
-				Pix_Customize_Typography_Control::output_font_option( $font_settings['font_family'], $active_font_family, $font_settings, 'custom' );
+				Pix_Customize_Typography_Control::output_font_option( $font_settings['font_family'], $active_font_family, $font_settings, 'custom_' . $font_name_style );
 			}
 		}
 		echo "</optgroup>";
