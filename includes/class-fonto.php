@@ -166,12 +166,10 @@ class Fonto extends Fonto_Init {
 	private function init() {
 
 		// Load plugin class files.
-		include_once 'class-fonto-settings.php';
 		include_once 'class-fonto-post-types.php';
 		include_once 'class-fonto-output.php';
 
 		// Load plugin libraries.
-		include_once 'lib/class-fonto-admin-api.php';
 		include_once 'lib/class-fonto-post-type.php';
 		include_once 'lib/class-fonto-taxonomy.php';
 
@@ -209,20 +207,10 @@ class Fonto extends Fonto_Init {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ), 10, 1 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_styles' ), 10, 1 );
 
-		// Load API for generic admin functions.
-		if ( is_admin() ) {
-			$this->admin = new Fonto_Admin_API( $this );
-		}
-
 		// Handle localisation.
 		$this->load_plugin_textdomain();
 		add_action( 'init', array( $this, 'load_localisation' ), 0 );
-
-		// Add admin settings.
-		if ( is_null( $this->settings ) ) {
-			$this->settings = Fonto_Settings::instance( $this );
-		}
-
+		
 		// Add custom post types.
 		if ( is_null( $this->post_types ) ) {
 			$this->post_types = Fonto_Post_Types::instance( $this );

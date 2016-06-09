@@ -95,9 +95,9 @@ class Fonto_Init {
 		);
 
 		$html = '<div class="updated fade">' .
-		        __( 'Error: plugin "' . $this->plugin_name . '" requires a newer version of PHP to be running.', 'example' ) .
-		        '<br/>' . __( 'Minimal version of PHP required: ', 'example' ) . '<strong>' . $this->minimalRequiredPhpVersion . '</strong>
-				<br/>' . __( 'Your server\'s PHP version: ', 'example' ) . '<strong>' . phpversion() . '</strong>
+		        __( 'Error: plugin "' . $this->plugin_name . '" requires a newer version of PHP to be running.', 'fonto' ) .
+		        '<br/>' . __( 'Minimal version of PHP required: ', 'fonto' ) . '<strong>' . $this->minimalRequiredPhpVersion . '</strong>
+				<br/>' . __( 'Your server\'s PHP version: ', 'fonto' ) . '<strong>' . phpversion() . '</strong>
 				</div>';
 		echo wp_kses( $html, $allowed );
 	}

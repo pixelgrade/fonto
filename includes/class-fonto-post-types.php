@@ -158,7 +158,7 @@ class Fonto_Post_Types {
 
 		$font_details = new_cmb2_box( array(
 			'id'           => $prefix . 'font_details',
-			'title'        => __( 'Font Details', 'cmb2' ),
+			'title'        => __( 'Font Details', 'fonto' ),
 			'object_types' => array( 'font', ), // Post type
 			'context'    => 'normal',
 			'priority'   => 'high',
@@ -172,13 +172,13 @@ class Fonto_Post_Types {
 		//To put the description after the field label, we use the 'our_desc' key instead of the regular 'desc' one and add the 'render_row_cb' callback
 
 		$font_details->add_field( array(
-			'name'    => __( 'Font Source', 'cmb2' ),
-			'our_desc'    => __( 'Select whether you are using a Custom Web Font Service (Typekit, Myfonts, Fonts.com) or you\'re self-hosting the fonts.', 'cmb2' ),
+			'name'    => __( 'Font Source', 'fonto' ),
+			'our_desc'    => __( 'Select whether you are using a Custom Web Font Service (Typekit, Myfonts, Fonts.com) or you\'re self-hosting the fonts.', 'fonto' ),
 			'id'      => $prefix . 'font_source',
 			'type'    => 'radio',
 			'options' => array(
-				'font_service' => __( 'Web Font Service', 'cmb2' ),
-				'self_hosted' => __( 'Self-Hosted', 'cmb2' ),
+				'font_service' => __( 'Web Font Service', 'fonto' ),
+				'self_hosted' => __( 'Self-Hosted', 'fonto' ),
 			),
 			'default' => 'font_service',
 			'row_classes' => array( 'no-divider', ),
@@ -186,7 +186,7 @@ class Fonto_Post_Types {
 		) );
 
 		$font_details->add_field( array(
-			'name' => __( 'Fonts Loading / Embed Code', 'cmb2' ),
+			'name' => __( 'Fonts Loading / Embed Code', 'fonto' ),
 			'id'   => $prefix . 'fonts_loading_embed_code',
 			'type' => 'title',
 			'row_classes' => array( 'full-width', 'background__dark' ),
@@ -194,8 +194,8 @@ class Fonto_Post_Types {
 		) );
 
 		$font_details->add_field( array(
-			'name'         => __( 'Font Files', 'cmb2' ),
-			'our_desc'         => __( 'Upload all the files received from the font service/generator.', 'cmb2' ),
+			'name'         => __( 'Font Files', 'fonto' ),
+			'our_desc'         => __( 'Upload all the files received from the font service/generator.', 'fonto' ),
 			'id'           => $prefix . 'font_files',
 			'type'         => 'file_list',
 			'preview_size' => false, // Default: array( 50, 50 )
@@ -209,8 +209,8 @@ class Fonto_Post_Types {
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'URL Path to the font files', 'cmb2' ),
-			'our_desc'    => __( 'This is the URL path to be used for the uploaded files.', 'cmb2' ),
+			'name'        => __( 'URL Path to the font files', 'fonto' ),
+			'our_desc'    => __( 'This is the URL path to be used for the uploaded files.', 'fonto' ),
 			'id'          => $prefix . 'url_path',
 			'type'        => 'text',
 			'attributes'  => array(
@@ -224,7 +224,7 @@ class Fonto_Post_Types {
 		) );
 
 		$font_details->add_field( array(
-			'name' => __( 'Embed Code', 'cmb2' ),
+			'name' => __( 'Embed Code', 'fonto' ),
 			'show_names' => false,
 			'id'   => $prefix . 'embed_code_font_service',
 			'type' => 'textarea_code',
@@ -235,13 +235,13 @@ class Fonto_Post_Types {
 				'data-conditional-id' => $prefix . 'font_source',
 				'data-conditional-value' => 'font_service',
 			),
-			'before_field' => __( 'Insert below the embed code (JS/CSS) provided by the font service. <a href="#" target="_blank">Learn More</a>', 'cmb2' ),
+			'before_field' => __( 'Insert below the embed code (JS/CSS) provided by the font service. <a href="#" target="_blank">Learn More</a>', 'fonto' ),
 			'after_field' => esc_html__( 'The above code will be inserted in the <head> area of your website.', 'fonto' ),
 			'row_classes' => array( 'full-width', 'title__large', 'background__dark' ),
 		) );
 
 		$font_details->add_field( array(
-			'name' => __( 'Embed Code', 'cmb2' ),
+			'name' => __( 'Embed Code', 'fonto' ),
 			'show_names' => true,
 			'id'   => $prefix . 'embed_code_self_hosted',
 			'type' => 'textarea_code',
@@ -252,28 +252,28 @@ class Fonto_Post_Types {
 				'data-conditional-id' => $prefix . 'font_source',
 				'data-conditional-value' => 'self_hosted',
 			),
-			'before_field' => __( 'Insert below the CSS code. <a href="#" target="_blank">Learn More</a>', 'cmb2' ),
+			'before_field' => __( 'Insert below the CSS code. <a href="#" target="_blank">Learn More</a>', 'fonto' ),
 			'after_field' => esc_html__( 'The above code will be inserted in the <head> area of your website.', 'fonto' ),
 			'row_classes' => array( 'full-width', 'title__large', 'background__dark' ),
 			'after_row' => '</div><!-- .font-loading-section -->'
 		) );
 
 		$font_details->add_field( array(
-			'name' => __( 'Weights & Styles Matching', 'cmb2' ),
+			'name' => __( 'Weights & Styles Matching', 'fonto' ),
 			'id'   => $prefix . 'weights_styles_matching',
 			'type' => 'title',
 			'row_classes' => array( 'full-width', ),
 		) );
 
 		$font_details->add_field( array(
-			'name' => __( 'How Fonts Variations (weights & styles) are declared?', 'cmb2' ),
+			'name' => __( 'How Fonts Variations (weights & styles) are declared?', 'fonto' ),
 			'our_desc' => __( 'Based on the format that you received the font names from the font service.', 'fonto' ),
 			'id'   => $prefix . 'font_name_style',
 			'type' => 'radio',
 			'options' => array(
-				'grouped' => __( 'Fonts are grouped together in a single "Font Family" name', 'cmb2' )
+				'grouped' => __( 'Fonts are grouped together in a single "Font Family" name', 'fonto' )
 				             . '<span class="option-details">' . __( 'When you have only <em>one</em> font name; we will add weights and styles via CSS.<br/>— Example: <em>"proxima-nova"</em> from Typekit or Fonts.com', 'fonto' ) . '</span>',
-				'individual' => __( 'Font Names are Referenced Individually', 'cmb2' )
+				'individual' => __( 'Font Names are Referenced Individually', 'fonto' )
 								. '<span class="option-details">' . __( 'If you have <em>multiple</em> font names; this means the weights and styles are bundled within each font and we shouldn\'t add them again in CSS.<br/>— Example: <em>"ProximaNW01-Regular"</em> and <em>"ProximaNW01-RegularItalic"</em> from MyFonts.com', 'fonto' ) . '</span>',
 			),
 			'default' => 'grouped',
@@ -282,8 +282,8 @@ class Fonto_Post_Types {
 		) );
 
 		$font_details->add_field( array(
-			'name'    => __( 'Font Family Name', 'cmb2' ),
-			'our_desc'    => __( 'Insert the CSS font name as provided by the font service.', 'cmb2' ),
+			'name'    => __( 'Font Family Name', 'fonto' ),
+			'our_desc'    => __( 'Insert the CSS font name as provided by the font service.', 'fonto' ),
 			'id'      => $prefix . 'font_family_name',
 			'type'    => 'text',
 			'attributes'  => array(
@@ -296,32 +296,32 @@ class Fonto_Post_Types {
 		) );
 
 		$font_details->add_field( array(
-			'name'    => __( 'Available Font Variations', 'cmb2' ),
-			'our_desc'    => __( 'Check the available variations for this font.', 'cmb2' )
+			'name'    => __( 'Available Font Variations', 'fonto' ),
+			'our_desc'    => __( 'Check the available variations for this font.', 'fonto' )
 						. '<span class="note">' . __( '*Note that the variations will be available through the Font Selectors and will not make any effect if a specific variation is checked but is not loaded by the font service.', 'fonto' ) . '</span>',
 			'id'      => $prefix . 'font_variations',
 			'type'    => 'multicheck',
 			'select_all_button' => false,
 			// 'multiple' => true, // Store values in individual rows
 			'options' => array(
-				'100_normal' => __( 'Thin 100', 'cmb2' ),
-				'100_italic' => __( 'Thin Italic', 'cmb2' ),
-				'200_normal' => __( 'Extra Light 200', 'cmb2' ),
-				'200_italic' => __( 'Extra Light Italic', 'cmb2' ),
-				'300_normal' => __( 'Light 300', 'cmb2' ),
-				'300_italic' => __( 'Light Italic', 'cmb2' ),
-				'400_normal' => __( 'Regular 400', 'cmb2' ),
-				'400_italic' => __( 'Regular Italic', 'cmb2' ),
-				'500_normal' => __( 'Medium 500', 'cmb2' ),
-				'500_italic' => __( 'Medium Italic', 'cmb2' ),
-				'600_normal' => __( 'SemiBold 600', 'cmb2' ),
-				'600_italic' => __( 'SemiBold Italic', 'cmb2' ),
-				'700_normal' => __( 'Bold 700', 'cmb2' ),
-				'700_italic' => __( 'Bold Italic', 'cmb2' ),
-				'800_normal' => __( 'ExtraBold 800', 'cmb2' ),
-				'800_italic' => __( 'ExtraBold Italic', 'cmb2' ),
-				'900_normal' => __( 'Black 900', 'cmb2' ),
-				'900_italic' => __( 'Black Italic', 'cmb2' ),
+				'100_normal' => __( 'Thin 100', 'fonto' ),
+				'100_italic' => __( 'Thin Italic', 'fonto' ),
+				'200_normal' => __( 'Extra Light 200', 'fonto' ),
+				'200_italic' => __( 'Extra Light Italic', 'fonto' ),
+				'300_normal' => __( 'Light 300', 'fonto' ),
+				'300_italic' => __( 'Light Italic', 'fonto' ),
+				'400_normal' => __( 'Regular 400', 'fonto' ),
+				'400_italic' => __( 'Regular Italic', 'fonto' ),
+				'500_normal' => __( 'Medium 500', 'fonto' ),
+				'500_italic' => __( 'Medium Italic', 'fonto' ),
+				'600_normal' => __( 'SemiBold 600', 'fonto' ),
+				'600_italic' => __( 'SemiBold Italic', 'fonto' ),
+				'700_normal' => __( 'Bold 700', 'fonto' ),
+				'700_italic' => __( 'Bold Italic', 'fonto' ),
+				'800_normal' => __( 'ExtraBold 800', 'fonto' ),
+				'800_italic' => __( 'ExtraBold Italic', 'fonto' ),
+				'900_normal' => __( 'Black 900', 'fonto' ),
+				'900_italic' => __( 'Black Italic', 'fonto' ),
 			),
 			'attributes'  => array(
 				// Shown when using a single font family name
@@ -334,8 +334,8 @@ class Fonto_Post_Types {
 		) );
 
 		$font_details->add_field( array(
-			'name' => __( 'Font Weights & Styles Variations', 'cmb2' ),
-			'desc' => __( 'Pair the provided fonts references names with their matching weights and styles.', 'cmb2' ),
+			'name' => __( 'Font Weights & Styles Variations', 'fonto' ),
+			'desc' => __( 'Pair the provided fonts references names with their matching weights and styles.', 'fonto' ),
 			'id'   => $prefix . 'font_weight_style_variations',
 			'type' => 'title',
 			'attributes'  => array(
@@ -347,7 +347,7 @@ class Fonto_Post_Types {
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Thin 100', 'cmb2' ),
+			'name'        => __( 'Thin 100', 'fonto' ),
 			'id'          => $prefix . '100_normal_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
@@ -360,7 +360,7 @@ class Fonto_Post_Types {
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Thin Italic', 'cmb2' ),
+			'name'        => __( 'Thin Italic', 'fonto' ),
 			'id'          => $prefix . '100_italic_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
@@ -372,7 +372,7 @@ class Fonto_Post_Types {
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Extra Light 200', 'cmb2' ),
+			'name'        => __( 'Extra Light 200', 'fonto' ),
 			'id'          => $prefix . '200_normal_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
@@ -384,7 +384,7 @@ class Fonto_Post_Types {
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Extra Light Italic', 'cmb2' ),
+			'name'        => __( 'Extra Light Italic', 'fonto' ),
 			'id'          => $prefix . '200_italic_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
@@ -396,7 +396,7 @@ class Fonto_Post_Types {
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Light 300', 'cmb2' ),
+			'name'        => __( 'Light 300', 'fonto' ),
 			'id'          => $prefix . '300_normal_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
@@ -408,7 +408,7 @@ class Fonto_Post_Types {
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Light Italic', 'cmb2' ),
+			'name'        => __( 'Light Italic', 'fonto' ),
 			'id'          => $prefix . '300_italic_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
@@ -420,7 +420,7 @@ class Fonto_Post_Types {
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Regular 400', 'cmb2' ),
+			'name'        => __( 'Regular 400', 'fonto' ),
 			'id'          => $prefix . '400_normal_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
@@ -432,7 +432,7 @@ class Fonto_Post_Types {
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Regular Italic', 'cmb2' ),
+			'name'        => __( 'Regular Italic', 'fonto' ),
 			'id'          => $prefix . '400_italic_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
@@ -444,7 +444,7 @@ class Fonto_Post_Types {
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Medium 500', 'cmb2' ),
+			'name'        => __( 'Medium 500', 'fonto' ),
 			'id'          => $prefix . '500_normal_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
@@ -456,7 +456,7 @@ class Fonto_Post_Types {
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Medium Italic', 'cmb2' ),
+			'name'        => __( 'Medium Italic', 'fonto' ),
 			'id'          => $prefix . '500_italic_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
@@ -468,7 +468,7 @@ class Fonto_Post_Types {
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Semi Bold 600', 'cmb2' ),
+			'name'        => __( 'Semi Bold 600', 'fonto' ),
 			'id'          => $prefix . '600_normal_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
@@ -480,7 +480,7 @@ class Fonto_Post_Types {
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Semi Bold Italic', 'cmb2' ),
+			'name'        => __( 'Semi Bold Italic', 'fonto' ),
 			'id'          => $prefix . '600_italic_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
@@ -492,7 +492,7 @@ class Fonto_Post_Types {
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Bold 700', 'cmb2' ),
+			'name'        => __( 'Bold 700', 'fonto' ),
 			'id'          => $prefix . '700_normal_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
@@ -504,7 +504,7 @@ class Fonto_Post_Types {
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Bold Italic', 'cmb2' ),
+			'name'        => __( 'Bold Italic', 'fonto' ),
 			'id'          => $prefix . '700_italic_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
@@ -516,7 +516,7 @@ class Fonto_Post_Types {
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Extra Bold 800', 'cmb2' ),
+			'name'        => __( 'Extra Bold 800', 'fonto' ),
 			'id'          => $prefix . '800_normal_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
@@ -528,7 +528,7 @@ class Fonto_Post_Types {
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Extra Bold Italic', 'cmb2' ),
+			'name'        => __( 'Extra Bold Italic', 'fonto' ),
 			'id'          => $prefix . '800_italic_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
@@ -540,7 +540,7 @@ class Fonto_Post_Types {
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Black 900', 'cmb2' ),
+			'name'        => __( 'Black 900', 'fonto' ),
 			'id'          => $prefix . '900_normal_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
@@ -552,7 +552,7 @@ class Fonto_Post_Types {
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Black Italic', 'cmb2' ),
+			'name'        => __( 'Black Italic', 'fonto' ),
 			'id'          => $prefix . '900_italic_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
@@ -722,4 +722,3 @@ class Fonto_Post_Types {
 	} // End __wakeup()
 
 }
-
