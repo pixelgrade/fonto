@@ -291,13 +291,7 @@ class Fonto extends Fonto_Init {
 		wp_register_style( $this->_token . '-admin-styles', esc_url( $this->assets_url ) . "css/admin{$rtl}{$min}.css", $styles, $this->_version );
 
 		wp_enqueue_style( $this->_token . '-admin-styles' );
-
-		wp_register_style( 'jquery-ui', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css' );
-		wp_enqueue_style( 'jquery-ui' );
-		wp_enqueue_style(
-			$this->_token . '-datetime-picker-style',
-			esc_url( $this->assets_url ) . 'css/jquery-ui-timepicker-addon.css'
-		);
+		
 	} // End admin_enqueue_styles ()
 
 	/**
@@ -309,21 +303,8 @@ class Fonto extends Fonto_Init {
 	 */
 	public function admin_enqueue_scripts() {
 
-		wp_register_script( $this->_token . '-admin', esc_url( $this->assets_url ) . 'js/admin' . $this->script_suffix . '.js', array(
-			'jquery',
-			'jquery-ui-tabs'
-		), $this->_version );
+		wp_register_script( $this->_token . '-admin', esc_url( $this->assets_url ) . 'js/admin' . $this->script_suffix . '.js', array(), $this->_version );
 		wp_enqueue_script( $this->_token . '-admin' );
-
-		wp_enqueue_script(
-			$this->_token . '-jquery-datetimepicker',
-			esc_url( $this->assets_url ) . 'js/jquery-ui-timepicker-addon.js',
-			array( 'jquery', 'jquery-ui-datepicker' )
-		);
-
-		// We're including the WP media scripts here because they're needed for the image upload field.
-		// If you're not including an image upload then you can leave this function call out.
-		wp_enqueue_media();
 
 	} // End admin_enqueue_scripts ()
 

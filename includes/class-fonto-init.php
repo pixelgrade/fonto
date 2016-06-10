@@ -117,7 +117,7 @@ class Fonto_Init {
 	}
 
 	/**
-	 * Check plugin version, Do any neccesary actions if new version has been installed.
+	 * Check plugin version, Do any necessary actions if new version has been installed.
 	 */
 	public function upgrade() {
 
@@ -127,27 +127,7 @@ class Fonto_Init {
 		$new_versions = array();
 
 		if ( $this->is_version_less_than( $savedVersion, $newVersion ) ) {
-
-			if ( $this->is_version_less_than( $savedVersion, '1.8' ) ) {
-
-				if ( $this->is_version_less_than( $savedVersion, '1.5' ) ) {
-
-					if ( $this->is_version_less_than( $savedVersion, '1' ) ) {
-
-						$new_versions[] = '1';
-						// Perform version 1 upgrade action.
-					}
-
-					$new_versions[] = '1.5';
-					// Perform version 1.5 upgrade action.
-				}
-
-				$new_versions[] = '1.8';
-				// Perform version 1.8 upgrade action.
-			}
-
-			$new_versions[] = '2.0';
-			// Perform version 2.0 upgrade action.
+			$new_versions[] = $newVersion;
 		}
 
 		// Post-upgrade, set the current version in the options.
@@ -178,9 +158,9 @@ class Fonto_Init {
 	public function notice_new_version() {
 
 		foreach ( $this->new_versions as $new_version ) {
-			echo '<div class="updated fade">' .
-			     esc_html( __( 'Plugin "' . $this->plugin_name . '" has been updated to version ', 'fonto' ) . $new_version ) .
-			     '</div>';
+			echo '<div class="notice notice-success is-dismissible"><p>' .
+			     sprintf( __( 'The <strong>%s</strong> plugin has been updated to version %s. Enjoy!', 'fonto' ), $this->plugin_name, $new_version ) .
+			     '</p></div>';
 		}
 
 	}

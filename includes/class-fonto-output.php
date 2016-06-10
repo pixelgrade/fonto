@@ -349,10 +349,12 @@ class Fonto_Output {
 				if ( 'font_service' == $font_source ) {
 					/* ===== WEB FONT SERVICE ==== */
 
+					//right now we do nothing
 
 				} elseif ( 'self_hosted' == $font_source ) {
 					/* ===== SELF-HOSTED FONT ==== */
 
+					//right now we do nothing
 				}
 			}
 		}

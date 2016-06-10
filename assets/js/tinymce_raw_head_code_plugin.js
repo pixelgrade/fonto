@@ -8,22 +8,7 @@
             jQuery(iframe[0].contentWindow.document)
                 .children('html')
                 .children('head')
-                .append( tinymce_raw_head_code.code );
-
-            // Get the iframe.
-            // var doc = editor.getDoc();
-            //
-            // // Create a temporary div to hold the code so we can cycle through it's children DOM nodes
-            // var temp = doc.createElement('div');
-            // temp.innerHTML = tinymce_raw_head_code.code;
-            //
-            // //get the <head> node
-            // var head = doc.getElementsByTagName('head')[0];
-            //
-            // // Append each child node to the <head> tag
-            // while (temp.firstChild) {
-            //     head.appendChild(temp.firstChild);
-            // }
+                .append( tinymce_raw_head_code.code ); //this one is available globally through script localization; see class-fonto-output.php@237
         });
     });
 }( window.tinymce ));
