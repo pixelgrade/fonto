@@ -911,11 +911,6 @@ Misc.
     box-shadow: none;
 }
 
-.cmb2-wrap input:disabled
-{
-    background-color: #f1f1f1;
-}
-
 .cmb2-wrap textarea.cmb2-textarea-code.cmb2-textarea-code
 {
     font-family: 'Anonymous Pro', serif;
@@ -925,6 +920,14 @@ Misc.
 .cmb2-wrap textarea:focus
 {
     background-color: white;
+}
+
+.cmb2-wrap input[disabled],
+.cmb2-wrap input[disabled]focus,
+.cmb2-wrap input[readonly='readonly'],
+.cmb2-wrap input[readonly='readonly']focus
+{
+    background-color: #f1f1f1;
 }
 
 input[type=radio],
@@ -1045,6 +1048,13 @@ ul.cmb2-radio-list li label
     font-style: italic;
 }
 
+#fonto_url_path,
+#fonto_url_path:focus,
+#fonto_url_path:active
+{
+    background-color: #f1f1f1;
+}
+
 .cmb2-id-fonto-embed-code-font-service .cmb2-textarea-code,
 .cmb2-id-fonto-embed-code-self-hosted .cmb2-textarea-code
 {
@@ -1163,11 +1173,6 @@ ul.cmb2-radio-list li label
 .cmb2-id-fonto-url-path input
 {
     width: 100%;
-}
-
-.cmb2-id-fonto-embed-code-self-hosted[style='display: none;'] textarea
-{
-    display: none;
 }
 
 .postbox-container .cmb2-id-fonto-embed-code-self-hosted .cmb-td,
