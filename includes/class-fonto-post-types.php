@@ -112,8 +112,8 @@ class Fonto_Post_Types {
 	 */
 	public function custom_upload_directory( $path ) {
 		// Check if uploading from inside a post/page/cpt - if not, default Upload folder is used
-		$use_default_dir = ( isset($_REQUEST['post_id'] ) && $_REQUEST['post_id'] == 0 ) ? true : false;
-		if( ! empty( $path['error'] ) || $use_default_dir )
+		$use_default_dir = ( isset( $_REQUEST['post_id'] ) && $_REQUEST['post_id'] == 0 ) ? true : false;
+		if( ! isset( $_REQUEST['post_id'] ) || ! empty( $path['error'] ) || $use_default_dir )
 			return $path;
 
 		// Check if correct post type
