@@ -921,6 +921,12 @@ Misc.
     font-family: 'Anonymous Pro', serif;
 }
 
+.cmb2-wrap input[type='text']:focus,
+.cmb2-wrap textarea:focus
+{
+    background-color: white;
+}
+
 input[type=radio],
 input[type=checkbox]
 {

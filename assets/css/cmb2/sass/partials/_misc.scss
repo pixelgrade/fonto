@@ -119,6 +119,14 @@ Misc.
   textarea.cmb2-textarea-code.cmb2-textarea-code {
     font-family: "Anonymous Pro", serif;
   }
+
+  input[type="text"],
+  textarea {
+    &:focus {
+      background-color: white;
+      //border: 1px solid #DDDDDD;
+    }
+  }
 }
 
 input[type=radio],
