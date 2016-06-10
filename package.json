@@ -20,6 +20,8 @@
     "gulp-rename": "*",
     "gulp-clean-css": "*",
     "rtlcss": "*",
-    "es6-promise": "*"
+    "es6-promise": "*",
+    "gulp-exec": "~1.0.4",
+    "del": "*"
   }
 }

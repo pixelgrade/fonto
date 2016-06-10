@@ -1,4 +1,5 @@
-var gulp 		= require('gulp'),
+var plugin = 'fonto',
+	gulp 		= require('gulp'),
 	sass 		= require('gulp-sass'),
 	prefix 		= require('gulp-autoprefixer'),
 	notify 		= require('gulp-notify'),
@@ -7,9 +8,17 @@ var gulp 		= require('gulp'),
 	postcss 	= require('gulp-postcss'),
 	rename 		= require('gulp-rename'),
 	chmod 		= require('gulp-chmod'),
-	cleanCSS = require('gulp-clean-css');
+	cleanCSS = require('gulp-clean-css'),
+	exec        = require('gulp-exec'),
+	fs          = require('fs'),
+	del         = require('del');
 
 require('es6-promise').polyfill();
+
+var options = {
+	silent: true,
+	continueOnError: true // default: false
+};
 
 /**
  *   #STYLES
@@ -51,3 +60,56 @@ gulp.task('styles', ['styles-expanded', 'styles-compressed'], function () {
 gulp.task('watch', function () {
 	return gulp.watch('assets/css/cmb2/sass/**/*.scss', ['styles']);
 });
+
+/**
+ * Copy theme folder outside in a build folder, recreate styles before that
+ */
+gulp.task( 'copy-folder', function() {
+
+	return gulp.src('./')
+		.pipe(exec('rm -Rf ./../build; mkdir -p ./../build/' + plugin + '; rsync -av --exclude="node_modules" ./* ./../build/' + plugin + '/', options));
+} );
+
+/**
+ * Clean the folder of unneeded files and folders
+ */
+gulp.task( 'build', ['copy-folder'], function() {
+
+	// files that should not be present in build zip
+	files_to_remove = [
+		'**/codekit-config.json',
+		'node_modules',
+		'config.rb',
+		'gulpfile.js',
+		'package.json',
+		'pxg.json',
+		'build',
+		'.idea',
+		'**/*.css.map',
+		'**/.git*',
+		'*.sublime-project',
+		'.DS_Store',
+		'**/.DS_Store',
+		'__MACOSX',
+		'**/__MACOSX',
+		'+development.rb',
+		'+production.rb',
+		'README.md'
+	];
+
+	files_to_remove.forEach(function (e, k) {
+		files_to_remove[k] = '../build/' + plugin + '/' + e;
+	});
+
+	return del.sync(files_to_remove, {force: true});
+} );
+
+/**
+ * Create a zip archive out of the cleaned folder and delete the folder
+ */
+gulp.task( 'zip', ['build'], function() {
+
+	return gulp.src('./')
+		.pipe(exec('cd ./../; rm -rf ' + plugin + '.zip; cd ./build/; zip -r -X ./../' + plugin + '.zip ./; cd ./../; rm -rf build'));
+
+} );
