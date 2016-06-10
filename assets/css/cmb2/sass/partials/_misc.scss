@@ -49,6 +49,20 @@ Misc.
   .is--loaded & {
     opacity: 1;
   }
+
+  .inside {
+    margin-top: 0;
+    padding: 30px;
+  }
+
+  .cmb-type-title {
+    margin: 0 -30px;
+    padding-top: 20px;
+    padding-bottom: 8px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-top: 2px solid #EEEEEE;
+  }
 }
 
 // Various styles
@@ -104,6 +118,14 @@ Misc.
 
   textarea.cmb2-textarea-code.cmb2-textarea-code {
     font-family: "Anonymous Pro", serif;
+  }
+
+  input[type="text"],
+  textarea {
+    &:focus {
+      background-color: white;
+      //border: 1px solid #DDDDDD;
+    }
   }
 }
 
@@ -359,6 +381,12 @@ ul.cmb2-radio-list {
 }
 
 .cmb2-id-fonto-embed-code-self-hosted {
+  &[style="display: none;"] {
+    textarea {
+      display: none;
+    }
+  }
+
   .postbox-container & {
     .cmb-td,
     .cmb-th {
