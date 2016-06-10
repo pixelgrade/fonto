@@ -1,3 +1,67 @@
+(function ($) {
+/**
+ * wp.media.view.MediaFrame.Select
+ *
+ * A frame for selecting an item or items from the media library.
+ *
+ * @class
+ * @augments wp.media.view.MediaFrame
+ * @augments wp.media.view.Frame
+ * @augments wp.media.View
+ * @augments wp.Backbone.View
+ * @augments Backbone.View
+ * @mixes wp.media.controller.StateMachine
+ */
+
+wp.media.view.MediaFrame.SelectForPost = wp.media.view.MediaFrame.Select.extend({
+    initialize: function() {
+        _.defaults( this.options, {
+            multiple:  true,
+            editing:   false,
+            state:    'insert',
+            metadata:  {}
+        });
+        // Call 'initialize' directly on the parent class.
+        wp.media.view.MediaFrame.Select.prototype.initialize.apply( this, arguments );
+    },
+
+    /**
+     * Create the default states on the frame.
+     */
+    createStates: function() {
+        var options = this.options;
+
+        // Add the default states.
+        this.states.add([
+            // Main states.
+            new wp.media.controller.Library({
+                id:         'insert',
+                title:      options.title,
+                priority:   20,
+                toolbar:    'select',
+                filterable: 'uploaded',
+                library:    wp.media.query( options.library ),
+                multiple:  options.multiple,
+                editable:   true,
+
+                // If the user isn't allowed to edit fields,
+                // can they still edit it locally?
+                allowLocalEdits: true,
+
+                // Show the attachment display settings.
+                displaySettings: false,
+                // Update user settings when users adjust the
+                // attachment display settings.
+                displayUserSettings: false
+            })
+
+        ]);
+    }
+});
+})(jQuery);
+
+
+
 /**
  * Controls the behaviours of custom metabox fields.
  *
@@ -195,15 +259,16 @@ window.CMB2 = (function (window, document, $, undefined) {
         // Create the media frame.
         // depending on whether we have a post ID in the wp.media settings we create a 'post' frame or a default one (select)
         // the difference lies in the fact that for 'post' it will attach the uploads to the current post
-        media.frames[media.field] = wp.media({
-            frame: ( wp.media.model.settings.post.id == null || wp.media.model.settings.post.id == 0 ) ? 'select' : 'post',
+        media.frames[media.field] = new wp.media.view.MediaFrame.SelectForPost({
+            //frame: ( wp.media.model.settings.post.id == null || wp.media.model.settings.post.id == 0 ) ? 'select' : 'post',
             title: cmb.metabox().find('label[for=' + media.field + ']').text(),
             library: media.fieldData.queryargs || {},
             button: {
                 text: l10n.strings[isList ? 'upload_files' : 'upload_file']
             },
-            multiple: isList ? true : false
+            multiple: isList ? 'add' : false,
         });
+        wp.media.frame = media.frames[media.field];
 
         cmb.mediaHandlers.list = function (selection, returnIt) {
             // Get all of our selected files

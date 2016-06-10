@@ -122,10 +122,8 @@ class Fonto_Post_Types {
 			return $path;
 		}
 
-		//generate a unique hashid for the post_id to use a directory to upload the font files
-		$hashid = $this->parent->hash_encode_ID( $_REQUEST['post_id'] );
-
-		$customdir = '/fonts/' . $hashid;
+		//append the post ID (that is unique) to the path
+		$customdir = '/fonts/' . $_REQUEST['post_id'];
 
 		//remove default subdir (year/month) and add custom dir INSIDE THE DEFAULT UPLOAD DIR
 		$path['path']    = str_replace( $path['subdir'], $customdir, $path['path']);
