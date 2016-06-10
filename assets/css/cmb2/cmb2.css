@@ -840,6 +840,23 @@ Misc.
     opacity: 1;
 }
 
+#postbox-container-2 .inside
+{
+    margin-top: 0;
+    padding: 30px;
+}
+
+#postbox-container-2 .cmb-type-title
+{
+    margin: 0 -30px;
+    padding-top: 20px;
+    padding-right: 30px;
+    padding-bottom: 8px;
+    padding-left: 30px;
+
+    border-top: 2px solid #eee;
+}
+
 .cmb-row
 {
     color: #aaa;
@@ -1140,6 +1157,11 @@ ul.cmb2-radio-list li label
 .cmb2-id-fonto-url-path input
 {
     width: 100%;
+}
+
+.cmb2-id-fonto-embed-code-self-hosted[style='display: none;'] textarea
+{
+    display: none;
 }
 
 .postbox-container .cmb2-id-fonto-embed-code-self-hosted .cmb-td,
