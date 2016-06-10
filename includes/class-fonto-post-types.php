@@ -69,10 +69,10 @@ class Fonto_Post_Types {
 		$this->parent->register_post_type( 'font', __( 'Fonts', 'fonto' ), __( 'Font', 'fonto' ), __( 'Custom fonts bonanza', 'fonto' ), $args );
 
 		// Register a custom taxonomy for fonts.
-		$font_category_taxonomy = $this->parent->register_taxonomy( 'font_categories', __( 'Font Categories', 'fonto' ), __( 'Font Category', 'fonto' ), 'font' );
+		//$font_category_taxonomy = $this->parent->register_taxonomy( 'font_categories', __( 'Font Categories', 'fonto' ), __( 'Font Category', 'fonto' ), 'font' );
 
 		// Add taxonomy filter to Font edit page.
-		$font_category_taxonomy->add_filter();
+		//$font_category_taxonomy->add_filter();
 
 		//Add the metaboxes for the post types
 		add_action( 'cmb2_admin_init', array( $this, 'add_meta_boxes' ) );
@@ -208,7 +208,7 @@ class Fonto_Post_Types {
 
 		$font_details->add_field( array(
 			'name'        => __( 'URL Path to the font files', 'fonto' ),
-			'our_desc'    => __( 'This is the URL path to be used for the uploaded files.', 'fonto' ),
+			'our_desc'    => __( 'This is the URL path to be used for the uploaded font files. Please use it in the font\'s CSS rules (i.e. replace <code>Fonts/something.woff</code> with <code>http://yourdomain.com/wp-content/uploads/fonts/123/something.woff</code> ).', 'fonto' ),
 			'id'          => $prefix . 'url_path',
 			'type'        => 'text',
 			'attributes'  => array(

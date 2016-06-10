@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Fonto
- * Version: 0.9.2
+ * Version: 1.0.0
  * Plugin URI: https://pixelgrade.com
  * Description: This is your starter template for your next WordPress plugin.
  * Author: PixelGrade
@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function fonto() {
 
 	require_once( 'includes/class-fonto.php' );
-	$instance = Fonto::instance( __FILE__, '0.9.2' );
+	$instance = Fonto::instance( __FILE__, '1.0.0' );
 
 	return $instance;
 }

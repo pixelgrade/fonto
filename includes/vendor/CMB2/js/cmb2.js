@@ -139,7 +139,7 @@ window.CMB2 = (function (window, document, $, undefined) {
             // Media/file management
             .on('click', '.cmb-multicheck-toggle', cmb.toggleCheckBoxes)
             .on('click', '.cmb2-upload-button', cmb.handleMedia)
-            .on('click', '.cmb-attach-list li, .cmb2-media-status .img-status img, .cmb2-media-status .file-status > span', cmb.handleFileClick)
+            .on('click', '.cmb-attach-list li > span, .cmb2-media-status .img-status img, .cmb2-media-status .file-status > span', cmb.handleFileClick)
             .on('click', '.cmb2-remove-file-button', cmb.handleRemoveMedia)
             // Repeatable content
             .on('click', '.cmb-add-group-row', cmb.addGroupRow)
@@ -223,6 +223,11 @@ window.CMB2 = (function (window, document, $, undefined) {
         evt.preventDefault();
 
         var $el = $(this);
+
+        if ( $el.closest('li.file-status') ) {
+            $el = $el.closest('li.file-status');
+        }
+
         var $td = $el.closest('.cmb-td');
         var isList = $td.find('.cmb2-upload-button').hasClass('cmb2-upload-list');
         cmb.attach_id = isList ? $el.find('input[type="hidden"]').data('id') : $td.find('.cmb2-upload-file-id').val();
