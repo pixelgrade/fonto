@@ -1,6 +1,6 @@
 (function ($) {
 /**
- * wp.media.view.MediaFrame.Select
+ * Extends wp.media.view.MediaFrame.Select
  *
  * A frame for selecting an item or items from the media library.
  *

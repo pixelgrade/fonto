@@ -164,6 +164,8 @@ class Fonto extends Fonto_Init {
 		// The main CMB2
 		if ( file_exists( dirname( __FILE__ ) . '/vendor/cmb2/init.php' ) ) {
 			require_once dirname( __FILE__ ) . '/vendor/cmb2/init.php';
+
+			add_filter( 'cmb2_script_dependencies', array( $this, 'cmb2_requires_wp_media' ) );
 		}
 
 		//The CMB2 conditional display of fields
@@ -352,6 +354,12 @@ class Fonto extends Fonto_Init {
 		$mimes['svg'] = 'image/svg+xml';
 
 		return $mimes;
+	}
+
+	function cmb2_requires_wp_media( $dependencies ) {
+		$dependencies['media-editor'] = true;
+
+		return $dependencies;
 	}
 
 	/**
