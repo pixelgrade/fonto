@@ -161,17 +161,7 @@ class Fonto extends Fonto_Init {
 		include_once 'extras.php';
 
 		/* Load vendors */
-		// The main CMB2
-		if ( file_exists( dirname( __FILE__ ) . '/vendor/cmb2/init.php' ) ) {
-			require_once dirname( __FILE__ ) . '/vendor/cmb2/init.php';
-
-			add_filter( 'cmb2_script_dependencies', array( $this, 'cmb2_requires_wp_media' ) );
-		}
-
-		//The CMB2 conditional display of fields
-		if ( file_exists( dirname( __FILE__ ) . '/vendor/cmb2-conditionals/cmb2-conditionals.php' ) ) {
-			require_once dirname( __FILE__ ) . '/vendor/cmb2-conditionals/cmb2-conditionals.php';
-		}
+		$this->load_vendors();
 
 		/* Load integrations */
 		add_action( 'init', array( $this, 'load_integrations' ) );
@@ -191,7 +181,6 @@ class Fonto extends Fonto_Init {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_styles' ), 10, 1 );
 
 		// Handle localisation.
-		$this->load_plugin_textdomain();
 		add_action( 'init', array( $this, 'load_localisation' ), 0 );
 		
 		// Add custom post types.
@@ -262,7 +251,7 @@ class Fonto extends Fonto_Init {
 	public function admin_enqueue_styles() {
 		//Allow others to stop us in enqueueing the CSS
 		if ( ! apply_filters( $this->_token . '_admin_enqueue_css', true ) ) {
-			return false;
+			return ;
 		}
 
 		// Only use minified files if SCRIPT_DEBUG is off
@@ -292,6 +281,32 @@ class Fonto extends Fonto_Init {
 	} // End admin_enqueue_scripts ()
 
 	/**
+	 * Load vendors
+	 * @access  public
+	 * @since   1.0.0
+	 * @return  void
+	 */
+	public function load_vendors() {
+
+		//load everything about CMB2 - if that is the case
+		/**
+		 * A constant you can use to check if CMB2 is loaded
+		 */
+		if ( ! defined( 'CMB2_LOADED' ) ) {
+			define( 'CMB2_LOADED', true );
+		}
+		add_action( 'init', array( $this, 'include_cmb' ), 9983 );
+		add_filter( 'cmb2_script_dependencies', array( $this, 'cmb2_requires_wp_media' ) );
+
+		//The CMB2 conditional display of fields
+		if ( file_exists( dirname( __FILE__ ) . '/vendor/cmb2-conditionals/cmb2-conditionals.php' ) ) {
+			require_once dirname( __FILE__ ) . '/vendor/cmb2-conditionals/cmb2-conditionals.php';
+		}
+
+
+	} // End load_vendors ()
+
+	/**
 	 * Load various integrations with other plugins
 	 * @access  public
 	 * @since   1.0.0
@@ -310,30 +325,96 @@ class Fonto extends Fonto_Init {
 	} // End load_integrations ()
 
 	/**
+	 * A final check if CMB2 exists before kicking off our CMB2 loading.
+	 * CMB2_VERSION and CMB2_DIR constants are set at this point.
+	 *
+	 * @since  1.0.0
+	 */
+	public function include_cmb() {
+		if ( class_exists( 'CMB2', false ) ) {
+			return;
+		}
+
+		if ( ! defined( 'CMB2_VERSION' ) ) {
+			define( 'CMB2_VERSION', '2.2.1' );
+		}
+
+		if ( ! defined( 'CMB2_DIR' ) ) {
+			define( 'CMB2_DIR', trailingslashit( dirname( __FILE__ ) ) . '/vendor/cmb2/' );
+		}
+
+		$this->l10ni18n_cmb();
+
+		// Include helper functions
+		require_once CMB2_DIR . 'includes/CMB2.php';
+		require_once CMB2_DIR . 'includes/helper-functions.php';
+
+		// Now kick off the class autoloader
+		spl_autoload_register( 'cmb2_autoload_classes' );
+
+		// Kick the whole thing off
+		require_once CMB2_DIR . 'bootstrap.php';
+		cmb2_bootstrap();
+	}
+
+	/**
 	 * Load plugin localisation
 	 * @access  public
 	 * @since   1.0.0
 	 * @return  void
 	 */
 	public function load_localisation() {
+		//for the plugin
+		$this->l10ni18n();
 
-		load_plugin_textdomain( 'fonto', false, dirname( plugin_basename( $this->file ) ) . '/lang/' );
 	} // End load_localisation ()
 
 	/**
-	 * Load plugin textdomain
-	 * @access  public
-	 * @since   1.0.0
-	 * @return  void
+	 * Registers Fonto text domain path
+	 * @since  1.0.0
 	 */
-	public function load_plugin_textdomain() {
+	public function l10ni18n() {
 
-		$domain = 'fonto';
+		$loaded = load_plugin_textdomain( 'fonto', false, '/languages/' );
 
-		$locale = apply_filters( 'plugin_locale', get_locale(), $domain );
+		if ( ! $loaded ) {
+			$loaded = load_muplugin_textdomain( 'fonto', '/languages/' );
+		}
 
-		load_textdomain( $domain, WP_LANG_DIR . '/' . $domain . '/' . $domain . '-' . $locale . '.mo' );
-		load_plugin_textdomain( $domain, false, dirname( plugin_basename( $this->file ) ) . '/lang/' );
+		if ( ! $loaded ) {
+			$loaded = load_theme_textdomain( 'fonto', get_stylesheet_directory() . '/languages/' );
+		}
+
+		if ( ! $loaded ) {
+			$locale = apply_filters( 'plugin_locale', get_locale(), 'fonto' );
+			$mofile = dirname( __DIR__ ) . '/languages/fonto-' . $locale . '.mo';
+			load_textdomain( 'fonto', $mofile );
+		}
+
+	}
+
+	/**
+	 * Registers CMB2 text domain path
+	 * @since  1.0.0
+	 */
+	public function l10ni18n_cmb() {
+
+		$loaded = load_plugin_textdomain( 'cmb2', false, '/languages/' );
+
+		if ( ! $loaded ) {
+			$loaded = load_muplugin_textdomain( 'cmb2', '/languages/' );
+		}
+
+		if ( ! $loaded ) {
+			$loaded = load_theme_textdomain( 'cmb2', get_stylesheet_directory() . '/languages/' );
+		}
+
+		if ( ! $loaded ) {
+			$locale = apply_filters( 'plugin_locale', get_locale(), 'cmb2' );
+			$mofile = dirname( __FILE__ ) . '/vendor/cmb2/languages/cmb2-' . $locale . '.mo';
+			load_textdomain( 'cmb2', $mofile );
+		}
+
 	}
 
 	/**

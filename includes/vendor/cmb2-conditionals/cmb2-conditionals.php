@@ -1,13 +1,12 @@
 <?php
 /**
- * Plugin Name: CMB2 Conditionals
- * Plugin URI: https://github.com/jcchavezs/cmb2-conditionals
- * Description: Plugin to stablish conditional relationships between fields in a CMB2 metabox.
- * Author: José Carlos Chávez <jcchavezs@gmail.com>
- * Author URI: http://github.com/jcchavezs
- * Github Plugin URI: https://github.com/jcchavezs/cmb2-conditionals
- * Github Branch: master
- * Version: 1.0.4
+ * CMB2 Conditionals
+ * https://github.com/jcchavezs/cmb2-conditionals
+ * Plugin to establish conditional relationships between fields in a CMB2 metabox.
+ * Author - José Carlos Chávez <jcchavezs@gmail.com>
+ * Author URI - http://github.com/jcchavezs
+ * Github - https://github.com/jcchavezs/cmb2-conditionals
+ * Version - 1.0.4
 */
 
 add_action('plugins_loaded', 'cmb2_conditionals_load_actions');

@@ -90,20 +90,6 @@ class Fonto_Post_Types {
 	}
 
 	/**
-	 * Ajax handler to retrieve the sample Font URL path to where the font files are uploaded
-	 *
-	 * @since 3.1.0
-	 */
-	function wp_ajax_sample_font_url_path() {
-		check_ajax_referer( 'samplepermalink', 'samplepermalinknonce' );
-
-		//get the current URL for the uploads directory
-		$uploads = wp_upload_dir();
-
-		wp_die( $uploads['url'] );
-	}
-
-	/**
 	 * Change Upload Directory for Custom Post-Type
 	 *
 	 * This will change the upload directory for a custom post-type. Attachments will
@@ -111,19 +97,27 @@ class Fonto_Post_Types {
 	 * sure you swap out "post-type" in the if-statement with the appropriate value...
 	 */
 	public function custom_upload_directory( $path ) {
+		$post_ID = false;
+		//we need to account for both keys
+		if ( ! empty( $_REQUEST['post_id'] ) ) {
+			$post_ID = $_REQUEST['post_id'];
+		} elseif ( ! empty( $_REQUEST['post_ID'] ) ) {
+			$post_ID = $_REQUEST['post_ID'];
+		}
 		// Check if uploading from inside a post/page/cpt - if not, default Upload folder is used
-		$use_default_dir = ( isset( $_REQUEST['post_id'] ) && $_REQUEST['post_id'] == 0 ) ? true : false;
-		if( ! isset( $_REQUEST['post_id'] ) || ! empty( $path['error'] ) || $use_default_dir )
+		$use_default_dir = empty( $post_ID ) ? true : false;
+		if ( empty( $post_ID ) || ! empty( $path['error'] ) || $use_default_dir ) {
 			return $path;
+		}
 
 		// Check if correct post type
-		$the_post_type = get_post_type( $_REQUEST['post_id'] );
-		if( 'font' != $the_post_type ) {
+		$the_post_type = get_post_type( $post_ID );
+		if ( 'font' != $the_post_type ) {
 			return $path;
 		}
 
 		//append the post ID (that is unique) to the path
-		$customdir = '/fonts/' . $_REQUEST['post_id'];
+		$customdir = '/fonts/' . $post_ID;
 
 		//remove default subdir (year/month) and add custom dir INSIDE THE DEFAULT UPLOAD DIR
 		$path['path']    = str_replace( $path['subdir'], $customdir, $path['path']);
@@ -219,6 +213,7 @@ class Fonto_Post_Types {
 			),
 			'row_classes' => array( 'background__dark' ),
 			'render_row_cb' => array( $this, 'render_field_callback_our_desc_after_label' ),
+			'sanitization_cb' => array( $this, 'sanitize_url_path_not_empty' ),
 		) );
 
 		$font_details->add_field( array(
@@ -615,6 +610,43 @@ class Fonto_Post_Types {
 
 		// For chaining
 		return $field;
+	}
+
+	/**
+	 * Ajax handler to retrieve the sample Font URL path to where the font files are uploaded
+	 *
+	 * @since 1.0.0
+	 */
+	function wp_ajax_sample_font_url_path() {
+		check_ajax_referer( 'samplepermalink', 'samplepermalinknonce' );
+
+		//get the current URL for the uploads directory
+		$uploads = wp_upload_dir();
+
+		wp_die( trailingslashit( $uploads['url'] ) );
+	}
+
+	/**
+	 * Make sure that the Font URL Path field is not saved empty (maybe the AJAX that was supposed to retrieve it failed)
+	 * @since 1.0.0
+	 *
+	 * @param  mixed      $value      The unsanitized value from the form.
+	 * @param  array      $field_args Array of field arguments.
+	 * @param  CMB2_Field $field      The field object
+	 *
+	 * @return mixed                  Sanitized value to be stored.
+	 */
+	function sanitize_url_path_not_empty( $value, $field_args, $field ) {
+		$sanitized_value = $value;
+
+		if ( empty( $value ) ) {
+			//get the current URL for the uploads directory
+			$uploads = wp_upload_dir();
+
+			$sanitized_value = trailingslashit( $uploads['url'] );
+		}
+
+		return $sanitized_value;
 	}
 
 	/**
