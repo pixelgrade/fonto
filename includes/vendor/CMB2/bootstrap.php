@@ -2,7 +2,6 @@
 /**
  * Bootstraps the CMB2 process
  *
- * @category  WordPress_Plugin
  * @package   CMB2
  * @author    WebDevStudios
  * @license   GPL-2.0+
