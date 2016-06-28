@@ -8,7 +8,7 @@ Stable tag: 1.0
 License: GPL v2.0 (or later)
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
-Fonto allows you to use your favourite premium web fonts into your site, by making them available through the Editor and the Customify plugin. Support premium fonts from Typekit, MyFonts, Fonts.com, Fontspring or even self-hosted.
+Use your premium web fonts directly in the Editor or with the Customify plugin. Works with Typekit, MyFonts, Fonts.com, self-hosted fonts, and others.
 
 == Description ==
 
