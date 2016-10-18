@@ -1,13 +1,13 @@
 <?php
 /**
  * Plugin Name: Fonto
- * Version: 1.0.0
+ * Version: 1.0.1
  * Plugin URI: https://pixelgrade.com
- * Description: This is your starter template for your next WordPress plugin.
+ * Description: Use your premium web fonts directly in the Editor or with the Customify plugin. Works with Typekit, MyFonts, Fonts.com, self-hosted fonts, and others.
  * Author: PixelGrade
  * Author URI: https://pixelgrade.com
  * Requires at least: 4.0
- * Tested up to: 4.5.2
+ * Tested up to: 4.6.1
  *
  * Text Domain: fonto
  * Domain Path: /lang/

@@ -438,7 +438,7 @@ class Fonto extends Fonto_Init {
 	}
 
 	function cmb2_requires_wp_media( $dependencies ) {
-		$dependencies['media-editor'] = true;
+		$dependencies['media-editor'] = 'media-editor';
 
 		return $dependencies;
 	}
