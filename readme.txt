@@ -3,8 +3,8 @@ Contributors: pixelgrade, vlad.olaru, babbardel, cristianfrumusanu
 Donate link: https://pixelgrade.com
 Tags: font manager, custom font, custom fonts, custom web fonts, fonts, webfonts, typography, css, customizer, editor fonts, font plugin, font uploader
 Requires at least: 4.3.0
-Tested up to: 4.5.3
-Stable tag: 1.0
+Tested up to: 4.7.3
+Stable tag: 1.0.2
 License: GPL v2.0 (or later)
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -27,6 +27,9 @@ Installing "Fonto" can be done either by searching for "Fonto" via the "Plugins 
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
+
+= 1.0.2 =
+* Added compatibility with the latest developments in Customify.
 
 = 1.0 =
 * 2016-06-10
