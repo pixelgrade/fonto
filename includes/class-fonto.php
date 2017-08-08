@@ -340,7 +340,7 @@ class Fonto extends Fonto_Init {
 		}
 
 		if ( ! defined( 'CMB2_DIR' ) ) {
-			define( 'CMB2_DIR', trailingslashit( dirname( __FILE__ ) ) . '/vendor/cmb2/' );
+			define( 'CMB2_DIR', trailingslashit( dirname( __FILE__ ) ) . '/vendor/CMB2/' );
 		}
 
 		$this->l10ni18n_cmb();
