@@ -16,7 +16,6 @@
     "gulp-notify": "*",
     "gulp-csscomb": "*",
     "gulp-postcss": "*",
-    "gulp-chmod": "*",
     "gulp-rename": "*",
     "gulp-clean-css": "*",
     "rtlcss": "*",

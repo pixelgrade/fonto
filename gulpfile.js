@@ -7,10 +7,8 @@ var plugin = 'fonto',
 	rtlcss 		= require('rtlcss'),
 	postcss 	= require('gulp-postcss'),
 	rename 		= require('gulp-rename'),
-	chmod 		= require('gulp-chmod'),
 	cleanCSS = require('gulp-clean-css'),
 	exec        = require('gulp-exec'),
-	fs          = require('fs'),
 	del         = require('del');
 
 require('es6-promise').polyfill();
@@ -29,8 +27,7 @@ gulp.task('styles-expanded', function () {
 			.pipe(sass({ 'sourcemap=auto': true, outputStyle: 'expanded' }))
 			.pipe(prefix("last 1 version", "> 1%", "ie 8", "ie 7"))
 			.pipe(csscomb())
-			.pipe(chmod(644))
-			.pipe(gulp.dest('./assets/css/cmb2/'))
+			.pipe(gulp.dest('./assets/css/cmb2/', {"mode": "0644"}))
 			.pipe(postcss([
 				require('rtlcss')({ /* options */ })
 			]))
@@ -43,9 +40,8 @@ gulp.task('styles-compressed', function () {
 			.pipe(sass({ 'sourcemap=auto': true }))
 			.pipe(prefix("last 1 version", "> 1%", "ie 8", "ie 7"))
 			.pipe(cleanCSS())
-			.pipe(chmod(644))
 			.pipe(rename("cmb2.min.css"))
-			.pipe(gulp.dest('./assets/css/cmb2/'))
+			.pipe(gulp.dest('./assets/css/cmb2/', {"mode": "0644"}))
 			.pipe(postcss([
 				require('rtlcss')({ /* options */ })
 			]))
