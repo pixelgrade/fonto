@@ -45,7 +45,7 @@ class Fonto_Post_Types {
 	/**
 	 * Constructor function
 	 *
-	 * @param Object $parent Fonto Object.
+	 * @param Fonto $parent Fonto Object.
 	 */
 	public function __construct( $parent ) {
 		$this->parent = $parent;
@@ -591,7 +591,7 @@ class Fonto_Post_Types {
 		} else {
 
 			if ( $field->get_param_callback_result( 'label_cb' ) ) {
-				echo '<div class="cmb-th">', $field->peform_param_callback( 'label_cb' ), '<p class="cmb2-metabox-our-description">', $field->peform_param_callback( 'our_desc' ), '</p></div>';
+				echo '<div class="cmb-th">' . $field->peform_param_callback( 'label_cb' ) . '<p class="cmb2-metabox-our-description">' . $field->peform_param_callback( 'our_desc' ), '</p></div>';
 			}
 
 			echo "\n\t<div class=\"cmb-td\">\n";
@@ -653,14 +653,14 @@ class Fonto_Post_Types {
 	 * Load admin CSS - specific for post types
 	 * @access  public
 	 * @since   1.0.0
-	 * @return  void
+	 * @return  bool
 	 */
 	public function admin_enqueue_styles() {
 		global $post;
 
 		// If the post we're editing isn't a font type, exit this function
 		if ( ! $post || 'font' != $post->post_type ) {
-			return;
+			return false;
 		}
 
 		//Allow others to stop us in enqueueing the CSS
@@ -684,14 +684,14 @@ class Fonto_Post_Types {
 	 *
 	 * @access  public
 	 * @since   1.0.0
-	 * @return  void
+	 * @return  bool
 	 */
 	public function admin_enqueue_scripts() {
 		global $post;
 
 		// If the post we're editing isn't a font type, exit this function
 		if ( ! $post || 'font' != $post->post_type ) {
-			return;
+			return false;
 		}
 
 		//Allow others to stop us in enqueueing the JS
@@ -718,7 +718,7 @@ class Fonto_Post_Types {
 	 * @static
 	 * @see    Fonto()
 	 *
-	 * @param  Object $parent Main Fonto instance.
+	 * @param  Fonto $parent Main Fonto instance.
 	 *
 	 * @return Fonto_Post_Types instance
 	 */
