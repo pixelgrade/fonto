@@ -1,13 +1,13 @@
 <?php
 /**
  * Plugin Name: Fonto
- * Version: 1.0.2
+ * Version: 1.0.3
  * Plugin URI: https://pixelgrade.com
  * Description: Use your premium web fonts directly in the Editor or with the Customify plugin. Works with Typekit, MyFonts, Fonts.com, self-hosted fonts, and others.
  * Author: Pixelgrade
  * Author URI: https://pixelgrade.com
- * Requires at least: 4.0
- * Tested up to: 4.7.3
+ * Requires at least: 4.7
+ * Tested up to: 4.9.6
  *
  * Text Domain: fonto
  * Domain Path: /lang/
@@ -25,12 +25,12 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Returns the main instance of Fonto to prevent the need to use globals.
  *
  * @since  1.0.0
- * @return object Fonto
+ * @return Fonto
  */
 function fonto() {
 
 	require_once( 'includes/class-fonto.php' );
-	$instance = Fonto::instance( __FILE__, '1.0.2' );
+	$instance = Fonto::instance( __FILE__, '1.0.3' );
 
 	return $instance;
 }

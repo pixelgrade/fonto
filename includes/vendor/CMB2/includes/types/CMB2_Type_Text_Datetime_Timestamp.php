@@ -1,5 +1,4 @@
 <?php
-
 /**
  * CMB text_datetime_timestamp field type
  *
@@ -7,13 +6,13 @@
  *
  * @category  WordPress_Plugin
  * @package   CMB2
- * @author    WebDevStudios
+ * @author    CMB2 team
  * @license   GPL-2.0+
- * @link      http://webdevstudios.com
+ * @link      https://cmb2.io
  */
 class CMB2_Type_Text_Datetime_Timestamp extends CMB2_Type_Picker_Base {
 
-	public function render() {
+	public function render( $args = array() ) {
 		$field = $this->field;
 
 		$args = wp_parse_args( $this->args, array(
@@ -57,11 +56,11 @@ class CMB2_Type_Text_Datetime_Timestamp extends CMB2_Type_Picker_Base {
 
 	public function time_args( $args, $has_good_value ) {
 		$time_args = wp_parse_args( $args['timepicker'], array(
-			'class'           => 'cmb2-timepicker text-time',
-			'name'            => $this->_name( '[time]' ),
-			'id'              => $this->_id( '_time' ),
-			'value'           => $has_good_value ? $this->field->get_timestamp_format( 'time_format', $args['value'] ) : '',
-			'desc'            => $args['desc'],
+			'class' => 'cmb2-timepicker text-time',
+			'name'  => $this->_name( '[time]' ),
+			'id'    => $this->_id( '_time' ),
+			'value' => $has_good_value ? $this->field->get_timestamp_format( 'time_format', $args['value'] ) : '',
+			'desc'  => $args['desc'],
 			'js_dependencies' => array( 'jquery-ui-core', 'jquery-ui-datepicker', 'jquery-ui-datetimepicker' ),
 		) );
 

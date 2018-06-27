@@ -139,8 +139,6 @@ class Fonto_Post_Types {
 
 	/**
 	 * Supply metaboxes for Font post type edit page
-	 *
-	 * @return array
 	 */
 	function font_custom_fields() {
 		// For more info about the various options available for fields
@@ -165,7 +163,7 @@ class Fonto_Post_Types {
 
 		$font_details->add_field( array(
 			'name'    => __( 'Font Source', 'fonto' ),
-			'our_desc'    => __( 'Select whether you are using a Custom Web Font Service (Typekit, Myfonts, Fonts.com) or you\'re self-hosting the fonts.', 'fonto' ),
+			'desc'    => __( 'Select whether you are using a Custom Web Font Service (Typekit, Myfonts, Fonts.com) or you\'re self-hosting the fonts.', 'fonto' ),
 			'id'      => $prefix . 'font_source',
 			'type'    => 'radio',
 			'options' => array(
@@ -174,7 +172,6 @@ class Fonto_Post_Types {
 			),
 			'default' => 'font_service',
 			'row_classes' => array( 'no-divider', ),
-			'render_row_cb' => array( $this, 'render_field_callback_our_desc_after_label' ),
 		) );
 
 		$font_details->add_field( array(
@@ -187,22 +184,21 @@ class Fonto_Post_Types {
 
 		$font_details->add_field( array(
 			'name'         => __( 'Font Files', 'fonto' ),
-			'our_desc'         => __( 'Upload all the files received from the font service/generator.', 'fonto' ),
+			'desc'         => __( 'Upload all the files received from the font service/generator.', 'fonto' ),
 			'id'           => $prefix . 'font_files',
 			'type'         => 'file_list',
-			'preview_size' => false, // Default: array( 50, 50 )
+			'preview_size' => '', // Default: array( 50, 50 )
 			'attributes'  => array(
 				// Shown for Self-Hosted fonts
 				'data-conditional-id' => $prefix . 'font_source',
 				'data-conditional-value' => 'self_hosted',
 			),
 			'row_classes' => array( 'background__dark' ),
-			'render_row_cb' => array( $this, 'render_field_callback_our_desc_after_label' ),
 		) );
 
 		$font_details->add_field( array(
 			'name'        => __( 'URL Path to the font files', 'fonto' ),
-			'our_desc'    => __( 'This is the URL path to be used for the uploaded font files. Please use it in the font\'s CSS rules (i.e. replace <code>Fonts/something.woff</code> with <code>http://yourdomain.com/wp-content/uploads/fonts/123/something.woff</code> ).', 'fonto' ),
+			'desc'    => __( 'This is the URL path to be used for the uploaded font files. Please use it in the font\'s CSS rules (i.e. replace <code>Fonts/something.woff</code> with <code>http://yourdomain.com/wp-content/uploads/fonts/123/something.woff</code> ).<span class="note">*Note: You need to give a title to this font first and this field will be autofilled!</span>', 'fonto' ),
 			'id'          => $prefix . 'url_path',
 			'type'        => 'text',
 			'attributes'  => array(
@@ -212,7 +208,6 @@ class Fonto_Post_Types {
 				'readonly' => 'readonly',
 			),
 			'row_classes' => array( 'background__dark' ),
-			'render_row_cb' => array( $this, 'render_field_callback_our_desc_after_label' ),
 			'sanitization_cb' => array( $this, 'sanitize_url_path_not_empty' ),
 		) );
 
@@ -260,7 +255,7 @@ class Fonto_Post_Types {
 
 		$font_details->add_field( array(
 			'name' => __( 'How Fonts Variations (weights & styles) are declared?', 'fonto' ),
-			'our_desc' => __( 'Based on the format that you received the font names from the font service.', 'fonto' ),
+			'desc' => __( 'Based on the format that you received the font names from the font service.', 'fonto' ),
 			'id'   => $prefix . 'font_name_style',
 			'type' => 'radio',
 			'options' => array(
@@ -271,12 +266,11 @@ class Fonto_Post_Types {
 			),
 			'default' => 'grouped',
 			'row_classes' => array( 'full-width', ),
-			'render_row_cb' => array( $this, 'render_field_callback_our_desc_after_label' ),
 		) );
 
 		$font_details->add_field( array(
 			'name'    => __( 'Font Family Name', 'fonto' ),
-			'our_desc'    => __( 'Insert the CSS font name as provided by the font service.', 'fonto' ),
+			'desc'    => __( 'Insert the CSS font name as provided by the font service.', 'fonto' ),
 			'id'      => $prefix . 'font_family_name',
 			'type'    => 'text',
 			'attributes'  => array(
@@ -285,12 +279,11 @@ class Fonto_Post_Types {
 				'data-conditional-id' =>  $prefix . 'font_name_style',
 				'data-conditional-value' => 'grouped',
 			),
-			'render_row_cb' => array( $this, 'render_field_callback_our_desc_after_label' ),
 		) );
 
 		$font_details->add_field( array(
 			'name'    => __( 'Available Font Variations', 'fonto' ),
-			'our_desc'    => __( 'Check the available variations for this font.', 'fonto' )
+			'desc'    => __( 'Check the available variations for this font.', 'fonto' )
 						. '<span class="note">' . __( '*Note that the variations will be available through the Font Selectors and will not make any effect if a specific variation is checked but is not loaded by the font service.', 'fonto' ) . '</span>',
 			'id'      => $prefix . 'font_variations',
 			'type'    => 'multicheck',
@@ -323,7 +316,6 @@ class Fonto_Post_Types {
 			),
 			// 'inline'  => true, // Toggles display to inline
 			'row_classes' => array( 'font-variations', 'no-divider' ),
-			'render_row_cb' => array( $this, 'render_field_callback_our_desc_after_label' ),
 		) );
 
 		$font_details->add_field( array(
@@ -560,59 +552,6 @@ class Fonto_Post_Types {
 	} // End font_custom_fields()
 
 	/**
-	 * Custom field render callback that will put the description (desc) after the label (name) not after the input (the default behaviour)
-	 *
-	 * @param  array      $field_args Array of field parameters
-	 * @param  CMB2_Field $field      Field object
-	 *
-	 * @return  CMB2_Field object
-	 */
-	public function render_field_callback_our_desc_after_label( $field_args, $field ) {
-
-		// If field is requesting to not be shown on the front-end
-		if ( ! is_admin() && ! $field->args( 'on_front' ) ) {
-			return;
-		}
-
-		// If field is requesting to be conditionally shown
-		if ( ! $field->should_show() ) {
-			return;
-		}
-
-		$field->peform_param_callback( 'before_row' );
-
-		printf( "<div class=\"cmb-row %s\" data-fieldtype=\"%s\">\n", $field->row_classes(), $field->type() );
-
-		if ( ! $field->args( 'show_names' ) ) {
-			echo "\n\t<div class=\"cmb-td\">\n";
-
-			$field->peform_param_callback( 'label_cb' );
-
-		} else {
-
-			if ( $field->get_param_callback_result( 'label_cb' ) ) {
-				echo '<div class="cmb-th">' . $field->peform_param_callback( 'label_cb' ) . '<p class="cmb2-metabox-our-description">' . $field->peform_param_callback( 'our_desc' ), '</p></div>';
-			}
-
-			echo "\n\t<div class=\"cmb-td\">\n";
-		}
-
-		$field->peform_param_callback( 'before' );
-
-		$field_type = new CMB2_Types( $field );
-		$field_type->render();
-
-		$field->peform_param_callback( 'after' );
-
-		echo "\n\t</div>\n</div>";
-
-		$field->peform_param_callback( 'after_row' );
-
-		// For chaining
-		return $field;
-	}
-
-	/**
 	 * Ajax handler to retrieve the sample Font URL path to where the font files are uploaded
 	 *
 	 * @since 1.0.0
@@ -677,6 +616,8 @@ class Fonto_Post_Types {
 		wp_register_style( $this->parent->_token . '-cmb2-styles', esc_url( $this->parent->assets_url ) . "css/cmb2/cmb2{$rtl}{$min}.css", $styles, $this->parent->_version );
 
 		wp_enqueue_style( $this->parent->_token . '-cmb2-styles' );
+
+		return true;
 	} // End admin_enqueue_styles ()
 
 	/**
@@ -705,6 +646,8 @@ class Fonto_Post_Types {
 		), $this->parent->_version );
 
 		wp_enqueue_script( $this->parent->_token . '-cmb2' );
+
+		return true;
 
 	} // End admin_enqueue_scripts ()
 

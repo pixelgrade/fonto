@@ -1,5 +1,4 @@
 <?php
-
 /**
  * CMB text field type
  *
@@ -7,9 +6,9 @@
  *
  * @category  WordPress_Plugin
  * @package   CMB2
- * @author    WebDevStudios
+ * @author    CMB2 team
  * @license   GPL-2.0+
- * @link      http://webdevstudios.com
+ * @link      https://cmb2.io
  */
 class CMB2_Type_Text extends CMB2_Type_Base {
 
@@ -26,7 +25,7 @@ class CMB2_Type_Text extends CMB2_Type_Base {
 	 * @since 2.2.2
 	 *
 	 * @param CMB2_Types $types
-	 * @param array $args
+	 * @param array      $args
 	 */
 	public function __construct( CMB2_Types $types, $args = array(), $type = '' ) {
 		parent::__construct( $types, $args );
@@ -35,15 +34,14 @@ class CMB2_Type_Text extends CMB2_Type_Base {
 
 	/**
 	 * Handles outputting an 'input' element
+	 *
 	 * @since  1.1.0
-	 *
 	 * @param  array $args Override arguments
-	 *
 	 * @return string       Form input element
 	 */
 	public function render( $args = array() ) {
 		$args = empty( $args ) ? $this->args : $args;
-		$a    = $this->parse_args( $this->type, array(
+		$a = $this->parse_args( $this->type, array(
 			'type'            => 'text',
 			'class'           => 'regular-text',
 			'name'            => $this->_name(),
@@ -53,12 +51,8 @@ class CMB2_Type_Text extends CMB2_Type_Base {
 			'js_dependencies' => array(),
 		), $args );
 
-		if ( ! empty( $a['js_dependencies'] ) ) {
-			CMB2_JS::add_dependencies( $a['js_dependencies'] );
-		}
-
 		return $this->rendered(
-			sprintf( '<input%s/>%s', $this->concat_attrs( $a, array( 'desc', 'js_dependencies' ) ), $a['desc'] )
+			sprintf( '<input%s/>%s', $this->concat_attrs( $a, array( 'desc' ) ), $a['desc'] )
 		);
 	}
 }

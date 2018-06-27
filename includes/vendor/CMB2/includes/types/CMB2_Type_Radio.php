@@ -1,5 +1,4 @@
 <?php
-
 /**
  * CMB radio field type
  *
@@ -7,9 +6,9 @@
  *
  * @category  WordPress_Plugin
  * @package   CMB2
- * @author    WebDevStudios
+ * @author    CMB2 team
  * @license   GPL-2.0+
- * @link      http://webdevstudios.com
+ * @link      https://cmb2.io
  */
 class CMB2_Type_Radio extends CMB2_Type_Multi_Base {
 
@@ -26,7 +25,7 @@ class CMB2_Type_Radio extends CMB2_Type_Multi_Base {
 	 * @since 2.2.2
 	 *
 	 * @param CMB2_Types $types
-	 * @param array $args
+	 * @param array      $args
 	 */
 	public function __construct( CMB2_Types $types, $args = array(), $type = '' ) {
 		parent::__construct( $types, $args );
@@ -38,9 +37,9 @@ class CMB2_Type_Radio extends CMB2_Type_Multi_Base {
 			'class'   => 'cmb2-radio-list cmb2-list',
 			'options' => $this->concat_items( array(
 				'label'  => 'test',
-				'method' => 'list_input'
+				'method' => 'list_input',
 			) ),
-			'desc'    => $this->_desc( true ),
+			'desc' => $this->_desc( true ),
 		) );
 
 		return $this->rendered( $this->ul( $args ) );

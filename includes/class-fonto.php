@@ -288,14 +288,10 @@ class Fonto extends Fonto_Init {
 	 */
 	public function load_vendors() {
 
-		//load everything about CMB2 - if that is the case
-		/**
-		 * A constant you can use to check if CMB2 is loaded
-		 */
-		if ( ! defined( 'CMB2_LOADED' ) ) {
-			define( 'CMB2_LOADED', true );
+		// Load everything about CMB2 - if that is the case.
+		if ( file_exists( dirname( __FILE__ ) . '/vendor/CMB2/init.php' ) ) {
+			require_once dirname( __FILE__ ) . '/vendor/CMB2/init.php';
 		}
-		add_action( 'init', array( $this, 'include_cmb' ), 9983 );
 		add_filter( 'cmb2_script_dependencies', array( $this, 'cmb2_requires_wp_media' ) );
 
 		//The CMB2 conditional display of fields
@@ -323,39 +319,6 @@ class Fonto extends Fonto_Init {
 		}
 
 	} // End load_integrations ()
-
-	/**
-	 * A final check if CMB2 exists before kicking off our CMB2 loading.
-	 * CMB2_VERSION and CMB2_DIR constants are set at this point.
-	 *
-	 * @since  1.0.0
-	 */
-	public function include_cmb() {
-		if ( class_exists( 'CMB2', false ) ) {
-			return;
-		}
-
-		if ( ! defined( 'CMB2_VERSION' ) ) {
-			define( 'CMB2_VERSION', '2.2.1' );
-		}
-
-		if ( ! defined( 'CMB2_DIR' ) ) {
-			define( 'CMB2_DIR', trailingslashit( dirname( __FILE__ ) ) . '/vendor/CMB2/' );
-		}
-
-		$this->l10ni18n_cmb();
-
-		// Include helper functions
-		require_once CMB2_DIR . 'includes/CMB2.php';
-		require_once CMB2_DIR . 'includes/helper-functions.php';
-
-		// Now kick off the class autoloader
-		spl_autoload_register( 'cmb2_autoload_classes' );
-
-		// Kick the whole thing off
-		require_once CMB2_DIR . 'bootstrap.php';
-		cmb2_bootstrap();
-	}
 
 	/**
 	 * Load plugin localisation
@@ -466,7 +429,7 @@ class Fonto extends Fonto_Init {
 	 * @param string $version Version.
 	 *
 	 * @see    Fonto()
-	 * @return Main Fonto instance
+	 * @return Fonto Main Fonto instance
 	 */
 	public static function instance( $file = '', $version = '1.0.0' ) {
 

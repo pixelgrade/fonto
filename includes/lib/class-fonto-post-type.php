@@ -114,6 +114,7 @@ class Fonto_Post_Type {
 			'new_item'           => sprintf( __( 'New %s', 'fonto' ), $this->single ),
 			'all_items'          => sprintf( __( 'All %s', 'fonto' ), $this->plural ),
 			'view_item'          => sprintf( __( 'View %s', 'fonto' ), $this->single ),
+			'view_items'         => sprintf( __( 'View %s', 'fonto' ), $this->plural ),
 			'search_items'       => sprintf( __( 'Search %s', 'fonto' ), $this->plural ),
 			'not_found'          => sprintf( __( 'No %s Found', 'fonto' ), $this->plural ),
 			'not_found_in_trash' => sprintf( __( 'No %s Found In Trash', 'fonto' ), $this->plural ),
