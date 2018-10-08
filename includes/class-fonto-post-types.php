@@ -66,7 +66,7 @@ class Fonto_Post_Types {
 		);
 
 		// The parent class invokes Fonto_Post_Type
-		$this->parent->register_post_type( 'font', __( 'Fonts', 'fonto' ), __( 'Font', 'fonto' ), __( 'Custom fonts bonanza', 'fonto' ), $args );
+		$this->parent->register_post_type( 'font', esc_html__( 'Fonts', 'fonto' ), esc_html__( 'Font', 'fonto' ), esc_html__( 'Custom fonts bonanza', 'fonto' ), $args );
 
 		// Register a custom taxonomy for fonts.
 		//$font_category_taxonomy = $this->parent->register_taxonomy( 'font_categories', __( 'Font Categories', 'fonto' ), __( 'Font Category', 'fonto' ), 'font' );
