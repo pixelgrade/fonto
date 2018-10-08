@@ -318,6 +318,14 @@ class Fonto extends Fonto_Init {
 			require_once dirname( __FILE__ ) . '/integrations/customify.php';
 		}
 
+		/**
+		 * Load Style Manager compatibility file.
+		 * https://wordpress.org/plugins/style-manager/
+		 */
+		if ( class_exists( 'StyleManager_Plugin' ) ) {
+			require_once dirname( __FILE__ ) . '/integrations/style-manager.php';
+		}
+
 	} // End load_integrations ()
 
 	/**

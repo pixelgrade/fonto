@@ -2,9 +2,10 @@
 Contributors: pixelgrade, vlad.olaru, babbardel, cristianfrumusanu
 Donate link: https://pixelgrade.com
 Tags: font manager, custom font, custom fonts, custom web fonts, fonts, webfonts, typography, css, customizer, editor fonts, font plugin, font uploader
-Requires at least: 4.7.0
-Tested up to: 4.9.6
-Stable tag: 1.0.2
+Requires at least: 4.8.0
+Tested up to: 4.9.8
+Requires PHP: 5.4.0
+Stable tag: 1.0.3
 License: GPL v2.0 (or later)
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -26,7 +27,15 @@ Installing "Fonto" can be done either by searching for "Fonto" via the "Plugins 
 1. Upload the ZIP file through the 'Plugins > Add New > Upload' screen in your WordPress dashboard
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
+== Credits ==
+
+* [CMB2](https://github.com/CMB2/CMB2) Metaboxes, custom fields library - License: GPLv2 or later
+* [CMB2 Conditionals](https://github.com/jcchavezs/cmb2-conditionals/) plugin for CMB2 - License: GPLv2 or later
+
 == Changelog ==
+
+= 1.0.4 =
+* Fixed incompatibility with other plugins that use the CMB2 Conditional Fields add-on.
 
 = 1.0.3 =
 * Updated CMB2 to the latest version.
