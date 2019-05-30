@@ -2,10 +2,10 @@
 Contributors: pixelgrade, vlad.olaru, babbardel, cristianfrumusanu
 Donate link: https://pixelgrade.com
 Tags: font manager, custom font, custom fonts, custom web fonts, fonts, webfonts, typography, css, customizer, editor fonts, font plugin, font uploader
-Requires at least: 4.8.0
-Tested up to: 4.9.8
+Requires at least: 4.9.0
+Tested up to: 5.2.0
 Requires PHP: 5.4.0
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 License: GPL v2.0 (or later)
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -33,6 +33,9 @@ Installing "Fonto" can be done either by searching for "Fonto" via the "Plugins 
 * [CMB2 Conditionals](https://github.com/jcchavezs/cmb2-conditionals/) plugin for CMB2 - License: GPLv2 or later
 
 == Changelog ==
+
+= 1.0.5 =
+* We did several compatibility checks with Gutenberg, so everything will be working atleast as smoothly as normal.
 
 = 1.0.4 =
 * Fixed incompatibility with other plugins that use the CMB2 Conditional Fields add-on.

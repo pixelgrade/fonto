@@ -42,7 +42,7 @@ class Fonto_Init {
 	 * @access  private
 	 * @since   1.0.0
 	 */
-	private $minimalRequiredPhpVersion = 5.2;
+	private $minimalRequiredPhpVersion = 5.3;
 
 	/**
 	 * Plugin Name.

@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function fonto() {
 
 	require_once( 'includes/class-fonto.php' );
-	$instance = Fonto::instance( __FILE__, '1.0.4' );
+	$instance = Fonto::instance( __FILE__, '1.0.5' );
 
 	return $instance;
 }
