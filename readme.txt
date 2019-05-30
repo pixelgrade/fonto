@@ -35,7 +35,7 @@ Installing "Fonto" can be done either by searching for "Fonto" via the "Plugins 
 == Changelog ==
 
 = 1.0.5 =
-* We did several compatibility checks with Gutenberg, so everything will be working at least as smoothly as normal.
+* We did several compatibility checks with the latest WordPress releases, so everything will be working at least as smoothly as normal.
 
 = 1.0.4 =
 * Fixed incompatibility with other plugins that use the CMB2 Conditional Fields add-on.
