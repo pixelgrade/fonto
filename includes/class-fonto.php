@@ -182,7 +182,7 @@ class Fonto extends Fonto_Init {
 
 		// Handle localisation.
 		add_action( 'init', array( $this, 'load_localisation' ), 0 );
-		
+
 		// Add custom post types.
 		if ( is_null( $this->post_types ) ) {
 			$this->post_types = Fonto_Post_Types::instance( $this );
@@ -263,7 +263,7 @@ class Fonto extends Fonto_Init {
 		wp_register_style( $this->_token . '-admin-styles', esc_url( $this->assets_url ) . "css/admin{$rtl}{$min}.css", $styles, $this->_version );
 
 		wp_enqueue_style( $this->_token . '-admin-styles' );
-		
+
 	} // End admin_enqueue_styles ()
 
 	/**
@@ -294,7 +294,7 @@ class Fonto extends Fonto_Init {
 		}
 		add_filter( 'cmb2_script_dependencies', array( $this, 'cmb2_requires_wp_media' ) );
 
-		//The CMB2 conditional display of fields
+		// The CMB2 conditional display of fields
 		if ( file_exists( dirname( __FILE__ ) . '/vendor/cmb2-conditionals/cmb2-conditionals.php' ) ) {
 			require_once dirname( __FILE__ ) . '/vendor/cmb2-conditionals/cmb2-conditionals.php';
 		}
@@ -360,30 +360,6 @@ class Fonto extends Fonto_Init {
 			$locale = apply_filters( 'plugin_locale', get_locale(), 'fonto' );
 			$mofile = dirname( __DIR__ ) . '/languages/fonto-' . $locale . '.mo';
 			load_textdomain( 'fonto', $mofile );
-		}
-
-	}
-
-	/**
-	 * Registers CMB2 text domain path
-	 * @since  1.0.0
-	 */
-	public function l10ni18n_cmb() {
-
-		$loaded = load_plugin_textdomain( 'cmb2', false, '/languages/' );
-
-		if ( ! $loaded ) {
-			$loaded = load_muplugin_textdomain( 'cmb2', '/languages/' );
-		}
-
-		if ( ! $loaded ) {
-			$loaded = load_theme_textdomain( 'cmb2', get_stylesheet_directory() . '/languages/' );
-		}
-
-		if ( ! $loaded ) {
-			$locale = apply_filters( 'plugin_locale', get_locale(), 'cmb2' );
-			$mofile = dirname( __FILE__ ) . '/vendor/cmb2/languages/cmb2-' . $locale . '.mo';
-			load_textdomain( 'cmb2', $mofile );
 		}
 
 	}

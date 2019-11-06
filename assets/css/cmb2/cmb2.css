@@ -930,35 +930,30 @@ Misc.
     background-color: #f1f1f1;
 }
 
-input[type=radio],
-input[type=checkbox]
+.cmb2-wrap input[type=radio],
+.cmb2-wrap input[type=checkbox]
 {
     width: 24px;
+    min-width: 24px;
     height: 24px;
+    margin-right: 10px;
 
     border: 1px solid #ddd;
     box-shadow: none;
 }
 
-input[type=radio]:focus,
-input[type=checkbox]:focus
+.cmb2-wrap input[type=radio]:focus,
+.cmb2-wrap input[type=checkbox]:focus
 {
     box-shadow: none;
 }
 
-.cmb2-wrap input[type=radio],
-.cmb2-wrap
-input[type=checkbox]
-{
-    margin-right: 10px;
-}
-
-input[type=radio]:checked
+.cmb2-wrap input[type=radio]:checked
 {
     border: 1px solid #76c6ec;
 }
 
-input[type=radio]:checked:before
+.cmb2-wrap input[type=radio]:checked:before
 {
     width: 16px;
     height: 16px;
@@ -967,18 +962,18 @@ input[type=radio]:checked:before
     background-color: #76c6ec;
 }
 
-input[type=checkbox]
+.cmb2-wrap input[type='checkbox']
 {
     border-radius: 2px;
 }
 
-input[type=checkbox]:checked
+.cmb2-wrap input[type=checkbox]:checked
 {
     border: 1px solid #76c6ec;
     background: #76c6ec;
 }
 
-input[type=checkbox]:checked:before
+.cmb2-wrap input[type=checkbox]:checked:before
 {
     margin: 0;
 

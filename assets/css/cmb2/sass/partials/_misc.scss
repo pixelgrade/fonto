@@ -131,48 +131,47 @@ Misc.
       background-color: #F1F1F1;
     }
   }
-}
 
-input[type=radio],
-input[type=checkbox] {
-  width: 24px;
-  height: 24px;
+  input[type=radio],
+  input[type=checkbox] {
+    width: 24px;
+    height: 24px;
 
-  border: 1px solid #DDDDDD;
-
-  box-shadow: none;
-
-  &:focus {
-    box-shadow: none;
-  }
-
-  .cmb2-wrap & {
     margin-right: 10px;
+    min-width: 24px;
+
+    border: 1px solid #DDDDDD;
+
+    box-shadow: none;
+
+    &:focus {
+      box-shadow: none;
+    }
   }
-}
 
-input[type=radio]:checked {
-  border: 1px solid #76C6EC;
-
-  &:before {
-    width: 16px;
-    height: 16px;
-    margin: 3px;
-
-    background-color: #76C6EC;
-  }
-}
-
-input[type=checkbox] {
-  border-radius: 2px;
-
-  &:checked {
+  input[type=radio]:checked {
     border: 1px solid #76C6EC;
-    background: #76C6EC;
 
     &:before {
-      color: white;
-      margin: 0;
+      width: 16px;
+      height: 16px;
+      margin: 3px;
+
+      background-color: #76C6EC;
+    }
+  }
+
+  input[type=checkbox] {
+    border-radius: 2px;
+
+    &:checked {
+      border: 1px solid #76C6EC;
+      background: #76C6EC;
+
+      &:before {
+        color: white;
+        margin: 0;
+      }
     }
   }
 }

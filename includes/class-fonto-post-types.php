@@ -76,6 +76,8 @@ class Fonto_Post_Types {
 
 		//Add the metaboxes for the post types
 		add_action( 'cmb2_admin_init', array( $this, 'add_meta_boxes' ) );
+		// Make sure that no CMB2 core styles are enqueued
+		add_filter( 'cmb2_enqueue_css', array( $this, 'prevent_cmb2_core_styles' ) );
 
 		//Enqueue the static assets for the metaboxes in the admin area
 		// Load admin JS & CSS.
@@ -153,7 +155,7 @@ class Fonto_Post_Types {
 			'context'    => 'normal',
 			'priority'   => 'high',
 			'show_names' => true, // Show field names on the left
-			'cmb_styles' => false, // false to disable the CMB stylesheet - we are loding our own clean CSS
+			'cmb_styles' => false, // false to disable the CMB stylesheet - we are loading our own clean CSS
 			'closed'     => false, // true to keep the metabox closed by default
 			//'classes'    => 'extra-class', // Extra cmb2-wrap classes
 			// 'classes_cb' => 'yourprefix_add_some_classes', // Add classes through a callback.
@@ -549,7 +551,17 @@ class Fonto_Post_Types {
 			'after_row'   => '</div><!-- .matching-fields-section -->',
 		) );
 
-	} // End font_custom_fields()
+	}
+
+	public function prevent_cmb2_core_styles( $enqueue ) {
+		global $post;
+
+		if ( $post && 'font' === $post->post_type ) {
+			return false;
+		}
+
+		return $enqueue;
+	}
 
 	/**
 	 * Ajax handler to retrieve the sample Font URL path to where the font files are uploaded
