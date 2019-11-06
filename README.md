@@ -44,6 +44,10 @@ The plugin provides actions and filters in all the right places allowing you int
 
 ## Changelog
 
+### 1.1.0
+* Updated CMB2 to the latest version (v2.6.0), thus avoiding issues with other plugins or themes that use CMB2.
+* Fixed minor styling issues.
+
 ### 1.0.5
 * We did several compatibility checks with the latest WordPress releases, so everything will be working at least as smoothly as normal.
 
