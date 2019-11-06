@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
 	'use strict';
-	
+
 	/**
 	 * Add 'show' and 'hide' event to JQuery event detection.
 	 * @see http://viralpatel.net/blogs/jquery-trigger-custom-event-show-hide-element/
@@ -45,7 +45,7 @@ jQuery(document).ready(function($) {
 						CMB2ConditionalToggleRows('[data-conditional-id="' + id + '"][data-conditional-value*=\'"' + conditionValue + '"\']', true);
 					}
 				});
-				
+
 			$conditionParent.on('hide', function(evt){
 				$parent.toggle( false );
 			});
