@@ -987,7 +987,6 @@ ul.cmb2-radio-list
 
 ul.cmb2-radio-list li
 {
-    display: -ms-flexbox;
     display: flex;
 }
 
@@ -1074,8 +1073,7 @@ ul.cmb2-radio-list li label
     padding-top: 50px;
 
     transition: background-color .15s ease-in-out;
-    -webkit-transform: translateX(-50%) translateY(-50%);
-            transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
 
     border: 1px solid transparent;
     background: url('../../images/add-fonts-button.png') center 10px no-repeat;
@@ -1087,8 +1085,7 @@ ul.cmb2-radio-list li label
 .cmb2-id-fonto-font-files .cmb2-upload-button:active,
 .cmb2-id-fonto-font-files .cmb2-upload-button:focus
 {
-    -webkit-transform: translateX(-50%) translateY(-50%);
-            transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
 
     border: 1px solid #f2f2f2;
     background: url('../../images/add-fonts-button.png') center 10px no-repeat;
@@ -1141,8 +1138,7 @@ ul.cmb2-radio-list li label
 
     margin-bottom: 15px;
 
-    -webkit-transform: none;
-            transform: none;
+    transform: none;
 }
 
 .cmb2-id-fonto-url-path
@@ -1212,20 +1208,17 @@ ul.cmb2-radio-list li label
 
 .cmb2-id-fonto-font-variations .cmb2-checkbox-list
 {
-    display: -ms-flexbox;
     display: flex;
 
     color: #444;
 
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
+    flex-wrap: wrap;
 }
 
 .cmb2-id-fonto-font-variations .cmb2-checkbox-list li
 {
     font-size: 16px;
 
-    -ms-flex-preferred-size: 50%;
     flex-basis: 50%;
 }
 
@@ -1302,18 +1295,14 @@ label[for*='italic']
 
 .matching-fields-section
 {
-    display: -ms-flexbox;
     display: flex;
 
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    -ms-flex-pack: justify;
+    flex-wrap: wrap;
     justify-content: space-between;
 }
 
 .matching-fields-section .cmb-row
 {
-    -ms-flex-preferred-size: 47.25%;
     flex-basis: 47.25%;
 }
 
@@ -2902,9 +2891,7 @@ Sidebar Placement Adjustments
 .cmb2-element .ui-corner-left,
 .cmb2-element .ui-corner-tl
 {
-           border-top-left-radius: 4px;
-
-    -khtml-border-top-left-radius: 4px;
+    border-top-left-radius: 4px;
 }
 
 .cmb2-element.ui-corner-all,
@@ -2913,9 +2900,7 @@ Sidebar Placement Adjustments
 .cmb2-element .ui-corner-right,
 .cmb2-element .ui-corner-tr
 {
-           border-top-right-radius: 4px;
-
-    -khtml-border-top-right-radius: 4px;
+    border-top-right-radius: 4px;
 }
 
 .cmb2-element.ui-corner-all,
@@ -2924,9 +2909,7 @@ Sidebar Placement Adjustments
 .cmb2-element .ui-corner-left,
 .cmb2-element .ui-corner-bl
 {
-           border-bottom-left-radius: 4px;
-
-    -khtml-border-bottom-left-radius: 4px;
+    border-bottom-left-radius: 4px;
 }
 
 .cmb2-element.ui-corner-all,
@@ -2935,9 +2918,7 @@ Sidebar Placement Adjustments
 .cmb2-element .ui-corner-right,
 .cmb2-element .ui-corner-br
 {
-           border-bottom-right-radius: 4px;
-
-    -khtml-border-bottom-right-radius: 4px;
+    border-bottom-right-radius: 4px;
 }
 
 .cmb2-element .ui-widget-overlay
@@ -2954,11 +2935,10 @@ Sidebar Placement Adjustments
     padding: 8px;
 
     opacity: .30;
-           border-radius: 8px;
+    border-radius: 8px;
     background: #aaa url(../images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x;
 
     filter: Alpha(Opacity=30);
-    -khtml-border-radius: 8px;
 }
 
 .cmb2-element.ui-datepicker,
