@@ -3,7 +3,7 @@
  * A set of functions that expose information to others to use
  *
  * @package  Fonto
- * @author   PixelGrade <contact@pixelgrade.com>
+ * @author   Pixelgrade <contact@pixelgrade.com>
  * @license  GPL v2.0 (or later) see LICENCE file or http://www.gnu.org/licenses/gpl-2.0.html
  * @link     https://pixelgrade.com
  */

@@ -4,7 +4,7 @@
  *
  * @category Class
  * @package Fonto
- * @author   PixelGrade <contact@pixelgrade.com>
+ * @author   Pixelgrade <contact@pixelgrade.com>
  * @license  GPL v2.0 (or later) see LICENCE file or http://www.gnu.org/licenses/gpl-2.0.html
  * @link     https://pixelgrade.com
  */
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @category include
  * @package  Fonto
- * @author   PixelGrade <contact@pixelgrade.com>
+ * @author   Pixelgrade <contact@pixelgrade.com>
  * @license  GPL v2.0 (or later) see LICENCE file or http://www.gnu.org/licenses/gpl-2.0.html
  * @version  Release: .1
  * @link     https://pixelgrade.com
