@@ -12,6 +12,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * @param array $args WP_Query args to use to get posts.
+ *
+ * @return WP_Post[]|int[] Array of post objects or post IDs.
+ */
 function fonto_get_fonts( $args = array() ) {
 	/** @var Fonto $local_fonto */
 	$local_fonto = fonto();

@@ -7,9 +7,9 @@
  * Author: Pixelgrade
  * Author URI: https://pixelgrade.com
  * Requires at least: 4.9
- * Tested up to: 5.7.0
+ * Tested up to: 5.7.2
  * Text Domain: fonto
- * Domain Path: /lang/
+ * Domain Path: /languages/
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

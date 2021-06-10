@@ -173,5 +173,5 @@ class Fonto_Init {
 	 */
 	public function log_version_number() {
 		$this->option->update_option( '_version', $this->_version );
-	} // End _log_version_number ()
+	}
 }

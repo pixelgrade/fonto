@@ -2,11 +2,11 @@
 /**
  * Document for class Fonto_Post_Types
  *
- * @category Class
- * @package Fonto
+ * @link     https://pixelgrade.com
+ * @package  Fonto
  * @author   Pixelgrade <contact@pixelgrade.com>
  * @license  GPL v2.0 (or later) see LICENCE file or http://www.gnu.org/licenses/gpl-2.0.html
- * @link     https://pixelgrade.com
+ * @category Class
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -16,29 +16,29 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Class to handle the : registration, taxonomies and custom fields
  *
- * @category include
- * @package  Fonto
+ * @since    Class available since Release .1
+ * @link     https://pixelgrade.com
  * @author   Pixelgrade <contact@pixelgrade.com>
  * @license  GPL v2.0 (or later) see LICENCE file or http://www.gnu.org/licenses/gpl-2.0.html
  * @version  Release: .1
- * @link     https://pixelgrade.com
- * @since    Class available since Release .1
+ * @category include
+ * @package  Fonto
  */
 class Fonto_Post_Types {
 	/**
 	 * The single instance of Fonto_Post_Types which will register all Custom Post Types,
 	 *     add metaboxes with custom fields, and also register all taxonomies.
-	 * @var     Fonto_Post_Types
-	 * @access  private
 	 * @since     1.0.0
+	 * @var     Fonto_Post_Types
+	 * @access    private
 	 */
 	private static $_instance = null;
 
 	/**
 	 * The main plugin object.
-	 * @var     Fonto object
-	 * @access  public
 	 * @since     1.0.0
+	 * @var     Fonto object
+	 * @access    public
 	 */
 	public $parent = null;
 
@@ -52,17 +52,17 @@ class Fonto_Post_Types {
 
 		// Register the Font custom post type
 		$args = array(
-			'public'              => false,
-			'show_ui'             => true,
-			'show_in_menu'        => true,
-			'query_var'           => false,
-			'can_export'          => true,
-			'rewrite'             => false,
-			'has_archive'         => false,
-			'hierarchical'        => false,
-			'supports'            => array( 'title', ),
-			'menu_position'       => 30,
-			'menu_icon'           => 'dashicons-editor-textcolor',
+			'public'        => false,
+			'show_ui'       => true,
+			'show_in_menu'  => true,
+			'query_var'     => false,
+			'can_export'    => true,
+			'rewrite'       => false,
+			'has_archive'   => false,
+			'hierarchical'  => false,
+			'supports'      => array( 'title', ),
+			'menu_position' => 30,
+			'menu_icon'     => 'dashicons-editor-textcolor',
 		);
 
 		// The parent class invokes Fonto_Post_Type
@@ -84,10 +84,10 @@ class Fonto_Post_Types {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ), 10, 1 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_styles' ), 10, 1 );
 
-		//change the upload directory for our font CPT
+		// Change the upload directory for our font CPT.
 		add_filter( 'upload_dir', array( $this, 'custom_upload_directory' ) );
 
-		//Add AJAX actions
+		// Add AJAX actions.
 		add_action( 'wp_ajax_sample_font_url_path', array( $this, 'wp_ajax_sample_font_url_path' ), 1 );
 	}
 
@@ -100,8 +100,10 @@ class Fonto_Post_Types {
 	 */
 	public function custom_upload_directory( $path ) {
 		$post_ID = false;
-		//we need to account for both keys
-		if ( ! empty( $_REQUEST['post_id'] ) ) {
+		// We need to account for various keys.
+		if ( ! empty( $_REQUEST['post'] ) ) {
+			$post_ID = $_REQUEST['post'];
+		} elseif ( ! empty( $_REQUEST['post_id'] ) ) {
 			$post_ID = $_REQUEST['post_id'];
 		} elseif ( ! empty( $_REQUEST['post_ID'] ) ) {
 			$post_ID = $_REQUEST['post_ID'];
@@ -122,10 +124,10 @@ class Fonto_Post_Types {
 		$customdir = '/fonts/' . $post_ID;
 
 		//remove default subdir (year/month) and add custom dir INSIDE THE DEFAULT UPLOAD DIR
-		$path['path']    = str_replace( $path['subdir'], $customdir, $path['path']);
-		$path['url']     = str_replace( $path['subdir'], $customdir, $path['url']);
+		$path['path'] = str_replace( $path['subdir'], $customdir, $path['path'] );
+		$path['url']  = str_replace( $path['subdir'], $customdir, $path['url'] );
 
-		$path['subdir']  = $customdir;
+		$path['subdir'] = $customdir;
 
 		return $path;
 	}
@@ -150,13 +152,13 @@ class Fonto_Post_Types {
 
 		$font_details = new_cmb2_box( array(
 			'id'           => $prefix . 'font_details',
-			'title'        => __( 'Font Details', 'fonto' ),
+			'title'        => esc_html__( 'Font Details', 'fonto' ),
 			'object_types' => array( 'font', ), // Post type
-			'context'    => 'normal',
-			'priority'   => 'high',
-			'show_names' => true, // Show field names on the left
-			'cmb_styles' => false, // false to disable the CMB stylesheet - we are loading our own clean CSS
-			'closed'     => false, // true to keep the metabox closed by default
+			'context'      => 'normal',
+			'priority'     => 'high',
+			'show_names'   => true,  // Show field names on the left
+			'cmb_styles'   => false, // false to disable the CMB stylesheet - we are loading our own clean CSS
+			'closed'       => false, // true to keep the metabox closed by default
 			//'classes'    => 'extra-class', // Extra cmb2-wrap classes
 			// 'classes_cb' => 'yourprefix_add_some_classes', // Add classes through a callback.
 		) );
@@ -164,387 +166,387 @@ class Fonto_Post_Types {
 		//To put the description after the field label, we use the 'our_desc' key instead of the regular 'desc' one and add the 'render_row_cb' callback
 
 		$font_details->add_field( array(
-			'name'    => __( 'Font Source', 'fonto' ),
-			'desc'    => __( 'Select whether you are using a Custom Web Font Service (Typekit, Myfonts, Fonts.com) or you\'re self-hosting the fonts.', 'fonto' ),
-			'id'      => $prefix . 'font_source',
-			'type'    => 'radio',
-			'options' => array(
-				'font_service' => __( 'Web Font Service', 'fonto' ),
-				'self_hosted' => __( 'Self-Hosted', 'fonto' ),
+			'name'        => esc_html__( 'Font Source', 'fonto' ),
+			'desc'        => esc_html__( 'Select whether you are using a Custom Web Font Service (Typekit, Myfonts, Fonts.com) or you\'re self-hosting the fonts.', 'fonto' ),
+			'id'          => $prefix . 'font_source',
+			'type'        => 'radio',
+			'options'     => array(
+				'font_service' => esc_html__( 'Web Font Service', 'fonto' ),
+				'self_hosted'  => esc_html__( 'Self-Hosted', 'fonto' ),
 			),
-			'default' => 'font_service',
+			'default'     => 'font_service',
 			'row_classes' => array( 'no-divider', ),
 		) );
 
 		$font_details->add_field( array(
-			'name' => __( 'Fonts Loading / Embed Code', 'fonto' ),
-			'id'   => $prefix . 'fonts_loading_embed_code',
-			'type' => 'title',
+			'name'        => esc_html__( 'Fonts Loading / Embed Code', 'fonto' ),
+			'id'          => $prefix . 'fonts_loading_embed_code',
+			'type'        => 'title',
 			'row_classes' => array( 'full-width', 'background__dark' ),
-			'before_row' => '<div class="font-loading-section">',
+			'before_row'  => '<div class="font-loading-section">',
 		) );
 
 		$font_details->add_field( array(
-			'name'         => __( 'Font Files', 'fonto' ),
-			'desc'         => __( 'Upload all the files received from the font service/generator.', 'fonto' ),
+			'name'         => esc_html__( 'Font Files', 'fonto' ),
+			'desc'         => esc_html__( 'Upload all the files received from the font service/generator.', 'fonto' ),
 			'id'           => $prefix . 'font_files',
 			'type'         => 'file_list',
 			'preview_size' => '', // Default: array( 50, 50 )
-			'attributes'  => array(
+			'attributes'   => array(
 				// Shown for Self-Hosted fonts
-				'data-conditional-id' => $prefix . 'font_source',
+				'data-conditional-id'    => $prefix . 'font_source',
 				'data-conditional-value' => 'self_hosted',
 			),
-			'row_classes' => array( 'background__dark' ),
+			'row_classes'  => array( 'background__dark' ),
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'URL Path to the font files', 'fonto' ),
-			'desc'    => __( 'This is the URL path to be used for the uploaded font files. Please use it in the font\'s CSS rules (i.e. replace <code>Fonts/something.woff</code> with <code>http://yourdomain.com/wp-content/uploads/fonts/123/something.woff</code> ).<span class="note">*Note: You need to give a title to this font first and this field will be autofilled!</span>', 'fonto' ),
-			'id'          => $prefix . 'url_path',
-			'type'        => 'text',
-			'attributes'  => array(
+			'name'            => esc_html__( 'URL Path to the font files', 'fonto' ),
+			'desc'            => wp_kses_post( __( 'This is the URL path to be used for the uploaded font files. Please use it in the font\'s CSS rules (i.e. replace <code>Fonts/something.woff</code> with <code>http://yourdomain.com/wp-content/uploads/fonts/123/something.woff</code> ).<span class="note">*Note: You need to give a title to this font first and this field will be autofilled!</span>', 'fonto' ) ),
+			'id'              => $prefix . 'url_path',
+			'type'            => 'text',
+			'attributes'      => array(
 				// Shown for Self-Hosted fonts
-				'data-conditional-id' => $prefix . 'font_source',
+				'data-conditional-id'    => $prefix . 'font_source',
 				'data-conditional-value' => 'self_hosted',
-				'readonly' => 'readonly',
+				'readonly'               => 'readonly',
 			),
-			'row_classes' => array( 'background__dark' ),
+			'row_classes'     => array( 'background__dark' ),
 			'sanitization_cb' => array( $this, 'sanitize_url_path_not_empty' ),
 		) );
 
 		$font_details->add_field( array(
-			'name' => __( 'Embed Code', 'fonto' ),
-			'show_names' => false,
-			'id'   => $prefix . 'embed_code_font_service',
-			'type' => 'textarea_code',
-			'attributes'  => array(
-				'placeholder' => 'Your embed code',
-				'rows'        => 5,
+			'name'         => esc_html__( 'Embed Code', 'fonto' ),
+			'show_names'   => false,
+			'id'           => $prefix . 'embed_code_font_service',
+			'type'         => 'textarea_code',
+			'attributes'   => array(
+				'placeholder'            => esc_html__( 'Your embed code', 'fonto' ),
+				'rows'                   => 5,
 				// Shown for Web Fonts services
-				'data-conditional-id' => $prefix . 'font_source',
+				'data-conditional-id'    => $prefix . 'font_source',
 				'data-conditional-value' => 'font_service',
 			),
-			'before_field' => __( 'Insert below the embed code (JS/CSS) provided by the font service. <a href="#" target="_blank">Learn More</a>', 'fonto' ),
-			'after_field' => esc_html__( 'The above code will be inserted in the <head> area of your website.', 'fonto' ),
-			'row_classes' => array( 'full-width', 'title__large', 'background__dark' ),
+			'before_field' => wp_kses_post( __( 'Insert below the embed code (JS/CSS) provided by the font service. <a href="#" target="_blank">Learn More</a>', 'fonto' ) ),
+			'after_field'  => wp_kses_post( __( 'The above code will be inserted in the <code>\<head\></code> area of your website.', 'fonto' ) ),
+			'row_classes'  => array( 'full-width', 'title__large', 'background__dark' ),
 		) );
 
 		$font_details->add_field( array(
-			'name' => __( 'Embed Code', 'fonto' ),
-			'show_names' => true,
-			'id'   => $prefix . 'embed_code_self_hosted',
-			'type' => 'textarea_code',
-			'attributes'  => array(
-				'placeholder' => 'Your embed code',
-				'rows'        => 5,
+			'name'         => esc_html__( 'Embed Code', 'fonto' ),
+			'show_names'   => true,
+			'id'           => $prefix . 'embed_code_self_hosted',
+			'type'         => 'textarea_code',
+			'attributes'   => array(
+				'placeholder'            => esc_html__( 'Your embed code', 'fonto' ),
+				'rows'                   => 5,
 				// Shown for Self-Hosted fonts
-				'data-conditional-id' => $prefix . 'font_source',
+				'data-conditional-id'    => $prefix . 'font_source',
 				'data-conditional-value' => 'self_hosted',
 			),
-			'before_field' => __( 'Insert below the CSS code. <a href="#" target="_blank">Learn More</a>', 'fonto' ),
-			'after_field' => esc_html__( 'The above code will be inserted in the <head> area of your website.', 'fonto' ),
-			'row_classes' => array( 'full-width', 'title__large', 'background__dark' ),
-			'after_row' => '</div><!-- .font-loading-section -->'
+			'before_field' => wp_kses_post( __( 'Insert below the CSS code. <a href="#" target="_blank">Learn More</a>', 'fonto' ) ),
+			'after_field'  => wp_kses_post( __( 'The above code will be inserted in the <code>\<head\></code> area of your website.', 'fonto' ) ),
+			'row_classes'  => array( 'full-width', 'title__large', 'background__dark' ),
+			'after_row'    => '</div><!-- .font-loading-section -->',
 		) );
 
 		$font_details->add_field( array(
-			'name' => __( 'Weights & Styles Matching', 'fonto' ),
-			'id'   => $prefix . 'weights_styles_matching',
-			'type' => 'title',
+			'name'        => esc_html__( 'Weights & Styles Matching', 'fonto' ),
+			'id'          => $prefix . 'weights_styles_matching',
+			'type'        => 'title',
 			'row_classes' => array( 'full-width', ),
 		) );
 
 		$font_details->add_field( array(
-			'name' => __( 'How Fonts Variations (weights & styles) are declared?', 'fonto' ),
-			'desc' => __( 'Based on the format that you received the font names from the font service.', 'fonto' ),
-			'id'   => $prefix . 'font_name_style',
-			'type' => 'radio',
-			'options' => array(
-				'grouped' => __( 'Fonts are grouped together in a single "Font Family" name', 'fonto' )
-				             . '<span class="option-details">' . __( 'When you have only <em>one</em> font name; we will add weights and styles via CSS.<br/>— Example: <em>"proxima-nova"</em> from Typekit or Fonts.com', 'fonto' ) . '</span>',
-				'individual' => __( 'Font Names are Referenced Individually', 'fonto' )
-								. '<span class="option-details">' . __( 'If you have <em>multiple</em> font names; this means the weights and styles are bundled within each font and we shouldn\'t add them again in CSS.<br/>— Example: <em>"ProximaNW01-Regular"</em> and <em>"ProximaNW01-RegularItalic"</em> from MyFonts.com', 'fonto' ) . '</span>',
+			'name'        => esc_html__( 'How Fonts Variations (weights & styles) are declared?', 'fonto' ),
+			'desc'        => esc_html__( 'Based on the format that you received the font names from the font service.', 'fonto' ),
+			'id'          => $prefix . 'font_name_style',
+			'type'        => 'radio',
+			'options'     => array(
+				'grouped'    => esc_html__( 'Fonts are grouped together in a single "Font Family" name', 'fonto' )
+				                . '<span class="option-details">' . wp_kses_post( __( 'When you have only <em>one</em> font name; we will add weights and styles via CSS.<br/>— Example: <em>"proxima-nova"</em> from Typekit or Fonts.com', 'fonto' ) ) . '</span>',
+				'individual' => esc_html__( 'Font Names are Referenced Individually', 'fonto' )
+				                . '<span class="option-details">' . wp_kses_post( __( 'If you have <em>multiple</em> font names; this means the weights and styles are bundled within each font and we shouldn\'t add them again in CSS.<br/>— Example: <em>"ProximaNW01-Regular"</em> and <em>"ProximaNW01-RegularItalic"</em> from MyFonts.com', 'fonto' ) ) . '</span>',
 			),
-			'default' => 'grouped',
+			'default'     => 'grouped',
 			'row_classes' => array( 'full-width', ),
 		) );
 
 		$font_details->add_field( array(
-			'name'    => __( 'Font Family Name', 'fonto' ),
-			'desc'    => __( 'Insert the CSS font name as provided by the font service.', 'fonto' ),
-			'id'      => $prefix . 'font_family_name',
-			'type'    => 'text',
-			'attributes'  => array(
-				'placeholder' => 'Proxima Nova',
+			'name'       => esc_html__( 'Font Family Name', 'fonto' ),
+			'desc'       => esc_html__( 'Insert the CSS font name as provided by the font service.', 'fonto' ),
+			'id'         => $prefix . 'font_family_name',
+			'type'       => 'text',
+			'attributes' => array(
+				'placeholder'            => 'Proxima Nova',
 				// Shown when using a single font family name
-				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-id'    => $prefix . 'font_name_style',
 				'data-conditional-value' => 'grouped',
 			),
 		) );
 
 		$font_details->add_field( array(
-			'name'    => __( 'Available Font Variations', 'fonto' ),
-			'desc'    => __( 'Check the available variations for this font.', 'fonto' )
-						. '<span class="note">' . __( '*Note that the variations will be available through the Font Selectors and will not make any effect if a specific variation is checked but is not loaded by the font service.', 'fonto' ) . '</span>',
-			'id'      => $prefix . 'font_variations',
-			'type'    => 'multicheck',
+			'name'              => esc_html__( 'Available Font Variations', 'fonto' ),
+			'desc'              => esc_html__( 'Check the available variations for this font.', 'fonto' )
+			                       . '<span class="note">' . esc_html__( '*Note that the variations will be available through the Font Selectors and will not make any effect if a specific variation is checked but is not loaded by the font service.', 'fonto' ) . '</span>',
+			'id'                => $prefix . 'font_variations',
+			'type'              => 'multicheck',
 			'select_all_button' => false,
 			// 'multiple' => true, // Store values in individual rows
-			'options' => array(
-				'100_normal' => __( 'Thin 100', 'fonto' ),
-				'100_italic' => __( 'Thin Italic', 'fonto' ),
-				'200_normal' => __( 'Extra Light 200', 'fonto' ),
-				'200_italic' => __( 'Extra Light Italic', 'fonto' ),
-				'300_normal' => __( 'Light 300', 'fonto' ),
-				'300_italic' => __( 'Light Italic', 'fonto' ),
-				'400_normal' => __( 'Regular 400', 'fonto' ),
-				'400_italic' => __( 'Regular Italic', 'fonto' ),
-				'500_normal' => __( 'Medium 500', 'fonto' ),
-				'500_italic' => __( 'Medium Italic', 'fonto' ),
-				'600_normal' => __( 'SemiBold 600', 'fonto' ),
-				'600_italic' => __( 'SemiBold Italic', 'fonto' ),
-				'700_normal' => __( 'Bold 700', 'fonto' ),
-				'700_italic' => __( 'Bold Italic', 'fonto' ),
-				'800_normal' => __( 'ExtraBold 800', 'fonto' ),
-				'800_italic' => __( 'ExtraBold Italic', 'fonto' ),
-				'900_normal' => __( 'Black 900', 'fonto' ),
-				'900_italic' => __( 'Black Italic', 'fonto' ),
+			'options'           => array(
+				'100_normal' => esc_html__( 'Thin 100', 'fonto' ),
+				'100_italic' => esc_html__( 'Thin Italic', 'fonto' ),
+				'200_normal' => esc_html__( 'Extra Light 200', 'fonto' ),
+				'200_italic' => esc_html__( 'Extra Light Italic', 'fonto' ),
+				'300_normal' => esc_html__( 'Light 300', 'fonto' ),
+				'300_italic' => esc_html__( 'Light Italic', 'fonto' ),
+				'400_normal' => esc_html__( 'Regular 400', 'fonto' ),
+				'400_italic' => esc_html__( 'Regular Italic', 'fonto' ),
+				'500_normal' => esc_html__( 'Medium 500', 'fonto' ),
+				'500_italic' => esc_html__( 'Medium Italic', 'fonto' ),
+				'600_normal' => esc_html__( 'SemiBold 600', 'fonto' ),
+				'600_italic' => esc_html__( 'SemiBold Italic', 'fonto' ),
+				'700_normal' => esc_html__( 'Bold 700', 'fonto' ),
+				'700_italic' => esc_html__( 'Bold Italic', 'fonto' ),
+				'800_normal' => esc_html__( 'ExtraBold 800', 'fonto' ),
+				'800_italic' => esc_html__( 'ExtraBold Italic', 'fonto' ),
+				'900_normal' => esc_html__( 'Black 900', 'fonto' ),
+				'900_italic' => esc_html__( 'Black Italic', 'fonto' ),
 			),
-			'attributes'  => array(
+			'attributes'        => array(
 				// Shown when using a single font family name
-				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-id'    => $prefix . 'font_name_style',
 				'data-conditional-value' => 'grouped',
 			),
 			// 'inline'  => true, // Toggles display to inline
-			'row_classes' => array( 'font-variations', 'no-divider' ),
+			'row_classes'       => array( 'font-variations', 'no-divider' ),
 		) );
 
 		$font_details->add_field( array(
-			'name' => __( 'Font Weights & Styles Variations', 'fonto' ),
-			'desc' => __( 'Pair the provided fonts references names with their matching weights and styles.', 'fonto' ),
-			'id'   => $prefix . 'font_weight_style_variations',
-			'type' => 'title',
+			'name'        => esc_html__( 'Font Weights & Styles Variations', 'fonto' ),
+			'desc'        => esc_html__( 'Pair the provided fonts references names with their matching weights and styles.', 'fonto' ),
+			'id'          => $prefix . 'font_weight_style_variations',
+			'type'        => 'title',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
-				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-id'    => $prefix . 'font_name_style',
 				'data-conditional-value' => 'individual',
 			),
 			'row_classes' => array( 'full-width', 'title__small', ),
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Thin 100', 'fonto' ),
+			'name'        => esc_html__( 'Thin 100', 'fonto' ),
 			'id'          => $prefix . '100_normal_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
-				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-id'    => $prefix . 'font_name_style',
 				'data-conditional-value' => 'individual',
 			),
 			'row_classes' => array( 'grouped-input', 'half-width', ),
-			'before_row' => '<div class="matching-fields-section">',
+			'before_row'  => '<div class="matching-fields-section">',
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Thin Italic', 'fonto' ),
+			'name'        => esc_html__( 'Thin Italic', 'fonto' ),
 			'id'          => $prefix . '100_italic_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
-				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-id'    => $prefix . 'font_name_style',
 				'data-conditional-value' => 'individual',
 			),
 			'row_classes' => array( 'grouped-input', 'half-width', ),
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Extra Light 200', 'fonto' ),
+			'name'        => esc_html__( 'Extra Light 200', 'fonto' ),
 			'id'          => $prefix . '200_normal_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
-				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-id'    => $prefix . 'font_name_style',
 				'data-conditional-value' => 'individual',
 			),
 			'row_classes' => array( 'grouped-input', 'half-width', ),
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Extra Light Italic', 'fonto' ),
+			'name'        => esc_html__( 'Extra Light Italic', 'fonto' ),
 			'id'          => $prefix . '200_italic_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
-				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-id'    => $prefix . 'font_name_style',
 				'data-conditional-value' => 'individual',
 			),
 			'row_classes' => array( 'grouped-input', 'half-width', ),
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Light 300', 'fonto' ),
+			'name'        => esc_html__( 'Light 300', 'fonto' ),
 			'id'          => $prefix . '300_normal_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
-				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-id'    => $prefix . 'font_name_style',
 				'data-conditional-value' => 'individual',
 			),
 			'row_classes' => array( 'grouped-input', 'half-width', ),
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Light Italic', 'fonto' ),
+			'name'        => esc_html__( 'Light Italic', 'fonto' ),
 			'id'          => $prefix . '300_italic_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
-				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-id'    => $prefix . 'font_name_style',
 				'data-conditional-value' => 'individual',
 			),
 			'row_classes' => array( 'grouped-input', 'half-width', ),
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Regular 400', 'fonto' ),
+			'name'        => esc_html__( 'Regular 400', 'fonto' ),
 			'id'          => $prefix . '400_normal_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
-				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-id'    => $prefix . 'font_name_style',
 				'data-conditional-value' => 'individual',
 			),
 			'row_classes' => array( 'grouped-input', 'half-width', ),
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Regular Italic', 'fonto' ),
+			'name'        => esc_html__( 'Regular Italic', 'fonto' ),
 			'id'          => $prefix . '400_italic_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
-				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-id'    => $prefix . 'font_name_style',
 				'data-conditional-value' => 'individual',
 			),
 			'row_classes' => array( 'grouped-input', 'half-width', ),
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Medium 500', 'fonto' ),
+			'name'        => esc_html__( 'Medium 500', 'fonto' ),
 			'id'          => $prefix . '500_normal_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
-				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-id'    => $prefix . 'font_name_style',
 				'data-conditional-value' => 'individual',
 			),
 			'row_classes' => array( 'grouped-input', 'half-width', ),
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Medium Italic', 'fonto' ),
+			'name'        => esc_html__( 'Medium Italic', 'fonto' ),
 			'id'          => $prefix . '500_italic_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
-				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-id'    => $prefix . 'font_name_style',
 				'data-conditional-value' => 'individual',
 			),
 			'row_classes' => array( 'grouped-input', 'half-width', ),
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Semi Bold 600', 'fonto' ),
+			'name'        => esc_html__( 'Semi Bold 600', 'fonto' ),
 			'id'          => $prefix . '600_normal_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
-				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-id'    => $prefix . 'font_name_style',
 				'data-conditional-value' => 'individual',
 			),
 			'row_classes' => array( 'grouped-input', 'half-width', ),
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Semi Bold Italic', 'fonto' ),
+			'name'        => esc_html__( 'Semi Bold Italic', 'fonto' ),
 			'id'          => $prefix . '600_italic_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
-				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-id'    => $prefix . 'font_name_style',
 				'data-conditional-value' => 'individual',
 			),
 			'row_classes' => array( 'grouped-input', 'half-width', ),
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Bold 700', 'fonto' ),
+			'name'        => esc_html__( 'Bold 700', 'fonto' ),
 			'id'          => $prefix . '700_normal_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
-				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-id'    => $prefix . 'font_name_style',
 				'data-conditional-value' => 'individual',
 			),
 			'row_classes' => array( 'grouped-input', 'half-width', ),
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Bold Italic', 'fonto' ),
+			'name'        => esc_html__( 'Bold Italic', 'fonto' ),
 			'id'          => $prefix . '700_italic_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
-				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-id'    => $prefix . 'font_name_style',
 				'data-conditional-value' => 'individual',
 			),
 			'row_classes' => array( 'grouped-input', 'half-width', ),
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Extra Bold 800', 'fonto' ),
+			'name'        => esc_html__( 'Extra Bold 800', 'fonto' ),
 			'id'          => $prefix . '800_normal_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
-				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-id'    => $prefix . 'font_name_style',
 				'data-conditional-value' => 'individual',
 			),
 			'row_classes' => array( 'grouped-input', 'half-width', ),
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Extra Bold Italic', 'fonto' ),
+			'name'        => esc_html__( 'Extra Bold Italic', 'fonto' ),
 			'id'          => $prefix . '800_italic_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
-				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-id'    => $prefix . 'font_name_style',
 				'data-conditional-value' => 'individual',
 			),
 			'row_classes' => array( 'grouped-input', 'half-width', ),
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Black 900', 'fonto' ),
+			'name'        => esc_html__( 'Black 900', 'fonto' ),
 			'id'          => $prefix . '900_normal_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
-				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-id'    => $prefix . 'font_name_style',
 				'data-conditional-value' => 'individual',
 			),
 			'row_classes' => array( 'grouped-input', 'half-width', ),
 		) );
 
 		$font_details->add_field( array(
-			'name'        => __( 'Black Italic', 'fonto' ),
+			'name'        => esc_html__( 'Black Italic', 'fonto' ),
 			'id'          => $prefix . '900_italic_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
 				// Shown when using a font names are referenced individualy
-				'data-conditional-id' =>  $prefix . 'font_name_style',
+				'data-conditional-id'    => $prefix . 'font_name_style',
 				'data-conditional-value' => 'individual',
 			),
 			'row_classes' => array( 'grouped-input', 'half-width', ),
@@ -571,7 +573,7 @@ class Fonto_Post_Types {
 	function wp_ajax_sample_font_url_path() {
 		check_ajax_referer( 'samplepermalink', 'samplepermalinknonce' );
 
-		//get the current URL for the uploads directory
+		// Get the current URL for the uploads directory.
 		$uploads = wp_upload_dir();
 
 		wp_die( trailingslashit( $uploads['url'] ) );
@@ -581,9 +583,9 @@ class Fonto_Post_Types {
 	 * Make sure that the Font URL Path field is not saved empty (maybe the AJAX that was supposed to retrieve it failed)
 	 * @since 1.0.0
 	 *
-	 * @param  mixed      $value      The unsanitized value from the form.
-	 * @param  array      $field_args Array of field arguments.
-	 * @param  CMB2_Field $field      The field object
+	 * @param mixed      $value      The unsanitized value from the form.
+	 * @param array      $field_args Array of field arguments.
+	 * @param CMB2_Field $field      The field object
 	 *
 	 * @return mixed                  Sanitized value to be stored.
 	 */
@@ -620,8 +622,8 @@ class Fonto_Post_Types {
 		}
 
 		// Only use minified files if SCRIPT_DEBUG is off
-		$min   = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-		$rtl   = is_rtl() ? '-rtl' : '';
+		$min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+		$rtl = is_rtl() ? '-rtl' : '';
 
 		// Filter required styles and register stylesheet
 		$styles = apply_filters( $this->parent->_token . '_cmb2_style_dependencies', array() );
@@ -630,7 +632,7 @@ class Fonto_Post_Types {
 		wp_enqueue_style( $this->parent->_token . '-cmb2-styles' );
 
 		return true;
-	} // End admin_enqueue_styles ()
+	}
 
 	/**
 	 * Load admin Javascript - specific for post types
@@ -647,6 +649,9 @@ class Fonto_Post_Types {
 			return false;
 		}
 
+		// Make sure that the current post is passed to the media-editor.
+		wp_enqueue_media( array( 'post' => $post ) );
+
 		//Allow others to stop us in enqueueing the JS
 		if ( ! apply_filters( $this->parent->_token . '_cmb2_enqueue_js', true ) ) {
 			return false;
@@ -661,7 +666,7 @@ class Fonto_Post_Types {
 
 		return true;
 
-	} // End admin_enqueue_scripts ()
+	}
 
 
 	/**
@@ -673,7 +678,7 @@ class Fonto_Post_Types {
 	 * @static
 	 * @see    Fonto()
 	 *
-	 * @param  Fonto $parent Main Fonto instance.
+	 * @param Fonto $parent Main Fonto instance.
 	 *
 	 * @return Fonto_Post_Types instance
 	 */
@@ -684,7 +689,7 @@ class Fonto_Post_Types {
 		}
 
 		return self::$_instance;
-	} // End instance()
+	}
 
 	/**
 	 * Cloning is forbidden.
@@ -694,7 +699,7 @@ class Fonto_Post_Types {
 	public function __clone() {
 
 		_doing_it_wrong( __FUNCTION__, esc_html( __( 'Cheatin&#8217; huh?' ) ), esc_html( $this->parent->_version ) );
-	} // End __clone()
+	}
 
 	/**
 	 * Unserializing instances of this class is forbidden.
@@ -704,6 +709,6 @@ class Fonto_Post_Types {
 	public function __wakeup() {
 
 		_doing_it_wrong( __FUNCTION__, esc_html( __( 'Cheatin&#8217; huh?' ) ), esc_html( $this->parent->_version ) );
-	} // End __wakeup()
+	}
 
 }

@@ -383,7 +383,7 @@ class Fonto_Output {
 		}
 
 		return self::$_instance;
-	} // End instance().
+	}
 
 	/**
 	 * Cloning is forbidden.
@@ -393,7 +393,7 @@ class Fonto_Output {
 	public function __clone() {
 
 		_doing_it_wrong( __FUNCTION__, esc_html( __( 'Cheatin&#8217; huh?' ) ), esc_html( $this->parent->_version ) );
-	} // End __clone().
+	}
 
 	/**
 	 * Unserializing instances of this class is forbidden.
@@ -403,6 +403,6 @@ class Fonto_Output {
 	public function __wakeup() {
 
 		_doing_it_wrong( __FUNCTION__, esc_html( __( 'Cheatin&#8217; huh?' ) ), esc_html( $this->parent->_version ) );
-	} // End __wakeup().
+	}
 
 }

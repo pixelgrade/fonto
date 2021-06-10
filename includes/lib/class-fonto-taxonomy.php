@@ -109,20 +109,20 @@ class Fonto_Taxonomy {
 			'name'                       => $this->plural,
 			'singular_name'              => $this->single,
 			'menu_name'                  => $this->plural,
-			'all_items'                  => sprintf( __( 'All %s', 'fonto' ), $this->plural ),
-			'edit_item'                  => sprintf( __( 'Edit %s', 'fonto' ), $this->single ),
-			'view_item'                  => sprintf( __( 'View %s', 'fonto' ), $this->single ),
-			'update_item'                => sprintf( __( 'Update %s', 'fonto' ), $this->single ),
-			'add_new_item'               => sprintf( __( 'Add New %s', 'fonto' ), $this->single ),
-			'new_item_name'              => sprintf( __( 'New %s Name', 'fonto' ), $this->single ),
-			'parent_item'                => sprintf( __( 'Parent %s', 'fonto' ), $this->single ),
-			'parent_item_colon'          => sprintf( __( 'Parent %s:', 'fonto' ), $this->single ),
-			'search_items'               => sprintf( __( 'Search %s', 'fonto' ), $this->plural ),
-			'popular_items'              => sprintf( __( 'Popular %s', 'fonto' ), $this->plural ),
-			'separate_items_with_commas' => sprintf( __( 'Separate %s with commas', 'fonto' ), $this->plural ),
-			'add_or_remove_items'        => sprintf( __( 'Add or remove %s', 'fonto' ), $this->plural ),
-			'choose_from_most_used'      => sprintf( __( 'Choose from the most used %s', 'fonto' ), $this->plural ),
-			'not_found'                  => sprintf( __( 'No %s found', 'fonto' ), $this->plural ),
+			'all_items'                  => sprintf( esc_html__( 'All %s', 'fonto' ), $this->plural ),
+			'edit_item'                  => sprintf( esc_html__( 'Edit %s', 'fonto' ), $this->single ),
+			'view_item'                  => sprintf( esc_html__( 'View %s', 'fonto' ), $this->single ),
+			'update_item'                => sprintf( esc_html__( 'Update %s', 'fonto' ), $this->single ),
+			'add_new_item'               => sprintf( esc_html__( 'Add New %s', 'fonto' ), $this->single ),
+			'new_item_name'              => sprintf( esc_html__( 'New %s Name', 'fonto' ), $this->single ),
+			'parent_item'                => sprintf( esc_html__( 'Parent %s', 'fonto' ), $this->single ),
+			'parent_item_colon'          => sprintf( esc_html__( 'Parent %s:', 'fonto' ), $this->single ),
+			'search_items'               => sprintf( esc_html__( 'Search %s', 'fonto' ), $this->plural ),
+			'popular_items'              => sprintf( esc_html__( 'Popular %s', 'fonto' ), $this->plural ),
+			'separate_items_with_commas' => sprintf( esc_html__( 'Separate %s with commas', 'fonto' ), $this->plural ),
+			'add_or_remove_items'        => sprintf( esc_html__( 'Add or remove %s', 'fonto' ), $this->plural ),
+			'choose_from_most_used'      => sprintf( esc_html__( 'Choose from the most used %s', 'fonto' ), $this->plural ),
+			'not_found'                  => sprintf( esc_html__( 'No %s found', 'fonto' ), $this->plural ),
 		);
 
 		$args = array(
@@ -170,7 +170,7 @@ class Fonto_Taxonomy {
 
 		if ( count( $terms ) > 0 ) {
 			echo "<select name='" . esc_attr( $this->taxonomy ) . "' id='" . esc_attr( $this->taxonomy ) . "' class='postform'>";
-			echo "<option value=''>Show All " . esc_html( $tax_name ) . '</option>';
+			echo "<option value=''>". sprintf( esc_html__( 'Show All %s', 'fonto' ), esc_html( $tax_name ) ) . '</option>';
 
 			foreach ( $terms as $term ) {
 				echo '<option value=' . $term->slug, filter_input( INPUT_GET, $this->taxonomy, FILTER_SANITIZE_STRING ) === esc_attr( $term->slug ) ? ' selected="selected"' : '', '>' . esc_attr( $term->name ) . ' (' . esc_attr( $term->count ) . ')</option>';

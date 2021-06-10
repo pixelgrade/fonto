@@ -3,11 +3,11 @@
  * Document for Fonto Class
  *
  *
- * @category Class
+ * @link     https://pixelgrade.com
  * @package  Fonto
  * @author   Pixelgrade <contact@pixelgrade.com>
  * @license  GPL v2.0 (or later) see LICENCE file or http://www.gnu.org/licenses/gpl-2.0.html
- * @link     https://pixelgrade.com
+ * @category Class
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -19,108 +19,108 @@ require_once 'lib/class-fonto-option.php';
 /**
  * Fonto - Main plugin class
  *
- * @category Html_Tag
- * @package  Fonto
+ * @since    Class available since Release 1.0.0
+ * @link     https://pixelgrade.com
  * @author   Pixelgrade <contact@pixelgrade.com>
  * @license  GPL v2.0 (or later) see LICENCE file or http://www.gnu.org/licenses/gpl-2.0.html
  * @version  Release: .1
- * @link     https://pixelgrade.com
- * @since    Class available since Release 1.0.0
+ * @category Html_Tag
+ * @package  Fonto
  */
 class Fonto extends Fonto_Init {
 
 	/**
 	 * The single instance of Fonto.
-	 * @var     Fonto
-	 * @access  private
 	 * @since     1.0.0
+	 * @var     Fonto
+	 * @access    private
 	 */
 	private static $_instance = null;
 
 	/**
 	 * Post_types class object
+	 * @since   1.0.0
 	 * @var     Fonto_Post_Types
 	 * @access  public
-	 * @since   1.0.0
 	 */
 	public $post_types = null;
 
 	/**
 	 * Output class object
+	 * @since   1.0.0
 	 * @var     Fonto_Output
 	 * @access  public
-	 * @since   1.0.0
 	 */
 	public $output = null;
 
 	/**
 	 * Option class object
+	 * @since   1.0.0
 	 * @var     Fonto_Option
 	 * @access  public
-	 * @since   1.0.0
 	 */
 	public $option = null;
 
 	/**
 	 * Admin Api class object
+	 * @since   1.0.0
 	 * @var     object
 	 * @access  public
-	 * @since   1.0.0
 	 */
 	public $admin = null;
 
 	/**
 	 * The token.
+	 * @since   1.0.0
 	 * @var     string
 	 * @access  public
-	 * @since   1.0.0
 	 */
 	public $_token;
 
 	/**
 	 * The main plugin file.
+	 * @since   1.0.0
 	 * @var     string
 	 * @access  public
-	 * @since   1.0.0
 	 */
 	public $file;
 
 	/**
 	 * The main plugin directory.
+	 * @since   1.0.0
 	 * @var     string
 	 * @access  public
-	 * @since   1.0.0
 	 */
 	public $dir;
 
 	/**
 	 * The plugin assets directory.
+	 * @since   1.0.0
 	 * @var     string
 	 * @access  public
-	 * @since   1.0.0
 	 */
 	public $assets_dir;
 
 	/**
 	 * The plugin assets URL.
+	 * @since   1.0.0
 	 * @var     string
 	 * @access  public
-	 * @since   1.0.0
 	 */
 	public $assets_url;
 
 	/**
 	 * Suffix for JavaScripts.
+	 * @since   1.0.0
 	 * @var     string
 	 * @access  public
-	 * @since   1.0.0
 	 */
 	public $script_suffix;
 
 	/**
 	 * Constructor for Fonto
 	 *
-	 * @param string $file Name of main plugin file (used for determining paths).
+	 * @param string $file    Name of main plugin file (used for determining paths).
 	 * @param string $version Version number of this plugin.
 	 */
 	public function __construct( $file = '', $version = '1.0.0' ) {
@@ -142,7 +142,7 @@ class Fonto extends Fonto_Init {
 			$this->init();
 		}
 
-	} // End __construct ().
+	}
 
 	/**
 	 * Initialze plugin
@@ -167,7 +167,7 @@ class Fonto extends Fonto_Init {
 		add_action( 'init', array( $this, 'load_integrations' ) );
 
 		// Load plugin environment variables.
-		$this->dir = dirname( $this->file );
+		$this->dir        = dirname( $this->file );
 		$this->assets_dir = trailingslashit( $this->dir ) . 'assets';
 		$this->assets_url = esc_url( trailingslashit( plugins_url( '/assets/', $this->file ) ) );
 
@@ -189,30 +189,31 @@ class Fonto extends Fonto_Init {
 		}
 
 		// Add the output - this is where things get interesting
-		if ( is_null( $this->output) ) {
+		if ( is_null( $this->output ) ) {
 			$this->output = Fonto_Output::instance( $this );
 		}
 
 		//Add our fonts mime types
 		add_filter( 'upload_mimes', array( $this, 'extra_mime_types' ) );
+		add_filter( 'wp_check_filetype_and_ext', array( $this, 'update_mime_types' ), 10, 3 );
 
 	}
 
 	/**
 	 * Wrapper function to register a new post type
 	 *
-	 * @param  string $post_type Post type name.
-	 * @param  string $plural Post type item plural name.
-	 * @param  string $single Post type item single name.
-	 * @param  string $description Description of post type.
-	 * @param  array $options Overide default post type arguments.
+	 * @param string $post_type   Post type name.
+	 * @param string $plural      Post type item plural name.
+	 * @param string $single      Post type item single name.
+	 * @param string $description Description of post type.
+	 * @param array  $options     Overide default post type arguments.
 	 *
-	 * @return object              Post type class object
+	 * @return object|null              Post type class object
 	 */
 	public function register_post_type( $post_type = '', $plural = '', $single = '', $description = '', $options = array() ) {
 
 		if ( ! $post_type || ! $plural || ! $single ) {
-			return;
+			return null;
 		}
 
 		$post_type = new Fonto_Post_Type( $post_type, $plural, $single, $description, $options );
@@ -223,18 +224,18 @@ class Fonto extends Fonto_Init {
 	/**
 	 * Wrapper function to register a new taxonomy
 	 *
-	 * @param  string $taxonomy Taxonomy name.
-	 * @param  string $plural Taxonomy single name.
-	 * @param  string $single Taxonomy plural name.
-	 * @param  array $post_types Post types to which this taxonomy applies.
-	 * @param  array $taxonomy_args Overide default taxonomy arguments.
+	 * @param string $taxonomy      Taxonomy name.
+	 * @param string $plural        Taxonomy single name.
+	 * @param string $single        Taxonomy plural name.
+	 * @param array  $post_types    Post types to which this taxonomy applies.
+	 * @param array  $taxonomy_args Overide default taxonomy arguments.
 	 *
-	 * @return object             Taxonomy class object.
+	 * @return object|null             Taxonomy class object.
 	 */
 	public function register_taxonomy( $taxonomy = '', $plural = '', $single = '', $post_types = array(), $taxonomy_args = array() ) {
 
 		if ( ! $taxonomy || ! $plural || ! $single ) {
-			return;
+			return null;
 		}
 
 		$taxonomy = new Fonto_Taxonomy( $taxonomy, $plural, $single, $post_types, $taxonomy_args );
@@ -251,20 +252,19 @@ class Fonto extends Fonto_Init {
 	public function admin_enqueue_styles() {
 		//Allow others to stop us in enqueueing the CSS
 		if ( ! apply_filters( $this->_token . '_admin_enqueue_css', true ) ) {
-			return ;
+			return;
 		}
 
 		// Only use minified files if SCRIPT_DEBUG is off
-		$min   = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-		$rtl   = is_rtl() ? '-rtl' : '';
+		$min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+		$rtl = is_rtl() ? '-rtl' : '';
 
 		// Filter required styles and register stylesheet
 		$styles = apply_filters( $this->_token . '_admin_style_dependencies', array() );
 		wp_register_style( $this->_token . '-admin-styles', esc_url( $this->assets_url ) . "css/admin{$rtl}{$min}.css", $styles, $this->_version );
 
 		wp_enqueue_style( $this->_token . '-admin-styles' );
-
-	} // End admin_enqueue_styles ()
+	}
 
 	/**
 	 * Load admin Javascript.
@@ -278,7 +278,7 @@ class Fonto extends Fonto_Init {
 		wp_register_script( $this->_token . '-admin', esc_url( $this->assets_url ) . 'js/admin' . $this->script_suffix . '.js', array(), $this->_version );
 		wp_enqueue_script( $this->_token . '-admin' );
 
-	} // End admin_enqueue_scripts ()
+	}
 
 	/**
 	 * Load vendors
@@ -300,7 +300,7 @@ class Fonto extends Fonto_Init {
 		}
 
 
-	} // End load_vendors ()
+	}
 
 	/**
 	 * Load various integrations with other plugins
@@ -312,7 +312,7 @@ class Fonto extends Fonto_Init {
 
 		/**
 		 * Load Customify compatibility file.
-		 * https://wordpress.org/plugins/customify/
+		 * @see https://wordpress.org/plugins/customify/
 		 */
 		if ( class_exists( 'PixCustomifyPlugin' ) ) {
 			require_once dirname( __FILE__ ) . '/integrations/customify.php';
@@ -320,13 +320,12 @@ class Fonto extends Fonto_Init {
 
 		/**
 		 * Load Style Manager compatibility file.
-		 * https://wordpress.org/plugins/style-manager/
+		 * @see https://wordpress.org/plugins/style-manager/
 		 */
-		if ( class_exists( 'StyleManager_Plugin' ) ) {
+		if ( defined( '\Pixelgrade\StyleManager\VERSION' ) ) {
 			require_once dirname( __FILE__ ) . '/integrations/style-manager.php';
 		}
-
-	} // End load_integrations ()
+	}
 
 	/**
 	 * Load plugin localisation
@@ -338,7 +337,7 @@ class Fonto extends Fonto_Init {
 		//for the plugin
 		$this->l10ni18n();
 
-	} // End load_localisation ()
+	}
 
 	/**
 	 * Registers Fonto text domain path
@@ -372,16 +371,38 @@ class Fonto extends Fonto_Init {
 	 * @return array
 	 */
 	function extra_mime_types( $mimes ) {
-		$mimes['eot'] = 'application/vnd.ms-fontobject';
-		$mimes['otf|ttf'] = 'application/font-sfnt';
-		$mimes['woff'] = 'application/font-woff';
-		//people are not quite sure yet on the mime-type, so it's best to use them both
-		$mimes['woff2'] = 'application/font-woff2';
-		$mimes['woff2'] = 'font/woff2';
-
-		$mimes['svg'] = 'image/svg+xml';
+		$mimes['woff']  = 'application/x-font-woff';
+		$mimes['woff2'] = 'application/x-font-woff2';
+		$mimes['ttf']   = 'application/x-font-ttf';
+		$mimes['svg']   = 'image/svg+xml';
+		$mimes['eot']   = 'application/vnd.ms-fontobject';
+		$mimes['otf']   = 'font/otf';
 
 		return $mimes;
+	}
+
+	/**
+	 * Correct the mime-types and extension for the font types.
+	 *
+	 * @param array  $defaults File data array containing 'ext', 'type', and
+	 *                                          'proper_filename' keys.
+	 * @param string $file                      Full path to the file.
+	 * @param string $filename                  The name of the file (may differ from $file due to
+	 *                                          $file being in a tmp directory).
+	 * @return Array File data array containing 'ext', 'type', and
+	 */
+	public function update_mime_types( $defaults, $file, $filename ) {
+		if ( 'ttf' === pathinfo( $filename, PATHINFO_EXTENSION ) ) {
+			$defaults['type'] = 'application/x-font-ttf';
+			$defaults['ext']  = 'ttf';
+		}
+
+		if ( 'otf' === pathinfo( $filename, PATHINFO_EXTENSION ) ) {
+			$defaults['type'] = 'application/x-font-otf';
+			$defaults['ext']  = 'otf';
+		}
+
+		return $defaults;
 	}
 
 	function cmb2_requires_wp_media( $dependencies ) {
@@ -409,10 +430,12 @@ class Fonto extends Fonto_Init {
 	 * @since  1.0.0
 	 * @static
 	 *
-	 * @param string $file File.
+	 * @see    Fonto()
+	 *
 	 * @param string $version Version.
 	 *
-	 * @see    Fonto()
+	 * @param string $file    File.
+	 *
 	 * @return Fonto Main Fonto instance
 	 */
 	public static function instance( $file = '', $version = '1.0.0' ) {
@@ -422,7 +445,7 @@ class Fonto extends Fonto_Init {
 		}
 
 		return self::$_instance;
-	} // End instance ()
+	}
 
 	/**
 	 * Cloning is forbidden.
@@ -432,7 +455,7 @@ class Fonto extends Fonto_Init {
 	public function __clone() {
 
 		_doing_it_wrong( __FUNCTION__, esc_html( __( 'Cheatin&#8217; huh?' ) ), esc_html( $this->_version ) );
-	} // End __clone ()
+	}
 
 	/**
 	 * Unserializing instances of this class is forbidden.
@@ -442,5 +465,5 @@ class Fonto extends Fonto_Init {
 	public function __wakeup() {
 
 		_doing_it_wrong( __FUNCTION__, esc_html( __( 'Cheatin&#8217; huh?' ) ), esc_html( $this->_version ) );
-	} // End __wakeup ()
+	}
 }
