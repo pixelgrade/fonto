@@ -3,9 +3,9 @@ Contributors: pixelgrade, vlad.olaru, babbardel, cristianfrumusanu
 Donate link: https://pixelgrade.com
 Tags: font manager, custom font, custom fonts, custom web fonts, fonts, webfonts, typography, css, customizer, editor fonts, font plugin, font uploader
 Requires at least: 4.9.0
-Tested up to: 5.7.0
-Requires PHP: 5.4.0
-Stable tag: 1.1.1
+Tested up to: 5.7.2
+Requires PHP: 5.6.20
+Stable tag: 1.2.0
 License: GPL v2.0 (or later)
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,6 +33,11 @@ Installing "Fonto" can be done either by searching for "Fonto" via the "Plugins 
 * [CMB2 Conditionals](https://github.com/jcchavezs/cmb2-conditionals/) plugin for CMB2 - License: GPLv2 or later
 
 == Changelog ==
+
+= 1.2.0 =
+* Improve integrations with Customify and Style Manager.
+* Fix issues with wrong uploads folder and attachments not attached to the current post.
+* Improve compatibility with WordPress 5.7.2.
 
 = 1.1.1 =
 * Improve compatibility with WordPress 5.7.
