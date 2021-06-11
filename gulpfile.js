@@ -128,21 +128,15 @@ function removeUnneededFiles() {
     'bundlesize.config.json',
     'postcss.config.js',
 
-    'src/**/*.js',
-
-    'packages/*/build',
-    'packages/*/build-module',
-    'packages/*/build-style',
-
-    'packages/**/*.js',
-    'packages/**/*.scss',
-
     '**/package.json',
     '**/package-lock.json',
 
     'bin',
     'babel.config.js',
-    '.nvmrc'
+    '.nvmrc',
+
+    'assets/css/cmb2/sass',
+    'includes/vendor/CMB2/css'
   ];
 
   files_to_remove.forEach( function( e, k ) {
