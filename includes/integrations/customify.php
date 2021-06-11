@@ -175,3 +175,12 @@ function fonto_add_fonts_to_customify_third_party_list( $font_list ) {
 	return $font_list;
 }
 add_filter( 'customify_third_party_fonts', 'fonto_add_fonts_to_customify_third_party_list' );
+
+/**
+ * Change the font group label for Customify v2.11+ third-party font list.
+ *
+ * @param string $group_label
+ */
+add_filter( 'customify_third_party_font_group_label', function( $group_label ) {
+	return esc_html__( 'Custom Fonts', 'fonto' );
+}, 10, 1 );

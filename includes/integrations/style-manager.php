@@ -125,6 +125,8 @@ add_filter( 'style_manager/third_party_fonts', 'fonto_add_fonts_to_style_manager
 
 /**
  * Change the font group label.
+ *
+ * @param string $group_label
  */
 add_filter( 'style_manager/third_party_font_group_label', function( $group_label ) {
 	return esc_html__( 'Custom Fonts', 'fonto' );
