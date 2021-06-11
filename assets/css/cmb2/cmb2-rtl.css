@@ -3469,8 +3469,7 @@ Sidebar Placement Adjustments
     height: 200px;
     /*must have*/
 
-    -webkit-filter: mask();
-            filter: mask();
+    filter: mask();
     /*must have*/
 }
 

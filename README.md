@@ -1,4 +1,4 @@
-Fonto — Web Fonts Manager
+Fonto — Custom Web Fonts Manager
 ========
 
 ## Description
