@@ -1,15 +1,15 @@
-=== Fonto - Web Fonts Manager ===
-Contributors: pixelgrade, vlad.olaru, babbardel, cristianfrumusanu
+=== Fonto - Custom Web Fonts Manager ===
+Contributors: pixelgrade, vlad.olaru, babbardel
 Donate link: https://pixelgrade.com
-Tags: font manager, custom font, custom fonts, custom web fonts, fonts, webfonts, typography, css, customizer, editor fonts, font plugin, font uploader
-Requires at least: 4.9.0
+Tags: font manager, custom font, custom fonts, custom web fonts, fonts, webfonts, typography, css, customizer, editor fonts, font plugin, font uploader, style manager
+Requires at least: 4.9.9
 Tested up to: 5.7.2
 Requires PHP: 5.6.20
 Stable tag: 1.2.0
 License: GPL v2.0 (or later)
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Use your premium web fonts directly in the Editor or with the Customify plugin. Works with Typekit, MyFonts, Fonts.com, self-hosted fonts, and others.
+Use your custom premium web fonts directly in the Editor or with the Customify and Style Manager plugins. Works with Typekit, MyFonts, Fonts.com, self-hosted fonts, and others.
 
 == Description ==
 
@@ -17,7 +17,7 @@ Fonto is a custom fonts management plugin that will seamlessly integrate with th
 
 It is built to work with pretty much any configuration font vendors offer (like Typekit, Fonts.com, MyFonts.com, Google Fonts), either by allowing them to serve the fonts via an embed code or by self-hosting the font files.
 
-Plus, we've integrated Fonto with our [Customify](https://wordpress.org/plugins/customify/) plugin to make it even smoother to control your site's general typography.
+Plus, we've integrated Fonto with our [Customify](https://wordpress.org/plugins/customify/) and [Style Manager](https://wordpress.org/plugins/style-manager/) plugins to make it even smoother to control your site's general typography.
 
 == Installation ==
 
@@ -38,6 +38,7 @@ Installing "Fonto" can be done either by searching for "Fonto" via the "Plugins 
 * Improve integrations with Customify and Style Manager.
 * Fix issues with wrong uploads folder and attachments not attached to the current post.
 * Improve compatibility with WordPress 5.7.2.
+* Update CMB2 and CMB2-Conditionals dependencies to their latest version.
 
 = 1.1.1 =
 * Improve compatibility with WordPress 5.7.
