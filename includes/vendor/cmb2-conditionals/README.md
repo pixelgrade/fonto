@@ -1,18 +1,24 @@
 # CMB2 Conditionals
 
-**Contributors:**      [jcchavezs](https://github.com/jcchavezs)
-**Tags:**              cmb2, conditionals, metaboxes
-**Requires at least:** 3.8.0
-**Tested up to:**      4.3
-**Stable tag:**        1.0.4
-**License:**           GPLv2 or later
+[![Join the chat at https://gitter.im/jcchavezs/cmb2-conditionals](https://badges.gitter.im/jcchavezs/cmb2-conditionals.svg)](https://gitter.im/jcchavezs/cmb2-conditionals?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Total Downloads](https://poser.pugx.org/jcchavezs/cmb2-conditionals/downloads)](https://packagist.org/packages/jcchavezs/cmb2-conditionals)
+[![License](https://poser.pugx.org/jcchavezs/cmb2-conditionals/license)](https://packagist.org/packages/jcchavezs/cmb2-conditionals)
+
+**Contributors:**      [jcchavezs](https://github.com/jcchavezs), [jrfnl](https://github.com/jrfnl)
+**Tags:**              cmb2, conditionals, metaboxes  
+**Requires at least:** 3.8.0  
+**Tested up to:**      4.3  
+**Stable tag:**        1.0.4  
+**License:**           GPLv2 or later  
 **License URI:**       [http://www.gnu.org/licenses/gpl-2.0.html](http://www.gnu.org/licenses/gpl-2.0.html)
+
+## Disclaimer
+
+This plugin is loved by many people but unfortunately I can not maintain it anymore so if you want to be a contributor just [ping me on gitter](https://gitter.im/jcchavezs).
 
 ## Description
 
 **CMB2 Conditionals** is a plugin for [CMB2](https://github.com/WebDevStudios/CMB2) which allows developers to relate fields so one of them could only appear when one other have an specific value or when is not empty.
-
-**[Download plugin on wordpress.org](http://wordpress.org/plugins/cmb2-conditionals/)**
 
 To get started, please follow the examples in the included `example-functions.php` file.
 

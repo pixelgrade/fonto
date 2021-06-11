@@ -328,7 +328,7 @@ class Fonto_Post_Types {
 			'id'          => $prefix . 'font_weight_style_variations',
 			'type'        => 'title',
 			'attributes'  => array(
-				// Shown when using a font names are referenced individualy
+				// Shown when using a font names are referenced individually
 				'data-conditional-id'    => $prefix . 'font_name_style',
 				'data-conditional-value' => 'individual',
 			),
@@ -340,7 +340,7 @@ class Fonto_Post_Types {
 			'id'          => $prefix . '100_normal_individual',
 			'type'        => 'text_small',
 			'attributes'  => array(
-				// Shown when using a font names are referenced individualy
+				// Shown when using a font names are referenced individually
 				'data-conditional-id'    => $prefix . 'font_name_style',
 				'data-conditional-value' => 'individual',
 			),
