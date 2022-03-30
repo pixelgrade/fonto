@@ -5,7 +5,7 @@ Tags: font manager, custom font, custom fonts, custom web fonts, fonts, webfonts
 Requires at least: 4.9.9
 Tested up to: 5.9.2
 Requires PHP: 5.6.20
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPL v2.0 (or later)
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 

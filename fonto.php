@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Fonto - Custom Web Fonts Manager
- * Version: 1.2.0
+ * Version: 1.2.1
  * Plugin URI: https://pixelgrade.com
  * Description: Use your premium web fonts directly in the Editor or with the Customify and Style Manager plugins. Works with Typekit, MyFonts, Fonts.com, self-hosted fonts, and others.
  * Author: Pixelgrade
@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function fonto() {
 
 	require_once( 'includes/class-fonto.php' );
-	$instance = Fonto::instance( __FILE__, '1.2.0' );
+	$instance = Fonto::instance( __FILE__, '1.2.1' );
 
 	return $instance;
 }
