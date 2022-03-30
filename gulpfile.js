@@ -50,6 +50,55 @@ gulp.task('watch', function () {
 	return gulp.watch('assets/css/cmb2/sass/**/*.scss', ['styles']);
 });
 
+// ---------
+// SCRIPTS
+// ---------
+
+// Create minified versions of scripts.
+function minifyScripts() {
+  return gulp.src(['./assets/js/*.js', '!./assets/js/*.min.js'],{base: './assets/js/'})
+    .pipe( plugins.terser({
+      warnings: true,
+      compress: true, mangle: true,
+      output: { comments: 'some' }
+    }))
+    .pipe(plugins.rename({
+      suffix: ".min"
+    }))
+    .pipe(gulp.dest('./assets/js'));
+}
+gulp.task( 'minify-scripts', minifyScripts );
+
+const wpPot = require('gulp-wp-pot');
+const sort = require('gulp-sort');
+const notify = require('gulp-notify');
+
+// -----------------------------------------------------------------------------
+// Generate POT file from the build folder.
+// -----------------------------------------------------------------------------
+function translate() {
+  return gulp
+    .src('./**/*.php')
+    .pipe(sort())
+    .pipe(
+      wpPot({
+        domain: 'fonto',
+        package: 'fonto',
+        headers: false
+      })
+    )
+    .pipe(gulp.dest('./languages/fonto.pot'))
+    .pipe(
+      notify({
+        message: '\n\n✅ build:translate — completed!\n',
+        onLast: true
+      })
+    );
+}
+
+translate.description = 'Generate POT File and move it to languages folder';
+gulp.task( 'build:translate', translate );
+
 // -----------------------------------------------------------------------------
 // Copy plugin folder outside in a build folder
 // -----------------------------------------------------------------------------
@@ -224,7 +273,7 @@ function pluginTextdomainReplace() {
 gulp.task( 'txtdomain-replace', pluginTextdomainReplace );
 
 function buildSequence(cb) {
-  return gulp.series( 'copy-folder', 'remove-unneeded-files', 'remove-empty-folders', 'fix-build-dir-permissions', 'fix-build-file-permissions', 'fix-line-endings', 'txtdomain-replace' )(cb);
+  return gulp.series( 'build:translate', 'copy-folder', 'remove-unneeded-files', 'remove-empty-folders', 'fix-build-dir-permissions', 'fix-build-file-permissions', 'fix-line-endings', 'txtdomain-replace' )(cb);
 }
 buildSequence.description = 'Sets up the build folder';
 gulp.task( 'build', buildSequence );

@@ -1,0 +1,1 @@
+window.tinymce.PluginManager.add("raw_head_code",(function(e){e.on("preinit",(function(e){var n=jQuery("#"+e.target.id+"_ifr");"undefined"!=typeof tinymce_raw_head_code&&jQuery(n[0].contentWindow.document).children("html").children("head").append(tinymce_raw_head_code.code)}))}));

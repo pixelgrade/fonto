@@ -3,7 +3,7 @@ Contributors: pixelgrade, vlad.olaru, babbardel
 Donate link: https://pixelgrade.com
 Tags: font manager, custom font, custom fonts, custom web fonts, fonts, webfonts, typography, css, customizer, editor fonts, font plugin, font uploader, style manager
 Requires at least: 4.9.9
-Tested up to: 5.7.2
+Tested up to: 5.9.2
 Requires PHP: 5.6.20
 Stable tag: 1.2.0
 License: GPL v2.0 (or later)

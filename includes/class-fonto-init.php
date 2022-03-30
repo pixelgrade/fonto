@@ -42,7 +42,7 @@ class Fonto_Init {
 	 * @access  private
 	 * @since   1.0.0
 	 */
-	private $minimalRequiredPhpVersion = 5.3;
+	private $minimalRequiredPhpVersion = 5.6;
 
 	/**
 	 * Plugin Name.
@@ -78,7 +78,7 @@ class Fonto_Init {
 	public function __construct() {
 
 		$this->plugin_name = 'Fonto';
-	} // End __construct ().
+	}
 
 	/**
 	 * Provide a useful error message when the user's PHP version is less than the required version

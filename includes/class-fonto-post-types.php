@@ -52,9 +52,10 @@ class Fonto_Post_Types {
 
 		// Register the Font custom post type
 		$args = array(
-			'public'        => false,
+			'public'        => true,
 			'show_ui'       => true,
 			'show_in_menu'  => true,
+			'show_in_rest'  => true,
 			'query_var'     => false,
 			'can_export'    => true,
 			'rewrite'       => false,
@@ -79,7 +80,7 @@ class Fonto_Post_Types {
 		// Make sure that no CMB2 core styles are enqueued
 		add_filter( 'cmb2_enqueue_css', array( $this, 'prevent_cmb2_core_styles' ) );
 
-		//Enqueue the static assets for the metaboxes in the admin area
+		// Enqueue the static assets for the metaboxes in the admin area.
 		// Load admin JS & CSS.
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ), 10, 1 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_styles' ), 10, 1 );
@@ -87,26 +88,29 @@ class Fonto_Post_Types {
 		// Change the upload directory for our font CPT.
 		add_filter( 'upload_dir', array( $this, 'custom_upload_directory' ) );
 
+		// Handle the self-hosted file list fiels arguments.
+		add_filter( 'cmb2_input_attributes', array( $this, 'handle_file_list_attributes' ), 10, 3 );
+
 		// Add AJAX actions.
 		add_action( 'wp_ajax_sample_font_url_path', array( $this, 'wp_ajax_sample_font_url_path' ), 1 );
 	}
 
 	/**
-	 * Change Upload Directory for Custom Post-Type
+	 * Change Upload Directory for the font post type.
 	 *
 	 * This will change the upload directory for a custom post-type. Attachments will
 	 * now be uploaded to an "uploads" directory within the folder of your plugin. Make
 	 * sure you swap out "post-type" in the if-statement with the appropriate value...
 	 */
 	public function custom_upload_directory( $path ) {
-		$post_ID = false;
+		$post_ID = 0;
 		// We need to account for various keys.
 		if ( ! empty( $_REQUEST['post'] ) ) {
-			$post_ID = $_REQUEST['post'];
+			$post_ID = absint( $_REQUEST['post'] );
 		} elseif ( ! empty( $_REQUEST['post_id'] ) ) {
-			$post_ID = $_REQUEST['post_id'];
+			$post_ID = absint( $_REQUEST['post_id'] );
 		} elseif ( ! empty( $_REQUEST['post_ID'] ) ) {
-			$post_ID = $_REQUEST['post_ID'];
+			$post_ID = absint( $_REQUEST['post_ID'] );
 		}
 		// Check if uploading from inside a post/page/cpt - if not, default Upload folder is used
 		$use_default_dir = empty( $post_ID ) ? true : false;
@@ -120,16 +124,34 @@ class Fonto_Post_Types {
 			return $path;
 		}
 
-		//append the post ID (that is unique) to the path
+		// Append the post ID (that is unique) to the path.
 		$customdir = '/fonts/' . $post_ID;
 
-		//remove default subdir (year/month) and add custom dir INSIDE THE DEFAULT UPLOAD DIR
+		// Remove default subdir (year/month) and add custom dir INSIDE THE DEFAULT UPLOAD DIR.
 		$path['path'] = str_replace( $path['subdir'], $customdir, $path['path'] );
 		$path['url']  = str_replace( $path['subdir'], $customdir, $path['url'] );
 
 		$path['subdir'] = $customdir;
 
 		return $path;
+	}
+
+	/**
+	 * @param array  $args              The array of attribute arguments.
+	 * @param array  $type_defaults     The array of default values.
+	 * @param CMB2_Field  $field             The `CMB2_Field` object.
+	 *
+	 * @return mixed
+	 */
+	public function handle_file_list_attributes( $args, $type_defaults, $field ) {
+		if ( 'file_list' !== $field->type() && $this->parent->_token . '_font_files' !== $field->id() ) {
+			return $args;
+		}
+
+		$args['data-objectid'] = $field->object_id;
+		$args['data-objecttype'] = $field->object_type;
+
+		return $args;
 	}
 
 	/**
@@ -192,6 +214,9 @@ class Fonto_Post_Types {
 			'id'           => $prefix . 'font_files',
 			'type'         => 'file_list',
 			'preview_size' => '', // Default: array( 50, 50 )
+			'query_args' => array(
+				// We need the current post ID but we need to set it before the field render, not here.
+			),
 			'attributes'   => array(
 				// Shown for Self-Hosted fonts
 				'data-conditional-id'    => $prefix . 'font_source',

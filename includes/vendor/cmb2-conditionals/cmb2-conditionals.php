@@ -4,7 +4,7 @@
  *
  * @package     WordPress\Plugins\CMB2 Conditionals
  * @author      José Carlos Chávez <jcchavezs@gmail.com>
- * @link        https://github.com/jcchavezs/cmb2-conditionals
+ * @link        https://github.com/vladolaru/cmb2-conditionals/
  * @version     1.0.4
  *
  * @copyright   2015 José Carlos Chávez

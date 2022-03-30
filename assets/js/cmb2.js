@@ -18,8 +18,8 @@ jQuery(document).ready(function ($) {
 
 	//( '#fonto_font_files-status' ).after( '<i class="edit-fonts-icon  icon  dashicons  dashicons-images-alt2"></i>');
 
-	//Require post title when adding/editing Fonts
-	//inspired by http://kellenmace.com/require-post-title-for-custom-post-type/
+	// Require post title when adding/editing Fonts.
+	// inspired by http://kellenmace.com/require-post-title-for-custom-post-type/
 	$( 'body' ).on( 'submit.edit-post', '#post', function () {
 
 		// If the title isn't set
@@ -42,12 +42,12 @@ jQuery(document).ready(function ($) {
 	});
 
 
-	//Update the URL Path input
+	// Update the URL Path input.
 	$(document).on( 'before-autosave.update-post-slug', function() {
 		titleHasFocus = document.activeElement && document.activeElement.id === 'title';
 	}).on( 'after-autosave.update-post-slug', function() {
 		// Create slug area only if not already there
-		// and the title field was not focused (user was not typing a title) when autosave ran
+		// and the title field was not focused (user was not typing a title) when autosave ran.
 		if ( ! titleHasFocus ) {
 			$.post( ajaxurl, {
 					action: 'sample_font_url_path',
@@ -63,4 +63,9 @@ jQuery(document).ready(function ($) {
 			);
 		}
 	});
+
+	// Set the CMB field object ID in wp.media post id so that uploaded files get attached to the current post.
+	$(document).on( 'cmb_media_modal_init', function( ev, media ) {
+		wp.media.view.settings.post.id = media.fieldData.objectid || 0;
+	} )
 });

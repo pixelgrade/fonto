@@ -7,7 +7,7 @@
  * Author: Pixelgrade
  * Author URI: https://pixelgrade.com
  * Requires at least: 4.9.9
- * Tested up to: 5.7.2
+ * Tested up to: 5.9.2
  * Text Domain: fonto
  * Domain Path: /languages/
  */

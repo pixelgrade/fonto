@@ -141,7 +141,6 @@ class Fonto extends Fonto_Init {
 			$this->upgrade();
 			$this->init();
 		}
-
 	}
 
 	/**
@@ -172,7 +171,6 @@ class Fonto extends Fonto_Init {
 		$this->assets_url = esc_url( trailingslashit( plugins_url( '/assets/', $this->file ) ) );
 
 		$this->script_suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-		$this->script_suffix = '';
 
 		register_activation_hook( $this->file, array( $this, 'install' ) );
 
@@ -298,8 +296,6 @@ class Fonto extends Fonto_Init {
 		if ( file_exists( dirname( __FILE__ ) . '/vendor/cmb2-conditionals/cmb2-conditionals.php' ) ) {
 			require_once dirname( __FILE__ ) . '/vendor/cmb2-conditionals/cmb2-conditionals.php';
 		}
-
-
 	}
 
 	/**
