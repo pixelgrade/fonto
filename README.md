@@ -44,6 +44,11 @@ The plugin provides actions and filters in all the right places allowing you int
 
 ## Changelog
 
+### 1.2.1
+* Fix issues with wrong uploads folder and attachments not attached to the current post.
+* Improve compatibility with WordPress 5.9.2.
+* Update CMB2 and CMB2-Conditionals dependencies to their latest version.
+
 ### 1.2.0
 * Improve integrations with Customify and Style Manager.
 * Fix issues with wrong uploads folder and attachments not attached to the current post.
