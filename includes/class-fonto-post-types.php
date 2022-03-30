@@ -227,7 +227,7 @@ class Fonto_Post_Types {
 				'data-conditional-id'    => $prefix . 'font_source',
 				'data-conditional-value' => 'font_service',
 			),
-			'before_field' => wp_kses_post( __( 'Insert below the embed code (JS/CSS) provided by the font service. <a href="#" target="_blank">Learn More</a>', 'fonto' ) ),
+			'before_field' => sprintf( wp_kses_post( __( 'Insert below the embed code (JS/CSS) provided by the font service. <a href="%s" target="_blank">Learn more</a>', 'fonto' ) ), 'https://pixelgrade.com/docs/advanced-customizations/fonto-premium-fonts/' ),
 			'after_field'  => wp_kses_post( __( 'The above code will be inserted in the <code>\<head\></code> area of your website.', 'fonto' ) ),
 			'row_classes'  => array( 'full-width', 'title__large', 'background__dark' ),
 		) );
