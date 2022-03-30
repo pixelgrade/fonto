@@ -34,6 +34,11 @@ Installing "Fonto" can be done either by searching for "Fonto" via the "Plugins 
 
 == Changelog ==
 
+= 1.2.1 =
+* Fix issues with wrong uploads folder and attachments not attached to the current post.
+* Improve compatibility with WordPress 5.9.2.
+* Update CMB2 and CMB2-Conditionals dependencies to their latest version.
+
 = 1.2.0 =
 * Improve integrations with Customify and Style Manager.
 * Fix issues with wrong uploads folder and attachments not attached to the current post.
