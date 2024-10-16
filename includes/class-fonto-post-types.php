@@ -253,7 +253,7 @@ class Fonto_Post_Types {
 				'data-conditional-value' => 'font_service',
 			),
 			'before_field' => sprintf( wp_kses_post( __( 'Insert below the embed code (JS/CSS) provided by the font service. <a href="%s" target="_blank">Learn more</a>', 'fonto' ) ), 'https://pixelgrade.com/docs/advanced-customizations/fonto-premium-fonts/' ),
-			'after_field'  => wp_kses_post( __( 'The above code will be inserted in the <code>\<head\></code> area of your website.', 'fonto' ) ),
+			'after_field'  => wp_kses_post( __( 'The above code will be inserted in the <code>&lt;head&gt;</code> area of your website.', 'fonto' ) ),
 			'row_classes'  => array( 'full-width', 'title__large', 'background__dark' ),
 		) );
 
@@ -270,7 +270,7 @@ class Fonto_Post_Types {
 				'data-conditional-value' => 'self_hosted',
 			),
 			'before_field' => wp_kses_post( __( 'Insert below the CSS code. <a href="#" target="_blank">Learn More</a>', 'fonto' ) ),
-			'after_field'  => wp_kses_post( __( 'The above code will be inserted in the <code>\<head\></code> area of your website.', 'fonto' ) ),
+			'after_field'  => wp_kses_post( __( 'The above code will be inserted in the <code>&lt;head&gt;</code> area of your website.', 'fonto' ) ),
 			'row_classes'  => array( 'full-width', 'title__large', 'background__dark' ),
 			'after_row'    => '</div><!-- .font-loading-section -->',
 		) );

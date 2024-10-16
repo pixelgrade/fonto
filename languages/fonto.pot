@@ -158,7 +158,7 @@ msgid "Insert below the embed code (JS/CSS) provided by the font service. <a hre
 msgstr ""
 
 #: includes/class-fonto-post-types.php:256, includes/class-fonto-post-types.php:273
-msgid "The above code will be inserted in the <code>\<head\></code> area of your website."
+msgid "The above code will be inserted in the <code><head></code> area of your website."
 msgstr ""
 
 #: includes/class-fonto-post-types.php:272
