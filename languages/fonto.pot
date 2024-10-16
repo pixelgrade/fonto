@@ -6,7 +6,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-10-16 08:26+0000\n"
+"POT-Creation-Date: 2024-10-16 08:31+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: includes/class-fonto-init.php:99
