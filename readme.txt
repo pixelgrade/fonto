@@ -1,15 +1,15 @@
 === Fonto - Custom Web Fonts Manager ===
 Contributors: pixelgrade, vlad.olaru, babbardel
 Donate link: https://pixelgrade.com
-Tags: font manager, custom font, custom fonts, custom web fonts, fonts, webfonts, typography, css, customizer, editor fonts, font plugin, font uploader, style manager
-Requires at least: 4.9.9
-Tested up to: 6.6.2
-Requires PHP: 5.6.20
-Stable tag: 1.2.2
-License: GPL v2.0 (or later)
+Tags: fonts, typography, custom-fonts, customizer, editor
+Requires at least: 5.9.0
+Tested up to: 7.0
+Requires PHP: 7.4
+Stable tag: 1.2.3
+License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Use your custom premium web fonts directly in the Editor or with the Customify and Style Manager plugins. Works with Typekit, MyFonts, Fonts.com, self-hosted fonts, and others.
+Use custom premium web fonts in the editor, Customify, and Style Manager.
 
 == Description ==
 
@@ -33,6 +33,11 @@ Installing "Fonto" can be done either by searching for "Fonto" via the "Plugins 
 * [CMB2 Conditionals](https://github.com/jcchavezs/cmb2-conditionals/) plugin for CMB2 - License: GPLv2 or later
 
 == Changelog ==
+
+= 1.2.3 =
+* Updated WordPress compatibility metadata for WordPress 7.0.
+* Fixed Plugin Check errors in Fonto's release package.
+* Hardened SVG sanitization during font uploads.
 
 = 1.2.2 =
 * Fix security issue: Sanitize SVG uploads to prevent XSS vulnerabilities (CVE-2024-8920).

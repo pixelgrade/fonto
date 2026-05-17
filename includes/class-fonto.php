@@ -143,7 +143,7 @@ class Fonto extends Fonto_Init {
 		}
 
 		// Hook into the upload process to sanitize SVG uploads
-		add_filter('wp_handle_upload_prefilter', array($this, 'sanitize_svg_upload'));
+		add_filter( 'wp_handle_upload_prefilter', array( $this, 'sanitize_svg_upload' ) );
 	}
 
 	/**
@@ -276,7 +276,7 @@ class Fonto extends Fonto_Init {
 	 */
 	public function admin_enqueue_scripts() {
 
-		wp_register_script( $this->_token . '-admin', esc_url( $this->assets_url ) . 'js/admin' . $this->script_suffix . '.js', array(), $this->_version );
+		wp_register_script( $this->_token . '-admin', esc_url( $this->assets_url ) . 'js/admin' . $this->script_suffix . '.js', array(), $this->_version, true );
 		wp_enqueue_script( $this->_token . '-admin' );
 
 	}
@@ -453,7 +453,7 @@ class Fonto extends Fonto_Init {
 	 */
 	public function __clone() {
 
-		_doing_it_wrong( __FUNCTION__, esc_html( __( 'Cheatin&#8217; huh?' ) ), esc_html( $this->_version ) );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin\' huh?', 'fonto' ), esc_html( $this->_version ) );
 	}
 
 	/**
@@ -463,7 +463,7 @@ class Fonto extends Fonto_Init {
 	 */
 	public function __wakeup() {
 
-		_doing_it_wrong( __FUNCTION__, esc_html( __( 'Cheatin&#8217; huh?' ) ), esc_html( $this->_version ) );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin\' huh?', 'fonto' ), esc_html( $this->_version ) );
 	}
 
 	/**
@@ -473,33 +473,38 @@ class Fonto extends Fonto_Init {
 	 * @param array $file The uploaded file information.
 	 * @return array The modified file information with sanitized content and updated filename.
 	 */
-	public function sanitize_svg_upload($file) {
-		// Check if the uploaded file is an SVG
-		if ($file['type'] === 'image/svg+xml') {
-			// Step 1: Read the original SVG content from the temporary file location
-			$svg_content = file_get_contents($file['tmp_name']);
-			
-			// Step 2: Sanitize the SVG content to remove any potentially unsafe elements
-			$clean_svg = $this->sanitize_svg_content($svg_content);
-
-			// Step 3: Extract the original file name (without extension) for use in the new name
-			$original_name = pathinfo($file['name'], PATHINFO_FILENAME);
-
-			// Step 4: Sanitize the original name to ensure no special characters remain
-			$sanitized_name = sanitize_file_name($original_name);
-
-			// Step 5: Generate a unique filename by appending a random suffix to the sanitized name
-			$random_suffix = wp_generate_password(6, false);
-			$new_filename = "{$sanitized_name}-{$random_suffix}.svg";
-
-			// Step 6: Overwrite the temporary file with the sanitized SVG content
-			file_put_contents($file['tmp_name'], $clean_svg);
-
-			// Step 7: Update the file's displayed name, leaving tmp_name intact for WordPress to handle
-			$file['name'] = $new_filename;
+	public function sanitize_svg_upload( $file ) {
+		if ( empty( $file['type'] ) || 'image/svg+xml' !== $file['type'] || empty( $file['tmp_name'] ) ) {
+			return $file;
 		}
-		
-		// Return the updated file information back to WordPress
+
+		$svg_content = file_get_contents( $file['tmp_name'] );
+		if ( false === $svg_content ) {
+			$file['error'] = __( 'The SVG file could not be read for sanitization.', 'fonto' );
+
+			return $file;
+		}
+
+		$clean_svg = $this->sanitize_svg_content( $svg_content );
+		if ( '' === $clean_svg ) {
+			$file['error'] = __( 'The SVG file could not be sanitized.', 'fonto' );
+
+			return $file;
+		}
+
+		$original_name  = isset( $file['name'] ) ? pathinfo( $file['name'], PATHINFO_FILENAME ) : 'font';
+		$sanitized_name = sanitize_file_name( $original_name );
+		if ( '' === $sanitized_name ) {
+			$sanitized_name = 'font';
+		}
+
+		$random_suffix = wp_generate_password( 6, false );
+		$new_filename  = "{$sanitized_name}-{$random_suffix}.svg";
+
+		file_put_contents( $file['tmp_name'], $clean_svg );
+
+		$file['name'] = $new_filename;
+
 		return $file;
 	}
 
@@ -510,34 +515,31 @@ class Fonto extends Fonto_Init {
 	 * @param string $svg_content The raw SVG content to be sanitized.
 	 * @return string The sanitized SVG content.
 	 */
-	private function sanitize_svg_content($svg_content) {
-		// Create a new DOMDocument instance to parse the SVG XML content
+	private function sanitize_svg_content( $svg_content ) {
+		$svg_content = preg_replace( '/<!DOCTYPE[^>]*(?:\[[\s\S]*?\]\s*)?>/i', '', $svg_content );
 		$dom = new DOMDocument();
-		
-		// Suppress XML parsing errors for invalid SVG formats
-		libxml_use_internal_errors(true);
-		
-		// Load the SVG content into the DOMDocument for manipulation
-		$dom->loadXML($svg_content, LIBXML_NOENT | LIBXML_DTDLOAD);
-		
-		// Clear any XML parsing errors
+
+		libxml_use_internal_errors( true );
+		$loaded = $dom->loadXML( $svg_content, LIBXML_NONET );
 		libxml_clear_errors();
-		
-		// Step 1: Remove any <script> elements, which can execute JavaScript
-		$scripts = $dom->getElementsByTagName('script');
-		while ($scripts->length > 0) {
-			$scripts->item(0)->parentNode->removeChild($scripts->item(0));
+
+		if ( false === $loaded ) {
+			return '';
 		}
 
-		// Step 2: Remove unsafe attributes that could contain JavaScript (like onclick, onload)
-		$xpath = new DOMXPath($dom);
-		foreach ($xpath->query('//@*') as $attr) {
-			if (stripos($attr->name, 'on') === 0 || stripos($attr->value, 'javascript:') === 0) {
-				$attr->parentNode->removeAttribute($attr->name);
+		$scripts = $dom->getElementsByTagName( 'script' );
+		while ( $scripts->length > 0 ) {
+			$scripts->item( 0 )->parentNode->removeChild( $scripts->item( 0 ) );
+		}
+
+		$xpath = new DOMXPath( $dom );
+		foreach ( $xpath->query( '//@*' ) as $attr ) {
+			$value = trim( $attr->value );
+			if ( 0 === stripos( $attr->name, 'on' ) || 0 === stripos( $value, 'javascript:' ) ) {
+				$attr->parentNode->removeAttribute( $attr->name );
 			}
 		}
 
-		// Return the sanitized SVG content as XML
 		return $dom->saveXML();
 	}
 }

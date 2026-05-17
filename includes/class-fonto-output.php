@@ -200,13 +200,58 @@ class Fonto_Output {
 		return $embed_code;
 	}
 
+	/**
+	 * Returns the allowed tags for font service embed code.
+	 *
+	 * @return array
+	 */
+	private function get_allowed_embed_tags() {
+		return array(
+			'link'   => array(
+				'as'          => true,
+				'crossorigin' => true,
+				'href'        => true,
+				'id'          => true,
+				'media'       => true,
+				'rel'         => true,
+				'sizes'       => true,
+				'type'        => true,
+			),
+			'noscript' => array(),
+			'script'   => array(
+				'async'       => true,
+				'charset'     => true,
+				'crossorigin' => true,
+				'defer'       => true,
+				'id'          => true,
+				'integrity'   => true,
+				'src'         => true,
+				'type'        => true,
+			),
+			'style'  => array(
+				'id'    => true,
+				'media' => true,
+				'type'  => true,
+			),
+		);
+	}
+
+	/**
+	 * Returns sanitized embed code suitable for output.
+	 *
+	 * @return string
+	 */
+	private function get_sanitized_fonts_embed_code() {
+		return wp_kses( $this->get_fonts_embed_code(), $this->get_allowed_embed_tags() );
+	}
+
 	public function add_front_embed_code() {
 		// Allow others to stop us from adding the embed code in the <head> area
 		if ( ! apply_filters( $this->prefix . 'add_front_embed_code', true ) ) {
 			return;
 		}
 
-		echo $this->get_fonts_embed_code();
+		echo wp_kses( $this->get_fonts_embed_code(), $this->get_allowed_embed_tags() );
 	}
 
 	public function add_admin_embed_code() {
@@ -215,7 +260,7 @@ class Fonto_Output {
 			return;
 		}
 
-		echo $this->get_fonts_embed_code();
+		echo wp_kses( $this->get_fonts_embed_code(), $this->get_allowed_embed_tags() );
 	}
 
 	/**
@@ -235,12 +280,12 @@ class Fonto_Output {
 	 * Localize the TinyMCE Raw Head Code plugin to receive the actual code to inject in the iframe's head
 	 */
 	function localize_tinymce_raw_head_code_plugin() {
-		$embed_code = json_encode( $this->get_fonts_embed_code() );
+		$embed_code = wp_json_encode( $this->get_sanitized_fonts_embed_code() );
 		?>
 		<!-- TinyMCE Raw Head Plugin -->
 		<script type='text/javascript'>
 			var tinymce_raw_head_code = {
-				'code': <?php echo $embed_code; ?>,
+				'code': <?php echo $embed_code; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_json_encode() safely encodes this JavaScript value. ?>,
 			};
 		</script>
 		<!-- TinyMCE Raw Head Plugin -->
@@ -392,7 +437,7 @@ class Fonto_Output {
 	 */
 	public function __clone() {
 
-		_doing_it_wrong( __FUNCTION__, esc_html( __( 'Cheatin&#8217; huh?' ) ), esc_html( $this->parent->_version ) );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin\' huh?', 'fonto' ), esc_html( $this->parent->_version ) );
 	}
 
 	/**
@@ -402,7 +447,7 @@ class Fonto_Output {
 	 */
 	public function __wakeup() {
 
-		_doing_it_wrong( __FUNCTION__, esc_html( __( 'Cheatin&#8217; huh?' ) ), esc_html( $this->parent->_version ) );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin\' huh?', 'fonto' ), esc_html( $this->parent->_version ) );
 	}
 
 }

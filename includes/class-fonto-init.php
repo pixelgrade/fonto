@@ -42,7 +42,7 @@ class Fonto_Init {
 	 * @access  private
 	 * @since   1.0.0
 	 */
-	private $minimalRequiredPhpVersion = 5.6;
+	private $minimalRequiredPhpVersion = '7.4';
 
 	/**
 	 * Plugin Name.
@@ -95,7 +95,11 @@ class Fonto_Init {
 		);
 
 		$html = '<div class="updated fade">' .
-		        __( 'Error: plugin "' . $this->plugin_name . '" requires a newer version of PHP to be running.', 'fonto' ) .
+		        sprintf(
+			        /* translators: %s: plugin name. */
+			        __( 'Error: plugin "%s" requires a newer version of PHP to be running.', 'fonto' ),
+			        $this->plugin_name
+		        ) .
 		        '<br/>' . __( 'Minimal version of PHP required: ', 'fonto' ) . '<strong>' . $this->minimalRequiredPhpVersion . '</strong>
 				<br/>' . __( 'Your server\'s PHP version: ', 'fonto' ) . '<strong>' . phpversion() . '</strong>
 				</div>';
@@ -158,9 +162,17 @@ class Fonto_Init {
 	public function notice_new_version() {
 
 		foreach ( $this->new_versions as $new_version ) {
-			echo '<div class="notice notice-success is-dismissible"><p>' .
-			     sprintf( __( 'The <strong>%s</strong> plugin has been updated to version %s. Enjoy!', 'fonto' ), $this->plugin_name, $new_version ) .
-			     '</p></div>';
+				printf(
+					'<div class="notice notice-success is-dismissible"><p>%s</p></div>',
+					wp_kses_post(
+						sprintf(
+							/* translators: 1: plugin name, 2: plugin version. */
+							__( 'The <strong>%1$s</strong> plugin has been updated to version %2$s. Enjoy!', 'fonto' ),
+							esc_html( $this->plugin_name ),
+							esc_html( $new_version )
+						)
+					)
+				);
 		}
 
 	}

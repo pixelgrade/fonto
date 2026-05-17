@@ -45,6 +45,9 @@ function fonto_construct_style_manager_font_details( $font ) {
 		// Grab the font variations meta
 		// this is a single meta holding an array
 		$font_variations = get_post_meta( $font->ID, $local_fonto->output->prefix . 'font_variations', true );
+		if ( ! is_array( $font_variations ) ) {
+			$font_variations = array();
+		}
 		// if the font has some variations then we can use it
 		if ( ! empty( $font_variations ) ) {
 			$font_details['font_family'] = esc_html( $font_family_name );

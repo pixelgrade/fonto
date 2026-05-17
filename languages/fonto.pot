@@ -1,4 +1,4 @@
-# Copyright (C) 2024 fonto
+# Copyright (C) 2026 fonto
 # This file is distributed under the same license as the fonto package.
 msgid ""
 msgstr ""
@@ -6,82 +6,88 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-10-16 08:31+0000\n"
+"POT-Creation-Date: 2026-05-17 17:07+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: includes/class-fonto-init.php:99
+#. translators: %s: plugin name.
+#: includes/class-fonto-init.php:100
+msgid "Error: plugin \"%s\" requires a newer version of PHP to be running."
+msgstr ""
+
+#: includes/class-fonto-init.php:103
 msgid "Minimal version of PHP required: "
 msgstr ""
 
-#: includes/class-fonto-init.php:100
+#: includes/class-fonto-init.php:104
 msgid "Your server's PHP version: "
 msgstr ""
 
-#: includes/class-fonto-init.php:162
-msgid "The <strong>%s</strong> plugin has been updated to version %s. Enjoy!"
+#. translators: 1: plugin name, 2: plugin version.
+#: includes/class-fonto-init.php:170
+msgid "The <strong>%1$s</strong> plugin has been updated to version %2$s. Enjoy!"
 msgstr ""
 
-#: includes/class-fonto-output.php:78, includes/class-fonto-post-types.php:322, includes/class-fonto-post-types.php:364
+#: includes/class-fonto-output.php:78, includes/class-fonto-post-types.php:328, includes/class-fonto-post-types.php:370
 msgid "Thin 100"
 msgstr ""
 
-#: includes/class-fonto-output.php:79, includes/class-fonto-post-types.php:323, includes/class-fonto-post-types.php:377
+#: includes/class-fonto-output.php:79, includes/class-fonto-post-types.php:329, includes/class-fonto-post-types.php:383
 msgid "Thin Italic"
 msgstr ""
 
-#: includes/class-fonto-output.php:80, includes/class-fonto-post-types.php:324, includes/class-fonto-post-types.php:389
+#: includes/class-fonto-output.php:80, includes/class-fonto-post-types.php:330, includes/class-fonto-post-types.php:395
 msgid "Extra Light 200"
 msgstr ""
 
-#: includes/class-fonto-output.php:81, includes/class-fonto-post-types.php:325, includes/class-fonto-post-types.php:401
+#: includes/class-fonto-output.php:81, includes/class-fonto-post-types.php:331, includes/class-fonto-post-types.php:407
 msgid "Extra Light Italic"
 msgstr ""
 
-#: includes/class-fonto-output.php:82, includes/class-fonto-post-types.php:326, includes/class-fonto-post-types.php:413
+#: includes/class-fonto-output.php:82, includes/class-fonto-post-types.php:332, includes/class-fonto-post-types.php:419
 msgid "Light 300"
 msgstr ""
 
-#: includes/class-fonto-output.php:83, includes/class-fonto-post-types.php:327, includes/class-fonto-post-types.php:425
+#: includes/class-fonto-output.php:83, includes/class-fonto-post-types.php:333, includes/class-fonto-post-types.php:431
 msgid "Light Italic"
 msgstr ""
 
-#: includes/class-fonto-output.php:84, includes/class-fonto-post-types.php:328, includes/class-fonto-post-types.php:437
+#: includes/class-fonto-output.php:84, includes/class-fonto-post-types.php:334, includes/class-fonto-post-types.php:443
 msgid "Regular 400"
 msgstr ""
 
-#: includes/class-fonto-output.php:85, includes/class-fonto-post-types.php:329, includes/class-fonto-post-types.php:449
+#: includes/class-fonto-output.php:85, includes/class-fonto-post-types.php:335, includes/class-fonto-post-types.php:455
 msgid "Regular Italic"
 msgstr ""
 
-#: includes/class-fonto-output.php:86, includes/class-fonto-post-types.php:330, includes/class-fonto-post-types.php:461
+#: includes/class-fonto-output.php:86, includes/class-fonto-post-types.php:336, includes/class-fonto-post-types.php:467
 msgid "Medium 500"
 msgstr ""
 
-#: includes/class-fonto-output.php:87, includes/class-fonto-post-types.php:331, includes/class-fonto-post-types.php:473
+#: includes/class-fonto-output.php:87, includes/class-fonto-post-types.php:337, includes/class-fonto-post-types.php:479
 msgid "Medium Italic"
 msgstr ""
 
-#: includes/class-fonto-output.php:88, includes/class-fonto-post-types.php:332
+#: includes/class-fonto-output.php:88, includes/class-fonto-post-types.php:338
 msgid "SemiBold 600"
 msgstr ""
 
-#: includes/class-fonto-output.php:89, includes/class-fonto-post-types.php:333
+#: includes/class-fonto-output.php:89, includes/class-fonto-post-types.php:339
 msgid "SemiBold Italic"
 msgstr ""
 
-#: includes/class-fonto-output.php:90, includes/class-fonto-post-types.php:334, includes/class-fonto-post-types.php:509
+#: includes/class-fonto-output.php:90, includes/class-fonto-post-types.php:340, includes/class-fonto-post-types.php:515
 msgid "Bold 700"
 msgstr ""
 
-#: includes/class-fonto-output.php:91, includes/class-fonto-post-types.php:335, includes/class-fonto-post-types.php:521
+#: includes/class-fonto-output.php:91, includes/class-fonto-post-types.php:341, includes/class-fonto-post-types.php:527
 msgid "Bold Italic"
 msgstr ""
 
-#: includes/class-fonto-output.php:92, includes/class-fonto-post-types.php:336
+#: includes/class-fonto-output.php:92, includes/class-fonto-post-types.php:342
 msgid "ExtraBold 800"
 msgstr ""
 
-#: includes/class-fonto-output.php:93, includes/class-fonto-post-types.php:337
+#: includes/class-fonto-output.php:93, includes/class-fonto-post-types.php:343
 msgid "ExtraBold Italic"
 msgstr ""
 
@@ -89,8 +95,12 @@ msgstr ""
 msgid "Black 100"
 msgstr ""
 
-#: includes/class-fonto-output.php:95, includes/class-fonto-post-types.php:339, includes/class-fonto-post-types.php:569
+#: includes/class-fonto-output.php:95, includes/class-fonto-post-types.php:345, includes/class-fonto-post-types.php:575
 msgid "Black Italic"
+msgstr ""
+
+#: includes/class-fonto-output.php:440, includes/class-fonto-output.php:450, includes/class-fonto-post-types.php:738, includes/class-fonto-post-types.php:748, includes/class-fonto.php:456, includes/class-fonto.php:466, includes/lib/class-fonto-option.php:164, includes/lib/class-fonto-option.php:174
+msgid "Cheatin' huh?"
 msgstr ""
 
 #: includes/class-fonto-post-types.php:70
@@ -145,253 +155,262 @@ msgstr ""
 msgid "This is the URL path to be used for the uploaded font files. Please use it in the font's CSS rules (i.e. replace <code>Fonts/something.woff</code> with <code>http://yourdomain.com/wp-content/uploads/fonts/123/something.woff</code> ).<span class=\"note\">*Note: You need to give a title to this font first and this field will be autofilled!</span>"
 msgstr ""
 
-#: includes/class-fonto-post-types.php:244, includes/class-fonto-post-types.php:261
+#: includes/class-fonto-post-types.php:244, includes/class-fonto-post-types.php:267
 msgid "Embed Code"
 msgstr ""
 
-#: includes/class-fonto-post-types.php:249, includes/class-fonto-post-types.php:266
+#: includes/class-fonto-post-types.php:249, includes/class-fonto-post-types.php:272
 msgid "Your embed code"
 msgstr ""
 
-#: includes/class-fonto-post-types.php:255
+#. translators: %s: Fonto documentation URL.
+#: includes/class-fonto-post-types.php:258
 msgid "Insert below the embed code (JS/CSS) provided by the font service. <a href=\"%s\" target=\"_blank\">Learn more</a>"
 msgstr ""
 
-#: includes/class-fonto-post-types.php:256, includes/class-fonto-post-types.php:273
+#: includes/class-fonto-post-types.php:262, includes/class-fonto-post-types.php:279
 msgid "The above code will be inserted in the <code>&lt;head&gt;</code> area of your website."
 msgstr ""
 
-#: includes/class-fonto-post-types.php:272
+#: includes/class-fonto-post-types.php:278
 msgid "Insert below the CSS code. <a href=\"#\" target=\"_blank\">Learn More</a>"
 msgstr ""
 
-#: includes/class-fonto-post-types.php:279
+#: includes/class-fonto-post-types.php:285
 msgid "Weights & Styles Matching"
 msgstr ""
 
-#: includes/class-fonto-post-types.php:286
+#: includes/class-fonto-post-types.php:292
 msgid "How Fonts Variations (weights & styles) are declared?"
 msgstr ""
 
-#: includes/class-fonto-post-types.php:287
+#: includes/class-fonto-post-types.php:293
 msgid "Based on the format that you received the font names from the font service."
 msgstr ""
 
-#: includes/class-fonto-post-types.php:291
+#: includes/class-fonto-post-types.php:297
 msgid "Fonts are grouped together in a single \"Font Family\" name"
 msgstr ""
 
-#: includes/class-fonto-post-types.php:292
+#: includes/class-fonto-post-types.php:298
 msgid "When you have only <em>one</em> font name; we will add weights and styles via CSS.<br/>— Example: <em>\"proxima-nova\"</em> from Typekit or Fonts.com"
 msgstr ""
 
-#: includes/class-fonto-post-types.php:293
+#: includes/class-fonto-post-types.php:299
 msgid "Font Names are Referenced Individually"
 msgstr ""
 
-#: includes/class-fonto-post-types.php:294
+#: includes/class-fonto-post-types.php:300
 msgid "If you have <em>multiple</em> font names; this means the weights and styles are bundled within each font and we shouldn't add them again in CSS.<br/>— Example: <em>\"ProximaNW01-Regular\"</em> and <em>\"ProximaNW01-RegularItalic\"</em> from MyFonts.com"
 msgstr ""
 
-#: includes/class-fonto-post-types.php:301
+#: includes/class-fonto-post-types.php:307
 msgid "Font Family Name"
 msgstr ""
 
-#: includes/class-fonto-post-types.php:302
+#: includes/class-fonto-post-types.php:308
 msgid "Insert the CSS font name as provided by the font service."
 msgstr ""
 
-#: includes/class-fonto-post-types.php:314
+#: includes/class-fonto-post-types.php:320
 msgid "Available Font Variations"
 msgstr ""
 
-#: includes/class-fonto-post-types.php:315
+#: includes/class-fonto-post-types.php:321
 msgid "Check the available variations for this font."
 msgstr ""
 
-#: includes/class-fonto-post-types.php:316
+#: includes/class-fonto-post-types.php:322
 msgid "*Note that the variations will be available through the Font Selectors and will not make any effect if a specific variation is checked but is not loaded by the font service."
 msgstr ""
 
-#: includes/class-fonto-post-types.php:338, includes/class-fonto-post-types.php:557
+#: includes/class-fonto-post-types.php:344, includes/class-fonto-post-types.php:563
 msgid "Black 900"
 msgstr ""
 
-#: includes/class-fonto-post-types.php:351
+#: includes/class-fonto-post-types.php:357
 msgid "Font Weights & Styles Variations"
 msgstr ""
 
-#: includes/class-fonto-post-types.php:352
+#: includes/class-fonto-post-types.php:358
 msgid "Pair the provided fonts references names with their matching weights and styles."
 msgstr ""
 
-#: includes/class-fonto-post-types.php:485
+#: includes/class-fonto-post-types.php:491
 msgid "Semi Bold 600"
 msgstr ""
 
-#: includes/class-fonto-post-types.php:497
+#: includes/class-fonto-post-types.php:503
 msgid "Semi Bold Italic"
 msgstr ""
 
-#: includes/class-fonto-post-types.php:533
+#: includes/class-fonto-post-types.php:539
 msgid "Extra Bold 800"
 msgstr ""
 
-#: includes/class-fonto-post-types.php:545
+#: includes/class-fonto-post-types.php:551
 msgid "Extra Bold Italic"
 msgstr ""
 
-#: includes/integrations/customify.php:112, includes/integrations/customify.php:140, includes/integrations/customify.php:185, includes/integrations/style-manager.php:132
+#: includes/class-fonto.php:483
+msgid "The SVG file could not be read for sanitization."
+msgstr ""
+
+#: includes/class-fonto.php:490
+msgid "The SVG file could not be sanitized."
+msgstr ""
+
+#: includes/integrations/customify.php:116, includes/integrations/customify.php:144, includes/integrations/customify.php:189, includes/integrations/style-manager.php:135
 msgid "Custom Fonts"
 msgstr ""
 
-#: includes/lib/class-fonto-post-type.php:111
-msgctxt "$this->post_type"
+#: includes/lib/class-fonto-post-type.php:115
+msgctxt "post type add new label"
 msgid "Add New"
 msgstr ""
 
-#: includes/lib/class-fonto-post-type.php:112, includes/lib/class-fonto-taxonomy.php:116
+#: includes/lib/class-fonto-post-type.php:116, includes/lib/class-fonto-taxonomy.php:120
 msgid "Add New %s"
 msgstr ""
 
-#: includes/lib/class-fonto-post-type.php:113, includes/lib/class-fonto-taxonomy.php:113
+#: includes/lib/class-fonto-post-type.php:117, includes/lib/class-fonto-taxonomy.php:117
 msgid "Edit %s"
 msgstr ""
 
-#: includes/lib/class-fonto-post-type.php:114
+#: includes/lib/class-fonto-post-type.php:118
 msgid "New %s"
 msgstr ""
 
-#: includes/lib/class-fonto-post-type.php:115, includes/lib/class-fonto-taxonomy.php:112
+#: includes/lib/class-fonto-post-type.php:119, includes/lib/class-fonto-taxonomy.php:116
 msgid "All %s"
 msgstr ""
 
-#: includes/lib/class-fonto-post-type.php:116, includes/lib/class-fonto-post-type.php:117, includes/lib/class-fonto-taxonomy.php:114
+#: includes/lib/class-fonto-post-type.php:120, includes/lib/class-fonto-post-type.php:121, includes/lib/class-fonto-taxonomy.php:118
 msgid "View %s"
 msgstr ""
 
-#: includes/lib/class-fonto-post-type.php:118, includes/lib/class-fonto-taxonomy.php:120
+#: includes/lib/class-fonto-post-type.php:122, includes/lib/class-fonto-taxonomy.php:124
 msgid "Search %s"
 msgstr ""
 
-#: includes/lib/class-fonto-post-type.php:119
+#: includes/lib/class-fonto-post-type.php:123
 msgid "No %s Found"
 msgstr ""
 
-#: includes/lib/class-fonto-post-type.php:120
+#: includes/lib/class-fonto-post-type.php:124
 msgid "No %s Found In Trash"
 msgstr ""
 
-#: includes/lib/class-fonto-post-type.php:147
-msgid "%1$s updated. %2$sView %3$s%4$s."
-msgstr ""
-
-#: includes/lib/class-fonto-post-type.php:148
-msgid "Custom field updated."
-msgstr ""
-
-#: includes/lib/class-fonto-post-type.php:149
-msgid "Custom field deleted."
-msgstr ""
-
-#: includes/lib/class-fonto-post-type.php:150
-msgid "%1$s updated."
-msgstr ""
-
-#: includes/lib/class-fonto-post-type.php:151
-msgid "%1$s restored to revision from %2$s."
-msgstr ""
-
-#: includes/lib/class-fonto-post-type.php:153
-msgid "%1$s published. %2$sView %3$s%4$s."
-msgstr ""
-
-#: includes/lib/class-fonto-post-type.php:154
-msgid "%1$s saved."
-msgstr ""
-
-#: includes/lib/class-fonto-post-type.php:155
-msgid "%1$s submitted. %2$sPreview post%3$s%4$s."
-msgstr ""
-
-#: includes/lib/class-fonto-post-type.php:156
-msgid "%1$s scheduled for: %2$s. %3$sPreview %4$s%5$s."
-msgstr ""
-
-#: includes/lib/class-fonto-post-type.php:156
-msgid "M j, Y @ G:i"
-msgstr ""
-
-#: includes/lib/class-fonto-post-type.php:157
-msgid "%1$s draft updated. %2$sPreview %3$s%4$s."
-msgstr ""
-
-#: includes/lib/class-fonto-post-type.php:174
-msgid "%1$s %2$s updated."
-msgid_plural "%1$s %3$s updated."
-msgstr[0] ""
-msgstr[1] ""
-
-#: includes/lib/class-fonto-post-type.php:175
-msgid "%1$s %2$s not updated, somebody is editing it."
-msgid_plural "%1$s %3$s not updated, somebody is editing them."
-msgstr[0] ""
-msgstr[1] ""
-
-#: includes/lib/class-fonto-post-type.php:176
-msgid "%1$s %2$s permanently deleted."
-msgid_plural "%1$s %3$s permanently deleted."
-msgstr[0] ""
-msgstr[1] ""
-
-#: includes/lib/class-fonto-post-type.php:177
-msgid "%1$s %2$s moved to the Trash."
-msgid_plural "%1$s %3$s moved to the Trash."
-msgstr[0] ""
-msgstr[1] ""
-
-#: includes/lib/class-fonto-post-type.php:178
-msgid "%1$s %2$s restored from the Trash."
-msgid_plural "%1$s %3$s restored from the Trash."
-msgstr[0] ""
-msgstr[1] ""
-
-#: includes/lib/class-fonto-taxonomy.php:115
-msgid "Update %s"
-msgstr ""
-
-#: includes/lib/class-fonto-taxonomy.php:117
-msgid "New %s Name"
-msgstr ""
-
-#: includes/lib/class-fonto-taxonomy.php:118
+#: includes/lib/class-fonto-post-type.php:125, includes/lib/class-fonto-taxonomy.php:122
 msgid "Parent %s"
 msgstr ""
 
+#: includes/lib/class-fonto-post-type.php:153
+msgid "%1$s updated. %2$sView %3$s%4$s."
+msgstr ""
+
+#: includes/lib/class-fonto-post-type.php:154
+msgid "Custom field updated."
+msgstr ""
+
+#: includes/lib/class-fonto-post-type.php:155
+msgid "Custom field deleted."
+msgstr ""
+
+#: includes/lib/class-fonto-post-type.php:156
+msgid "%1$s updated."
+msgstr ""
+
+#: includes/lib/class-fonto-post-type.php:157
+msgid "%1$s restored to revision from %2$s."
+msgstr ""
+
+#: includes/lib/class-fonto-post-type.php:158
+msgid "%1$s published. %2$sView %3$s%4$s."
+msgstr ""
+
+#: includes/lib/class-fonto-post-type.php:159
+msgid "%1$s saved."
+msgstr ""
+
+#: includes/lib/class-fonto-post-type.php:160
+msgid "%1$s submitted. %2$sPreview post%3$s%4$s."
+msgstr ""
+
+#: includes/lib/class-fonto-post-type.php:161
+msgid "%1$s scheduled for: %2$s. %3$sPreview %4$s%5$s."
+msgstr ""
+
+#: includes/lib/class-fonto-post-type.php:161
+msgid "M j, Y @ G:i"
+msgstr ""
+
+#: includes/lib/class-fonto-post-type.php:162
+msgid "%1$s draft updated. %2$sPreview %3$s%4$s."
+msgstr ""
+
+#: includes/lib/class-fonto-post-type.php:185
+msgid "%1$s %2$s updated."
+msgid_plural "%1$s %2$s updated."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/lib/class-fonto-post-type.php:186
+msgid "%1$s %2$s not updated, somebody is editing it."
+msgid_plural "%1$s %2$s not updated, somebody is editing them."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/lib/class-fonto-post-type.php:187
+msgid "%1$s %2$s permanently deleted."
+msgid_plural "%1$s %2$s permanently deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/lib/class-fonto-post-type.php:188
+msgid "%1$s %2$s moved to the Trash."
+msgid_plural "%1$s %2$s moved to the Trash."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/lib/class-fonto-post-type.php:189
+msgid "%1$s %2$s restored from the Trash."
+msgid_plural "%1$s %2$s restored from the Trash."
+msgstr[0] ""
+msgstr[1] ""
+
 #: includes/lib/class-fonto-taxonomy.php:119
-msgid "Parent %s:"
+msgid "Update %s"
 msgstr ""
 
 #: includes/lib/class-fonto-taxonomy.php:121
-msgid "Popular %s"
-msgstr ""
-
-#: includes/lib/class-fonto-taxonomy.php:122
-msgid "Separate %s with commas"
+msgid "New %s Name"
 msgstr ""
 
 #: includes/lib/class-fonto-taxonomy.php:123
-msgid "Add or remove %s"
-msgstr ""
-
-#: includes/lib/class-fonto-taxonomy.php:124
-msgid "Choose from the most used %s"
+msgid "Parent %s:"
 msgstr ""
 
 #: includes/lib/class-fonto-taxonomy.php:125
+msgid "Popular %s"
+msgstr ""
+
+#: includes/lib/class-fonto-taxonomy.php:126
+msgid "Separate %s with commas"
+msgstr ""
+
+#: includes/lib/class-fonto-taxonomy.php:127
+msgid "Add or remove %s"
+msgstr ""
+
+#: includes/lib/class-fonto-taxonomy.php:128
+msgid "Choose from the most used %s"
+msgstr ""
+
+#: includes/lib/class-fonto-taxonomy.php:129
 msgid "No %s found"
 msgstr ""
 
-#: includes/lib/class-fonto-taxonomy.php:173
+#: includes/lib/class-fonto-taxonomy.php:180
 msgid "Show All %s"
 msgstr ""

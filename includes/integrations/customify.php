@@ -34,6 +34,7 @@ function fonto_construct_customify_font_details( $font ) {
 		//use the default
 		$font_name_style = 'grouped';
 	}
+	$font_details['font_name_style'] = $font_name_style;
 
 	if ( 'grouped' == $font_name_style ) {
 		/* ===== Fonts are grouped together in a single "Font Family" name ==== */
@@ -43,6 +44,9 @@ function fonto_construct_customify_font_details( $font ) {
 		// Grab the font variations meta
 		// this is a single meta holding an array
 		$font_variations = get_post_meta( $font->ID, $local_fonto->output->prefix . 'font_variations', true );
+		if ( ! is_array( $font_variations ) ) {
+			$font_variations = array();
+		}
 		// if the font has some variations then we can use it
 		if ( ! empty( $font_variations ) ) {
 			$font_details['font_family'] = esc_html( $font_family_name );
@@ -109,13 +113,13 @@ function fonto_add_custom_fonts_to_customify_typography_select( $active_font_fam
 	// Get all the published custom fonts.
 	$fonts = fonto_get_fonts();
 	if ( ! empty( $fonts ) ) {
-		echo '<optgroup label="' . __( 'Custom Fonts', 'fonto' ) . '">';
+		echo '<optgroup label="' . esc_attr__( 'Custom Fonts', 'fonto' ) . '">';
 
 		foreach ( $fonts as $font ) {
 			$font_details = fonto_construct_customify_font_details( $font );
 			if ( ! empty( $font_details ) && ! empty( $font_details['font_family'] ) ) {
 				//display the select option's HTML
-				Pix_Customize_Typography_Control::output_font_option( $font_details['font_family'], $active_font_family, $font_details, 'custom_' . $font_name_style );
+				Pix_Customize_Typography_Control::output_font_option( $font_details['font_family'], $active_font_family, $font_details, 'custom_' . $font_details['font_name_style'] );
 			}
 		}
 		echo "</optgroup>";
@@ -137,7 +141,7 @@ function fonto_add_custom_fonts_to_customify_font_select( $active_font_family ) 
 	$fonts = fonto_get_fonts();
 
 	if ( ! empty( $fonts ) ) {
-		echo '<optgroup label="' . __( 'Custom Fonts', 'fonto' ) . '">';
+		echo '<optgroup label="' . esc_attr__( 'Custom Fonts', 'fonto' ) . '">';
 
 		foreach ( $fonts as $font ) {
 			$font_details = fonto_construct_customify_font_details( $font );

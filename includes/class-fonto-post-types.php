@@ -252,7 +252,13 @@ class Fonto_Post_Types {
 				'data-conditional-id'    => $prefix . 'font_source',
 				'data-conditional-value' => 'font_service',
 			),
-			'before_field' => sprintf( wp_kses_post( __( 'Insert below the embed code (JS/CSS) provided by the font service. <a href="%s" target="_blank">Learn more</a>', 'fonto' ) ), 'https://pixelgrade.com/docs/advanced-customizations/fonto-premium-fonts/' ),
+			'before_field' => sprintf(
+				wp_kses_post(
+					/* translators: %s: Fonto documentation URL. */
+					__( 'Insert below the embed code (JS/CSS) provided by the font service. <a href="%s" target="_blank">Learn more</a>', 'fonto' )
+				),
+				esc_url( 'https://pixelgrade.com/docs/advanced-customizations/fonto-premium-fonts/' )
+			),
 			'after_field'  => wp_kses_post( __( 'The above code will be inserted in the <code>&lt;head&gt;</code> area of your website.', 'fonto' ) ),
 			'row_classes'  => array( 'full-width', 'title__large', 'background__dark' ),
 		) );
@@ -601,7 +607,7 @@ class Fonto_Post_Types {
 		// Get the current URL for the uploads directory.
 		$uploads = wp_upload_dir();
 
-		wp_die( trailingslashit( $uploads['url'] ) );
+			wp_die( esc_url_raw( trailingslashit( $uploads['url'] ) ) );
 	}
 
 	/**
@@ -683,9 +689,15 @@ class Fonto_Post_Types {
 		}
 
 		// Register our cmb custom JS
-		wp_register_script( $this->parent->_token . '-cmb2', esc_url( $this->parent->assets_url ) . 'js/cmb2' . $this->parent->script_suffix . '.js', array(
-			'jquery',
-		), $this->parent->_version );
+			wp_register_script(
+				$this->parent->_token . '-cmb2',
+				esc_url( $this->parent->assets_url ) . 'js/cmb2' . $this->parent->script_suffix . '.js',
+				array(
+					'jquery',
+				),
+				$this->parent->_version,
+				true
+			);
 
 		wp_enqueue_script( $this->parent->_token . '-cmb2' );
 
@@ -723,7 +735,7 @@ class Fonto_Post_Types {
 	 */
 	public function __clone() {
 
-		_doing_it_wrong( __FUNCTION__, esc_html( __( 'Cheatin&#8217; huh?' ) ), esc_html( $this->parent->_version ) );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin\' huh?', 'fonto' ), esc_html( $this->parent->_version ) );
 	}
 
 	/**
@@ -733,7 +745,7 @@ class Fonto_Post_Types {
 	 */
 	public function __wakeup() {
 
-		_doing_it_wrong( __FUNCTION__, esc_html( __( 'Cheatin&#8217; huh?' ) ), esc_html( $this->parent->_version ) );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin\' huh?', 'fonto' ), esc_html( $this->parent->_version ) );
 	}
 
 }

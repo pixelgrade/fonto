@@ -161,7 +161,7 @@ class Fonto_Option {
 	 */
 	public function __clone() {
 
-		_doing_it_wrong( __FUNCTION__, esc_html( __( 'Cheatin&#8217; huh?' ) ), esc_html( $this->parent->_version ) );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin\' huh?', 'fonto' ), esc_html( $this->parent->_version ) );
 	}
 
 	/**
@@ -171,7 +171,7 @@ class Fonto_Option {
 	 */
 	public function __wakeup() {
 
-		_doing_it_wrong( __FUNCTION__, esc_html( __( 'Cheatin&#8217; huh?' ) ), esc_html( $this->parent->_version ) );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin\' huh?', 'fonto' ), esc_html( $this->parent->_version ) );
 	}
 
 }
