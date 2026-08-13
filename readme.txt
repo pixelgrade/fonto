@@ -3,7 +3,7 @@ Contributors: pixelgrade, vlad.olaru, babbardel
 Donate link: https://pixelgrade.com
 Tags: fonts, typography, custom-fonts, customizer, editor
 Requires at least: 5.9.0
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 7.4
 Stable tag: 1.2.3
 License: GPL-2.0-or-later
