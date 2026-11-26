@@ -36,6 +36,13 @@ class Fonto_Option {
 	private static $_instance = null;
 
 	/**
+	 * Main Fonto instance.
+	 *
+	 * @var Fonto
+	 */
+	public $parent;
+
+	/**
 	 * Constructor function
 	 *
 	 * @param  Object $parent Main Fonto instance.
