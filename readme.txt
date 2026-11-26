@@ -5,7 +5,7 @@ Tags: fonts, typography, custom-fonts, customizer, editor
 Requires at least: 5.9.0
 Tested up to: 7.2
 Requires PHP: 7.4
-Stable tag: 1.2.4
+Stable tag: 1.2.5
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,6 +33,10 @@ Installing "Fonto" can be done either by searching for "Fonto" via the "Plugins 
 * [CMB2 Conditionals](https://github.com/jcchavezs/cmb2-conditionals/) plugin for CMB2 - License: GPLv2 or later
 
 == Changelog ==
+
+= 1.2.5 =
+* Fixed a PHP deprecation when initializing Fonto settings.
+* Tested with WordPress 7.2.
 
 = 1.2.4 =
 * Declared compatibility with WordPress 7.1.
